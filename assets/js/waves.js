@@ -1,6 +1,6 @@
 
 
-;(function(window) {
+(function(window) {
     'use strict';
 
     var Waves = Waves || {};
