@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "angular-ui-router": "^0.2.18",
+    "electron-json-storage": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
