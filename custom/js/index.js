@@ -1,6 +1,5 @@
 var app = angular.module("mongomulch", ['ui.router']);
 
-window.$ = window.jQuery = require('./assets/js/jquery.min.js');
 
 app.controller("AppCtrl", function($scope) {
 
