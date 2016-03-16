@@ -26,6 +26,19 @@
     "electron-prebuilt": "^0.36.0"
   },
   "dependencies": {
-    "angular-ui-router": "^0.2.18"
+    "angular-ui-router": "^0.2.18",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "run-sequence": "^1.1.5"
   }
 }
