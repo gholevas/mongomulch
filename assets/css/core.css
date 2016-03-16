@@ -336,7 +336,7 @@ hr {
 /* Card Box */
 .card-box {
   padding: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 0px solid rgba(255, 255, 255, 0.1);
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -moz-border-radius: 5px;
