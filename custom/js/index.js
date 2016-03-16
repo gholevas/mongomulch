@@ -15,8 +15,8 @@ app.config(function($stateProvider) {
     })
     .state('visualizer', {
         url: '/visualizer',
-        templateUrl: 'custom/templates/index.html',
-        controller: 'StoreCtrl'
+        templateUrl: 'custom/templates/visualizer.html',
+        controller: 'VisualizerCtrl'
     })
 });
 

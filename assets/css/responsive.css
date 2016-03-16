@@ -141,7 +141,7 @@ File: Responsive
     display: none !important;
   }
   .content-page {
-    margin-left: 70px;
+    margin-left: 0px;
   }
   .forced .side-menu.left {
     box-shadow: 0 12px 12px rgba(0, 0, 0, 0.1);
