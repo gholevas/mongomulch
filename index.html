@@ -17,23 +17,20 @@
     <script src="assets/js/modernizr.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="custom/js/index.js"></script>
+    <script src="public/main.js"></script>
 </head>
 
 <body class="fixed-left" ng-controller="AppCtrl">
-    <!-- Begin page -->
-    <div id="wrapper">
         <navbar></navbar>
         <sidebar></sidebar>
         <div class="content-page">
             <ui-view></ui-view>
         </div>
-        <!-- jQuery  -->
 </body>
 <footer>
-<script>
-window.$ = window.jQuery = require('./assets/js/jquery.min.js');
-</script>
+    <script>
+    window.$ = window.jQuery = require('./assets/js/jquery.min.js');
+    </script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/detect.js"></script>
     <script src="assets/js/fastclick.js"></script>
