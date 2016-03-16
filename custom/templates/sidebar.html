@@ -1,28 +1,37 @@
-<!-- ========== Left Sidebar Start ========== -->
+<!-- ========== Left Sidebar ========== -->
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
         <!--- Divider -->
         <div id="sidebar-menu">
             <ul>
                 <!-- <li class="text-muted menu-title">Schemas</li> -->
-                <li class="has_sub" style="text-align: center">
-                    <a href="#" class="waves-effect"><span> Users </span> </a>
-                </li>
-                <li class="has_sub" style="text-align: center">
-                    <a href="#" class="waves-effect"><span> Stores </span> </a>
-                </li>
-                <li class="has_sub" style="text-align: center">
-                    <a href="#" class="waves-effect">Products </span> </a>
-                </li>
-                <li class="has_sub" style="text-align: center">
-                    <a href="#" class="waves-effect"><span> Carts </span> </a>
+                <li ng-repeat="schema in schemas" class="has_sub" style="text-align: center">
+                    <a href="#" class="waves-effect"><span> {{schema}} </span> </a>
                 </li>
                 <br>
-                <button type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
+                <button data-toggle="modal" data-target=".bs-example-modal-sm" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
             </ul>
             <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
     </div>
 </div>
-<!-- Left Sidebar End -->
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Add Schema</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group m-t-10">
+                    <input ng-model="schemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
+                    <span class="input-group-btn">
+                        <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
