@@ -9,27 +9,14 @@
 
 <body>
     <h1>Hello World!</h1> We are using node
-    <div id="element1" style="width:100px;height:100px;background-color:red;"></div><br><br><br><br><br>
-    <div id="element2" style="width:100px;height:100px;background-color:green;">
+    <div id="element1" style="width:100px;height:100px;background-color:red;">
+    </div><br><br><br><br><br>
+    <div id="element2" style="width:100px;height:100px;background-color:green;"> </div>
+        <br><br><br><br><br>
+    <div id="element3" style="width:100px;height:100px;background-color:black;"> </div>
+    <div id="element4" style="width:100px;height:100px;background-color:yellow;"> </div>
+
+
 </body>
-<script>
-var firstInstance = jsPlumb.getInstance();
-
-
-jsPlumb.ready(function() {
-    firstInstance.importDefaults({
-        Connector: ["Bezier", {
-            curviness: 150
-        }],
-        Anchors: ["TopCenter", "BottomCenter"]
-    });
-
-    firstInstance.connect({
-        source: "element1",
-        target: "element2"
-        // scope: "someScope"
-    });
-});
-</script>
 
 </html>
