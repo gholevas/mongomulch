@@ -24,19 +24,29 @@
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Options</label>
                     </div>
-                    <div ng-repeat="field in schema.fields">
+                    <div ng-repeat="field in schema.fields" >
                         <!-- start of cardbox-->
+                      
                         <div class="col-md-4">
                             {{field.name}}
                         </div>
                         <div class="col-md-4">
-                            {{field.name}}
+                            {{field.type}}
                         </div>
-                        <div class="col-md-4">
-                            {{field.name}}
+                        <div class="col-md-2">
+                            {{field.options}}
                         </div>
+                           <div class="col-md-2">
+                            edit button
+                         </div>
+                         <!-- this div on new line -->
+                         <!-- this is "details" view -->
+                         <!-- <div ng-show="field.type===obj">
+                            details
+                         </div> -->
                     </div>
                     <div ng-keyup="$event.keyCode == 13 && addRow()">
+   
                         <!-- start of cardbox-->
                         <div class="col-md-4">
                             <form role="form">
