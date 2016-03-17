@@ -9,13 +9,22 @@ app.config(function($stateProvider) {
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
 	setUIthings();
 
+	console.log("onreload", $stateParams.schemaId);
+	if($stateParams.schemaId)
+		$scope.schemaLoaded = true;
+	else
+		$scope.schemaLoaded = false;
 
-	//will return default if schemaId is null
 	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+
+	$scope.addSchema = (schemaName) => {
+		SchemaFactory.addSchema(schemaName);
+        //function to 
+	}
 
 	$scope.$on('newSchema', function(event, args){
 		$state.go('schemabuilder', {schemaId: args})
-	})
+	});
 });
 
 function setUIthings(){

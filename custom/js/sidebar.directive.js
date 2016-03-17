@@ -39,4 +39,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory) {
         reloadSchemas();
     }
 
+    $scope.$on('newSchema', reloadSchemas);
+
 });
