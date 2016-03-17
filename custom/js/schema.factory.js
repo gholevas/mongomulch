@@ -12,9 +12,8 @@ app.factory('SchemaFactory', function($http, $rootScope) {
         deleteSchema: function(){
 
         },
-        //defaults to first available schema if id is null
         getSchemaById: function(id){
-        	var scchma = schemas.filter(schema => schema.id === id )[0] || schemas[0];
+        	var scchma = schemas.filter(schema => schema.id === id )[0];
         	return scchma;
         }
     };
