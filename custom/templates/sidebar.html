@@ -6,7 +6,7 @@
             <ul>
                 <!-- <li class="text-muted menu-title">Schemas</li> -->
                 <li ng-repeat="schema in schemas" class="has_sub" style="text-align: center">
-                    <a href="#" class="waves-effect"><span> {{schema}} </span> </a>
+                    <a ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect"><span> {{schema.name}} </span> </a>
                 </li>
                 <br>
                 <button data-toggle="modal" data-target=".bs-example-modal-sm" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
@@ -26,7 +26,7 @@
             </div>
             <div class="modal-body">
                 <div class="input-group m-t-10">
-                    <input ng-model="schemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
+                    <input ng-model="newSchemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
                     <span class="input-group-btn">
                         <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
                      </span>

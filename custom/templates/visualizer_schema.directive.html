@@ -1,0 +1,31 @@
+<div class="col-lg-4">
+    <div class="panel panel-color panel-custom">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h3 class="panel-title">{{schema.name}}</h3>
+        </div>
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                    <div class="table-responsive">
+                        <table class="table table-striped m-b-0">
+                            <thead>
+                                <tr>
+                                    <th>FieldName</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="field in schema.fields">
+                                    <td>{{field.name}}</td>
+                                    <td>{{field.type}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
