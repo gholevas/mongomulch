@@ -12,26 +12,20 @@
         <div class="container" ng-hide="!schemaLoaded">
             <div class="row">
                 <div class="col-sm-12">
-                       <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
-                        <p class="text-muted m-b-30 font-13">
-                        </p>
-
+                    <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
+                    <p class="text-muted m-b-30 font-13">
+                    </p>
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">FieldName</label>
                     </div>
-
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Data Type</label>
                     </div>
-
-                     <div class="col-md-4">
+                    <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Options</label>
                     </div>
-
-
-
-                    <div ng-repeat= "field in schema.fields"> <!-- start of cardbox-->
-            
+                    <div ng-repeat="field in schema.fields">
+                        <!-- start of cardbox-->
                         <div class="col-md-4">
                             {{field.name}}
                         </div>
@@ -41,19 +35,15 @@
                         <div class="col-md-4">
                             {{field.name}}
                         </div>
-
-                    </div>   
-
-
-                    <div ng-keyup="$event.keyCode == 13 && addRow()"> <!-- start of cardbox-->
-                  
+                    </div>
+                    <div ng-keyup="$event.keyCode == 13 && addRow()">
+                        <!-- start of cardbox-->
                         <div class="col-md-4">
                             <form role="form">
                                 <div class="form-group">
-                                    
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" id="example-input1-group1" name="example-input1-group1" class="form-control" placeholder="Username" ng-model="newFieldName">
+                                        <input type="text" name="example-input1-group1" class="form-control" placeholder="Username" ng-model="newFieldName">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -63,7 +53,7 @@
                             <form role="form">
                                 <div class="form-group">
                                     <div class="input-group ">
-                                        <input type="email" id="example-input2-group3" name="example-input2-group3" class="form-control" placeholder="Email">
+                                        <input type="email" name="example-input2-group3" class="form-control" placeholder="Email">
                                         <div class="input-group-btn">
                                             <button type="button" class="btn waves-effect waves-light btn-primary dropdown-toggle" data-toggle="dropdown" style="overflow: hidden; position: relative;">Action <span class="caret"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
@@ -82,14 +72,46 @@
                             <form role="form">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <button type="button" class="btn btn-primary btn-custom waves-effect waves-light">Select</button>
+                                        <button data-toggle="modal" data-target="#fieldOptionsModal" type="button" class="btn btn-primary btn-custom waves-effect waves-light">Select</button>
                                     </div>
                                 </div>
                                 <!-- form-group -->
                             </form>
                         </div>
-              
-                    </div> <!--card box closes -->
+                    </div>
+                    <!--card box closes -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<div id="fieldOptionsModal" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Options</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group m-t-10" ng-repeat="option in options">
+                    <div class="col-md-6">
+                        {{option.name}}
+                    </div>
+                    <div  class="col-md-6">
+                        {{option.value}}
+                    </div>
+                </div>
+                <div class="input-group m-t-10" ng-keyup="$event.keyCode == 13 && addOption()">
+                    <div class="col-md-6">
+                        <input ng-model="optionName" name="example-input2-group2" class="form-control" placeholder="option name">
+                    </div>
+                    <div  class="col-md-6">
+                        <input ng-model="optionValue" name="example-input2-group2" class="form-control" placeholder="value">
+                    </div>
+                </div>
+                <div align="right">
+                    <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target="fieldOptionsModal">Submit</button>
                 </div>
             </div>
         </div>
