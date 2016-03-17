@@ -30,8 +30,11 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	});
 
-	$scope.dummy = function(){
-		console.log("akak");
+	$scope.options = [];
+	$scope.addOption = function(){
+		$scope.options.push({name: $scope.optionName, value: $scope.optionValue})
+		$scope.optionName = '';
+		$scope.optionValue = '';
 	}
 
 
