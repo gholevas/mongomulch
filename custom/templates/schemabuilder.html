@@ -8,12 +8,11 @@
         <input ng-show="!schemaLoaded" ng-model="schemaName" ng-keyup="$event.keyCode == 13 && addSchema(schemaName)" type="text" class="form-control" placeholder="Enter Schema Name" aria-describedby="basic-addon2">
         <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
         <p class="text-muted m-b-30 font-13">
-            {{schemaInfo
         </p>
     </div>
     <!-- Start content -->
     <div class="content">
-        <div class="container">
+        <div class="container" ng-hide="!schemaLoaded">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">

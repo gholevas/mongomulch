@@ -33,6 +33,10 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 
 	$scope.addRow = () => {
 		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);
+		$scope.newFieldName ='';
+		$scope.newFieldType ='';
+		$scope.newFieldType ='';
+
 	};
 });
 
