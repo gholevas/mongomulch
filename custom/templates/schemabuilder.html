@@ -6,46 +6,90 @@
 <div class="content-page">
     <div class="input-group">
         <input ng-show="!schemaLoaded" ng-model="schemaName" ng-keyup="$event.keyCode == 13 && addSchema(schemaName)" type="text" class="form-control" placeholder="Enter Schema Name" aria-describedby="basic-addon2">
-        <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
-        <p class="text-muted m-b-30 font-13">
-        </p>
     </div>
     <!-- Start content -->
-    <div class="content">
+    <div class="content ">
         <div class="container" ng-hide="!schemaLoaded">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card-box">
-                        <div class="table-responsive">
-                            <table id="schemaTable" class="table table-striped m-b-0">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Options</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="field in schema.fields">
-                                        <td>{{field.name}}</td>
-                                        <td>{{field.type}}</td>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr ng-keyup="$event.keyCode==13 && addRow()">
-                                        <td>
-                                            <input placeholder="field name" ng-model="newFieldName"></input>
-                                        </td>
-                                        <td>
-                                            <input placeholder="data type" ng-model="newFieldType"></input>
-                                        </td>
-                                        <td>
-                                            <input placeholder="options" ng-model="newFieldOptions"></input>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                       <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
+                        <p class="text-muted m-b-30 font-13">
+                        </p>
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="example-input1-group1">FieldName</label>
                     </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="example-input1-group1">Data Type</label>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label class="control-label" for="example-input1-group1">Options</label>
+                    </div>
+
+
+
+                    <div ng-repeat= "field in schema.fields"> <!-- start of cardbox-->
+            
+                        <div class="col-md-4">
+                            {{field.name}}
+                        </div>
+                        <div class="col-md-4">
+                            {{field.name}}
+                        </div>
+                        <div class="col-md-4">
+                            {{field.name}}
+                        </div>
+
+                    </div>   
+
+
+                    <div ng-keyup="$event.keyCode == 13 && addRow()"> <!-- start of cardbox-->
+                  
+                        <div class="col-md-4">
+                            <form role="form">
+                                <div class="form-group">
+                                    
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" id="example-input1-group1" name="example-input1-group1" class="form-control" placeholder="Username" ng-model="newFieldName">
+                                    </div>
+                                </div>
+                                <!-- form-group -->
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <form role="form">
+                                <div class="form-group">
+                                    <div class="input-group ">
+                                        <input type="email" id="example-input2-group3" name="example-input2-group3" class="form-control" placeholder="Email">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn waves-effect waves-light btn-primary dropdown-toggle" data-toggle="dropdown" style="overflow: hidden; position: relative;">Action <span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="javascript:void(0)">Action</a></li>
+                                                <li><a href="javascript:void(0)">Another action</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="javascript:void(0)">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- form-group -->
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <form role="form">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-primary btn-custom waves-effect waves-light">Select</button>
+                                    </div>
+                                </div>
+                                <!-- form-group -->
+                            </form>
+                        </div>
+              
+                    </div> <!--card box closes -->
                 </div>
             </div>
         </div>
