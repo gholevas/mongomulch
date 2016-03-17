@@ -30,6 +30,10 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	});
 
+	$scope.dummy = function(){
+		console.log("akak");
+	}
+
 
 	$scope.addRow = () => {
 		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);

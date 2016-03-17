@@ -39,13 +39,33 @@
                                             <input placeholder="data type" ng-model="newFieldType"></input>
                                         </td>
                                         <td>
-                                            <input placeholder="options" ng-model="newFieldOptions"></input>
+                                            <!-- <input placeholder="options" ng-model="newFieldOptions"></input> -->
+                                            <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<div id="newSchemaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Add Schema</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group m-t-10">
+                    <input ng-model="newSchemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
+                    <span class="input-group-btn">
+                        <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+                     </span>
                 </div>
             </div>
         </div>

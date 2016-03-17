@@ -9,7 +9,7 @@
                     <a ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect"><span> {{schema.name}} </span> </a>
                 </li>
                 <br>
-                <button data-toggle="modal" data-target=".bs-example-modal-sm" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
+                <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -17,7 +17,7 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+<div id="newSchemaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
