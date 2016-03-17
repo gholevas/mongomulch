@@ -19,7 +19,6 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 
 	$scope.addSchema = (schemaName) => {
 		SchemaFactory.addSchema(schemaName);
-        //function to 
 	}
 
 	$scope.$on('newSchema', function(event, args){
@@ -30,15 +29,11 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	});
 
-	$scope.options = [];
-	$scope.addOption = function(){
-		$scope.options.push({name: $scope.optionName, value: $scope.optionValue})
-		$scope.optionName = '';
-		$scope.optionValue = '';
-	}
-
+	$scope.optionsModel =[{name: "testName", value: "someVal"}];
 
 	$scope.addRow = () => {
+		console.log("printing options");
+		console.log($scope.optionsModel);
 		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);
 		$scope.newFieldName ='';
 		$scope.newFieldType ='';
