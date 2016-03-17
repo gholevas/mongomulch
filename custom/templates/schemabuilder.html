@@ -16,7 +16,7 @@
                     <p class="text-muted m-b-30 font-13">
                     </p>
                     <div class="col-md-4">
-                        <label class="control-label" for="example-input1-group1">FieldName</label>
+                        <label class="control-label" for="example-input1-group1">{{optionsModel}}</label>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Data Type</label>
@@ -96,34 +96,5 @@
     </div>
 </div>
 <!-- modal -->
-<div id="fieldOptionsModal" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Options</h4>
-            </div>
-            <div class="modal-body">
-                <div class="input-group m-t-10" ng-repeat="option in options">
-                    <div class="col-md-6">
-                        {{option.name}}
-                    </div>
-                    <div  class="col-md-6">
-                        {{option.value}}
-                    </div>
-                </div>
-                <div class="input-group m-t-10" ng-keyup="$event.keyCode == 13 && addOption()">
-                    <div class="col-md-6">
-                        <input ng-model="optionName" name="example-input2-group2" class="form-control" placeholder="option name">
-                    </div>
-                    <div  class="col-md-6">
-                        <input ng-model="optionValue" name="example-input2-group2" class="form-control" placeholder="value">
-                    </div>
-                </div>
-                <div align="right">
-                    <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target="fieldOptionsModal">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal>
