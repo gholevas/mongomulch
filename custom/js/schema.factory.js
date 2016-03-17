@@ -15,6 +15,11 @@ app.factory('SchemaFactory', function($http, $rootScope) {
         getSchemaById: function(id){
         	var scchma = schemas.filter(schema => schema.id === id )[0];
         	return scchma;
+        },
+        addNewField: function(schemaId, name, type, options){
+        	var field = new Field(name,type)//options;
+        	this.getSchemaById(schemaId).fields.push(field);
+        	$rootScope.$broadcast('newField', schemaId);
         }
     };
 });

@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
-	setUIthings();
+	// setUIthings();
 
 	console.log("onreload", $stateParams.schemaId);
 	if($stateParams.schemaId)
@@ -25,6 +25,15 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	$scope.$on('newSchema', function(event, args){
 		$state.go('schemabuilder', {schemaId: args})
 	});
+
+	$scope.$on('newField', function(event, args){
+		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+	});
+
+
+	$scope.addRow = () => {
+		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);
+	};
 });
 
 function setUIthings(){
