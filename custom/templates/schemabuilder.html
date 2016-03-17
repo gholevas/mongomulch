@@ -24,10 +24,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>100</td>
-                                        <td>100</td>
-                                        <td>200</td>
+                                    <tr ng-repeat="field in schema.fields">
+                                        <td>{{field.name}}</td>
+                                        <td>{{field.type}}</td>
+                                        <td>...</td>
+                                    </tr>
+                                    <tr ng-keyup="$event.keyCode==13 && addRow()">
+                                        <td>
+                                            <input placeholder="field name" ng-model="newFieldName"></input>
+                                        </td>
+                                        <td>
+                                            <input placeholder="data type" ng-model="newFieldType"></input>
+                                        </td>
+                                        <td>
+                                            <input placeholder="options" ng-model="newFieldOptions"></input>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
