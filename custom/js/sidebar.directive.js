@@ -9,9 +9,9 @@ app.directive('sidebar', function() {
 var storage = require('electron-json-storage');
 
 
-app.controller("SideBarCtrl", function($scope) {
-    $scope.schemas = ['Users'];
-    $scope.schemaName = '';
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory) {
+    $scope.schemas = SchemaFactory.getSchemas();
+    $scope.newSchemaName = '';
 
     // storage.keys(function(error, keys) {
     //     if (error) throw error;
@@ -30,11 +30,13 @@ app.controller("SideBarCtrl", function($scope) {
         //     if (error) throw error;
         //     console.log(data);
         // });
-        // storage.set('schemas2', [{ name: $scope.schemaName }], function(error) {
+        // storage.set('schemas2', [{ name: $scope.newSchemaName }], function(error) {
         //     if (error) throw error;
         // })
-        $scope.schemas.push($scope.schemaName);
-        $scope.schemaName = '';
+        $rootScope.$broadcast('newSchema');
+        SchemaFactory.addSchema($scope.newSchemaName)
+        $scope.schemas = SchemaFactory.getSchemas();
+        $scope.newSchemaName = '';
     }
 
 });
