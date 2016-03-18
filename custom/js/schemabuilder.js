@@ -8,8 +8,10 @@ app.config(function($stateProvider) {
 
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
 	// setUIthings();
+	$scope.newFieldOptionsDisplay ='Pick Options';
+	var newFieldOptionsArr = [];
+	$scope.newFieldType ='Pick Data Type';
 
-	console.log("onreload", $stateParams.schemaId);
 	if($stateParams.schemaId)
 		$scope.schemaLoaded = true;
 	else
@@ -29,17 +31,31 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	});
 
-	$scope.optionsModel =[{name: "testName", value: "someVal"}];
+	$scope.optionsModel =[];
 
 	$scope.addRow = () => {
 		console.log("printing options");
 		console.log($scope.optionsModel);
 		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);
 		$scope.newFieldName ='';
-		$scope.newFieldType ='';
-		$scope.newFieldType ='';
+		$scope.newFieldOptionsDisplay ='Pick Options';
+		$scope.newFieldType ='Pick Data Type';
 
 	};
+
+	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Refrence', 'Array'];
+
+	$scope.selectedType =(type,field) => {
+		if(!field) $scope.newFieldType = type;
+	};
+
+	$scope.selectedOptions =(key, val, field) => {
+		if(!field) newFieldOptionsArr.push({key: key, value: value});
+		// else get fields optionsarr...
+		$scope.newFieldOptionsDisplay = Object.keys(newFieldOptionsArr);
+	}
+
+
 });
 
 function setUIthings(){
