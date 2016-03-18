@@ -7,10 +7,9 @@ app.config(function($stateProvider) {
 });
 
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
-	// setUIthings();
-	$scope.newFieldOptionsDisplay ='Pick Options';
-	var newFieldOptionsArr = [];
-	$scope.newFieldType ='Pick Data Type';
+	// setTableEditable();
+	resetNewFieldVals($scope);
+	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Refrence', 'Array'];
 
 	if($stateParams.schemaId)
 		$scope.schemaLoaded = true;
@@ -31,33 +30,34 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	});
 
-	$scope.optionsModel =[];
-
 	$scope.addRow = () => {
-		console.log("printing options");
-		console.log($scope.optionsModel);
-		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptions);
-		$scope.newFieldName ='';
-		$scope.newFieldOptionsDisplay ='Pick Options';
-		$scope.newFieldType ='Pick Data Type';
-
+		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptionsObj);
+		resetNewFieldVals($scope);
 	};
 
-	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Refrence', 'Array'];
 
-	$scope.selectedType =(type,field) => {
+	$scope.selectType =(type,field) => {
 		if(!field) $scope.newFieldType = type;
 	};
 
-	$scope.selectedOptions =(key, val, field) => {
-		if(!field) newFieldOptionsArr.push({key: key, value: value});
+	$scope.selectOption =(name, value, field) => {
+		if(!field) $scope.newFieldOptionsObj[name] = value;
 		// else get fields optionsarr...
-		$scope.newFieldOptionsDisplay = Object.keys(newFieldOptionsArr);
+		$scope.newFieldOptionsDisplay = Object.keys($scope.newFieldOptionsObj).reduce((prev, key) => {return prev==""?key:prev+", "+key; },"");
 	}
 
 
 });
 
-function setUIthings(){
+function resetNewFieldVals(scope){
+	scope.newFieldOptionsDisplay ='';
+	scope.newFieldOptionsObj = {};
+	scope.newFieldType ='Pick Data Type';
+	scope.newOptionValue = '';
+	scope.newOptionName = '';
+	scope.newFieldName = '';
+}
+
+function setTableEditable(){
 	$('#schemaTable').editableTableWidget().numericInputExample().find('td:first').focus();
 }
