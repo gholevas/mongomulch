@@ -16,7 +16,7 @@
                     <p class="text-muted m-b-30 font-13">
                     </p>
                     <div class="col-md-4">
-                        <label class="control-label" for="example-input1-group1">{{optionsModel}}</label>
+                        <label class="control-label" for="example-input1-group1">Field Name</label>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Data Type</label>
@@ -24,9 +24,8 @@
                     <div class="col-md-4">
                         <label class="control-label" for="example-input1-group1">Options</label>
                     </div>
-                    <div ng-repeat="field in schema.fields" >
+                    <div ng-repeat="field in schema.fields">
                         <!-- start of cardbox-->
-                      
                         <div class="col-md-4">
                             {{field.name}}
                         </div>
@@ -34,59 +33,61 @@
                             {{field.type}}
                         </div>
                         <div class="col-md-2">
-                            {{field.options}}
+                            {{field.options}} <!--display all the keys-->
                         </div>
-                           <div class="col-md-2">
+                        <div class="col-md-2">
                             edit button
-                         </div>
-                         <!-- this div on new line -->
-                         <!-- this is "details" view -->
-                         <!-- <div ng-show="field.type===obj">
+                        </div>
+                        <!-- this div on new line -->
+                        <!-- this is "details" view -->
+                        <!-- <div ng-show="field.type===obj">
                             details
                          </div> -->
                     </div>
                     <div ng-keyup="$event.keyCode == 13 && addRow()">
-   
                         <!-- start of cardbox-->
                         <div class="col-md-4">
                             <form role="form">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" name="example-input1-group1" class="form-control" placeholder="Username" ng-model="newFieldName">
+                           
+                                        <input type="text" name="example-input1-group1" class="form-control" placeholder="Field Name" ng-model="newFieldName">
                                     </div>
                                 </div>
                                 <!-- form-group -->
                             </form>
                         </div>
-                        <div class="col-md-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <div class="input-group ">
-                                        <input type="email" name="example-input2-group3" class="form-control" placeholder="Email">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn waves-effect waves-light btn-primary dropdown-toggle" data-toggle="dropdown" style="overflow: hidden; position: relative;">Action <span class="caret"></span></button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="javascript:void(0)">Action</a></li>
-                                                <li><a href="javascript:void(0)">Another action</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="javascript:void(0)">Separated link</a></li>
-                                            </ul>
+
+                        <div class="btn-group col-md-4">
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{newFieldType}} <span class="caret"></span></button>
+                
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat ="type in typeArr" ng-click = "selectedType(type,null)"><a>{{type}}</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="btn-group col-md-4">
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="option in options">
+                                    <div class="col-md-6">
+                                        {{option.name}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{option.value}}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="input-group m-t-10" ng-keyup="$event.keyCode == 13 && addOption()">
+                                        <div class="col-md-6">
+                                            <input ng-model="optionName" name="example-input2-group2" class="form-control" placeholder="option name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input ng-model="optionValue" name="example-input2-group2" class="form-control" placeholder="value">
                                         </div>
                                     </div>
-                                </div>
-                                <!-- form-group -->
-                            </form>
-                        </div>
-                        <div class="col-md-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <button data-toggle="modal" data-target="#fieldOptionsModal" type="button" class="btn btn-primary btn-custom waves-effect waves-light">Select</button>
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <!--card box closes -->
@@ -95,6 +96,5 @@
         </div>
     </div>
 </div>
-<!-- modal -->
-
-<mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal>
+<!-- modal --><!-- 
+<mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal> -->
