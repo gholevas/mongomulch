@@ -17,7 +17,7 @@ app.factory('SchemaFactory', function($http, $rootScope) {
         	return scchma;
         },
         addNewField: function(schemaId, name, type, options){
-        	var field = new Field(name,type)//options;
+        	var field = new Field(name,type,options);
         	this.getSchemaById(schemaId).fields.push(field);
         	$rootScope.$broadcast('newField', schemaId);
         }
@@ -33,7 +33,8 @@ function Schema(name){
 	this.fields = [];
 }
 
-function Field(name, type){
+function Field(name, type, options){
 	this.name = name || "";
 	this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
+    this.options = options || {};
 }
