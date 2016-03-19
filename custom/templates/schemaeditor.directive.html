@@ -1,64 +1,39 @@
-                    <!-- ROWS (fields) -->
-                    <div ng-repeat="field in schema.fields" class ="clearfix" style ="clear:both;">
+<!-- ROWS (fields) -->
+<div ng-repeat="field in schema.fields" class ="clearfix" style ="clear:both;">
 
-                        <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
-                            {{field.name}}
-                        </div>
-                        <div class="col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Field Name" ng-model="field.name">
-                            </div>
-                        </div>
+    <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
+        {{field.name}}
+    </div>
+    <div class="col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Field Name" ng-model="field.name">
+        </div>
+    </div>
 
-                        <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
-                            {{field.type}}
-                        </div>
-                        <div class="btn-group col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
-                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{field.type}} <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li ng-repeat="type in typeArr" ng-click="field.type = type"><a>{{type}}</a></li>
-                            </ul>
-                        </div>
+    <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
+        {{field.type}}
+    </div>
+    <div class="btn-group col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
+        <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{field.type}} <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="type in typeArr" ng-click="field.type = type"><a>{{type}}</a></li>
+        </ul>
+    </div>
 
-                        <div class="col-md-2 m-t-10 m-b-10" ng-hide="editingField===field">
-                            {{field.options}}
-                            <!--display all the keys-->
-                        </div>
-                        <div class="btn-group col-md-2 m-t-10 m-b-10" ng-show="editingField===field">
-                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li ng-repeat="(key,value) in field.options">
-                                    <div class="col-md-6">
-                                        {{key}}
-                                    </div>
-                                    <div class="col-md-6">
-                                        {{value}}
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="input-group m-t-10">
-                                        <div class="col-md-4">
-                                            <input ng-model="field.newOptionName" name="example-input2-group2" class="form-control" placeholder="option name">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input ng-model="field.newOptionValue" name="example-input2-group2" class="form-control" placeholder="value">
-                                        </div>
-                                        <div class="col-md-2" ng-click="field.options[field.newOptionName]=field.newOptionValue">
-                                            <i class="glyphicon glyphicon-ok"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            {{newFieldOptionsDisplay}}
-                        </div>
+    <div class="col-md-2 m-t-10 m-b-10" ng-hide="editingField===field">
+        {{field.options | json}}
+    </div>
+    <div class="btn-group col-md-2 m-t-10 m-b-10" ng-show="editingField===field">
+        <options-dropdown field="field"></options-dropdown>
+    </div>
 
-                        <div class="col-md-2 m-t-10 m-b-10" ng-click="editField(field)">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </div>
+    <div class="col-md-2 m-t-10 m-b-10" ng-click="editField(field)">
+        <i class="glyphicon glyphicon-edit"></i>
+    </div>
 
-                        <!-- this div on new line -->
-                        <!-- this is "details" view -->
-                        <!-- <div ng-show="field.type===obj">
-                            details
-                         </div> -->
-                    </div>
+    <!-- this div on new line -->
+    <!-- this is "details" view -->
+    <!-- <div ng-show="field.type===obj">
+        details
+     </div> -->
+</div>

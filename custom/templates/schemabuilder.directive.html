@@ -11,30 +11,6 @@
         </ul>
     </div>
     <div class="btn-group col-md-4 m-t-10">
-        <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="(key,value) in newFieldOptionsObj">
-                <div class="col-md-6">
-                    {{key}}
-                </div>
-                <div class="col-md-6">
-                    {{value}}
-                </div>
-            </li>
-            <li>
-                <div class="input-group m-t-10">
-                    <div class="col-md-4">
-                        <input ng-model="newOptionName" name="example-input2-group2" class="form-control" placeholder="option name">
-                    </div>
-                    <div class="col-md-4">
-                        <input ng-model="newOptionValue" name="example-input2-group2" class="form-control" placeholder="value">
-                    </div>
-                    <div class="col-md-2" ng-click="selectOption(newOptionName,newOptionValue,null)">
-                        <i class="glyphicon glyphicon-ok"></i>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        {{newFieldOptionsDisplay}}
+        <options-dropdown field="newField"></options-dropdown>
     </div>
 </div>

@@ -1,0 +1,68 @@
+<button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
+<ul class="dropdown-menu" role="menu">
+    <li class="col-md-12">
+        <div class="checkbox checkbox-custom col-md-4">
+            <input id="checkbox-unique" type="checkbox" ng-model="field.options.unique">
+            <label for="checkbox-unique">
+                Unique
+            </label>
+        </div>
+    </li>
+    <li class="col-md-12">
+        <div class="checkbox checkbox-custom clearfix">
+            <input id="checkbox-select" type="checkbox" ng-model="field.options.select">
+            <label for="checkbox-select">
+                Select
+            </label>
+        </div>
+    </li>
+    <li class="col-md-12">
+        <div class="checkbox checkbox-custom clearfix">
+            <input id="checkbox-sparse" type="checkbox" ng-model="field.options.sparse">
+            <label for="checkbox-sparse">
+                Sparse
+            </label>
+        </div>
+    </li>
+    <li class="col-md-12">
+        <div class="checkbox checkbox-custom clearfix">
+            <input id="checkbox-text" type="checkbox" ng-model="field.options.text">
+            <label for="checkbox-text">
+                Text
+            </label>
+        </div>
+    </li>
+    <li class="col-md-12">
+        <div class="checkbox checkbox-custom clearfix">
+            <input id="checkbox-default" type="checkbox" ng-checked="field.options.default" ng-click="deletePropIfNoValue('default')">
+            <label for="checkbox-default">
+                Default
+            </label>
+            <input placeholder="default value" ng-model="field.options.default"></input>
+        </div>
+    </li>
+    <li ng-repeat="(key,value) in field.options" ng-if="['sparse','text','select','default','unique'].indexOf(key)==-1">
+        <div class="clearfix m-t-10 m-b-10">
+            <div class="col-md-4">
+                {{key}}
+            </div>
+            <div class="col-md-8">
+                {{value}}
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="input-group m-t-10">
+            <div class="col-md-4">
+                <input ng-model="field.newOptionName" class="form-control" placeholder="custom">
+            </div>
+            <div class="col-md-4">
+                <input ng-model="field.newOptionValue" class="form-control" placeholder="value">
+            </div>
+            <span class="col-md-4 input-group-btn" ng-click="field.options[field.newOptionName]=field.newOptionValue"><!--  ng-click="selectOption(newOptionName,newOptionValue)" -->
+                <button type="button" class="glyphicon glyphicon-ok btn btn-default"></button>
+            </span>
+        </div>
+    </li>
+</ul>
+{{field.options | json}}
