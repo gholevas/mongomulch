@@ -14,6 +14,7 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Reference', 'Array'];
 	refreshSchema();
 	$scope.schemaLoaded = $scope.schema ? true : false;
+	$scope.editingField = null;
 	/////////INITIALIZE/////////
 
 	$scope.addSchema = (schemaName) => {
@@ -43,6 +44,13 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		if(!field) $scope.newFieldOptionsObj[name] = value;
 		// else get fields optionsarr...
 		$scope.newFieldOptionsDisplay = Object.keys($scope.newFieldOptionsObj).reduce((prev, key) => {return prev==""?key:prev+", "+key; },"");
+	}
+
+
+	$scope.editField =(field) => {
+		if($scope.editingField) $scope.editingField = null;
+		else $scope.editingField = field;
+
 	}
 
 	function refreshSchema(){

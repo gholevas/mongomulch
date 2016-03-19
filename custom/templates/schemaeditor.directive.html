@@ -1,5 +1,5 @@
                     <!-- ROWS (fields) -->
-                    <div ng-repeat="field in schema.fields">
+                    <div ng-repeat="field in schema.fields" class ="clearfix" style ="clear:both;">
 
                         <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
                             {{field.name}}
@@ -52,7 +52,7 @@
                             {{newFieldOptionsDisplay}}
                         </div>
 
-                        <div class="col-md-2 m-t-10 m-b-10" ng-click="editingField = editingField?null:field">
+                        <div class="col-md-2 m-t-10 m-b-10" ng-click="editField(field)">
                             <i class="glyphicon glyphicon-edit"></i>
                         </div>
 
