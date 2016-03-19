@@ -11,7 +11,7 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	/////////INITIALIZE/////////
 	// setTableEditable();
 	resetNewFieldVals($scope);
-	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Reference', 'Array'];
+	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer'];
 	refreshSchema();
 	$scope.schemaLoaded = $scope.schema ? true : false;
 	$scope.editingField = null;
@@ -39,6 +39,22 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		if(!field) $scope.newFieldType = type;
 		//else field.updateType
 	};
+
+
+	$scope.selectArrType = (type,field) => {
+		console.log('click');
+		console.log($scope.newFieldType);
+		if(!field) $scope.newFieldType = "Array of "+ type;
+		//else field.updateType
+	};
+
+	$scope.selectObjType = (type,field) => {
+		console.log('click');
+		console.log($scope.newFieldType);
+		if(!field) $scope.newFieldType = "Referenceing "+ type;
+		//else field.updateType
+	};
+
 
 	$scope.selectOption =(name, value, field) => {
 		if(!field) $scope.newFieldOptionsObj[name] = value;
