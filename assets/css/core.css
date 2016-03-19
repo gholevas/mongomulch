@@ -1351,12 +1351,12 @@ body.fixed-left .side-menu.left {
 }
 .content-page {
   margin-left: 160px;
-  overflow: hidden;
+  overflow: visible;
 }
 .content-page > .content {
   margin-bottom: 60px;
-  margin-top: 60px;
-  padding: 20px 5px 15px 5px;
+  margin-top: 10px;
+  padding: 10px 5px 15px 5px;
 }
 .button-menu-mobile {
   background: transparent;
