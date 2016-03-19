@@ -7,37 +7,36 @@ app.config(function($stateProvider) {
 });
 
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
+	
+	/////////INITIALIZE/////////
 	// setTableEditable();
 	resetNewFieldVals($scope);
-	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Refrence', 'Array'];
-
-	if($stateParams.schemaId)
-		$scope.schemaLoaded = true;
-	else
-		$scope.schemaLoaded = false;
-
-	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer', 'Object','Reference', 'Array'];
+	refreshSchema();
+	$scope.schemaLoaded = $scope.schema ? true : false;
+	/////////INITIALIZE/////////
 
 	$scope.addSchema = (schemaName) => {
 		SchemaFactory.addSchema(schemaName);
 	}
 
+	//receives newSchema event from SchemaFactory.addSchema
 	$scope.$on('newSchema', function(event, args){
 		$state.go('schemabuilder', {schemaId: args})
 	});
-
+	//receives newField event from SchemaFactory.addNewField
 	$scope.$on('newField', function(event, args){
-		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+		refreshSchema();
 	});
 
 	$scope.addRow = () => {
-		SchemaFactory.addNewField($stateParams.schemaId, $scope.newFieldName,$scope.newFieldType,$scope.newFieldOptionsObj);
+		$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newFieldOptionsObj);
 		resetNewFieldVals($scope);
 	};
 
-
-	$scope.selectType =(type,field) => {
+	$scope.selectType = (type,field) => {
 		if(!field) $scope.newFieldType = type;
+		//else field.updateType
 	};
 
 	$scope.selectOption =(name, value, field) => {
@@ -46,17 +45,21 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.newFieldOptionsDisplay = Object.keys($scope.newFieldOptionsObj).reduce((prev, key) => {return prev==""?key:prev+", "+key; },"");
 	}
 
+	function refreshSchema(){
+		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+	}
+
+	function resetNewFieldVals(){
+		$scope.newFieldOptionsDisplay ='';
+		$scope.newFieldOptionsObj = {};
+		$scope.newFieldType ='Pick Data Type';
+		$scope.newOptionValue = '';
+		$scope.newOptionName = '';
+		$scope.newFieldName = '';
+	}
 
 });
 
-function resetNewFieldVals(scope){
-	scope.newFieldOptionsDisplay ='';
-	scope.newFieldOptionsObj = {};
-	scope.newFieldType ='Pick Data Type';
-	scope.newOptionValue = '';
-	scope.newOptionName = '';
-	scope.newFieldName = '';
-}
 
 function setTableEditable(){
 	$('#schemaTable').editableTableWidget().numericInputExample().find('td:first').focus();

@@ -14,57 +14,99 @@
                 <div class="col-sm-12">
                     <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
                     <p class="text-muted m-b-30 font-13">
+                        <!-- description could go here  -->
                     </p>
+
+                    <!-- HEADERS -->
                     <div class="col-md-4">
-                        <label class="control-label" for="example-input1-group1">Field Name</label>
+                        <h5>Field Name</h5>
                     </div>
                     <div class="col-md-4">
-                        <label class="control-label" for="example-input1-group1">Data Type</label>
+                        <h5>Data Type</h5>
                     </div>
                     <div class="col-md-4">
-                        <label class="control-label" for="example-input1-group1">Options</label>
+                        <h5>Options</h5>
                     </div>
+
+                    <!-- ROWS (fields) -->
                     <div ng-repeat="field in schema.fields">
-                        <!-- start of cardbox-->
-                        <div class="col-md-4">
+
+                        <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
                             {{field.name}}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Field Name" ng-model="field.name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
                             {{field.type}}
                         </div>
-                        <div class="col-md-2">
-                            {{field.options}} <!--display all the keys-->
+                        <div class="btn-group col-md-4 m-t-10 m-b-10" ng-show="editingField===field">
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{field.type}} <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="type in typeArr" ng-click="field.type = type"><a>{{type}}</a></li>
+                            </ul>
                         </div>
-                        <div class="col-md-2">
-                            edit button
+
+                        <div class="col-md-2 m-t-10 m-b-10" ng-hide="editingField===field">
+                            {{field.options}}
+                            <!--display all the keys-->
                         </div>
+                        <div class="btn-group col-md-2 m-t-10 m-b-10" ng-show="editingField===field">
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="(key,value) in field.options">
+                                    <div class="col-md-6">
+                                        {{key}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{value}}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="input-group m-t-10">
+                                        <div class="col-md-4">
+                                            <input ng-model="field.newOptionName" name="example-input2-group2" class="form-control" placeholder="option name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input ng-model="field.newOptionValue" name="example-input2-group2" class="form-control" placeholder="value">
+                                        </div>
+                                        <div class="col-md-2" ng-click="field.options[field.newOptionName]=field.newOptionValue">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            {{newFieldOptionsDisplay}}
+                        </div>
+
+                        <div class="col-md-2 m-t-10 m-b-10" ng-click="editingField = editingField?null:field">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </div>
+
                         <!-- this div on new line -->
                         <!-- this is "details" view -->
                         <!-- <div ng-show="field.type===obj">
                             details
                          </div> -->
                     </div>
-                    <div ng-keyup="$event.keyCode == 13 && addRow()">
-                        <!-- start of cardbox-->
-                        <div class="col-md-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <div class="input-group">
-                           
-                                        <input type="text" name="example-input1-group1" class="form-control" placeholder="Field Name" ng-model="newFieldName">
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </form>
-                        </div>
 
-                        <div class="btn-group col-md-4">
-                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{newFieldType}} <span class="caret"></span></button>                
+                    <!-- INPUT ROW (new field) -->
+                    <div ng-keyup="$event.keyCode == 13 && addRow()">
+                        <div class="col-md-4 m-t-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Field Name" ng-model="newFieldName">
+                            </div>
+                        </div>
+                        <div class="btn-group col-md-4 m-t-10">
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{newFieldType}} <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
-                                <li ng-repeat ="type in typeArr" ng-click = "selectType(type,null)"><a>{{type}}</a></li>
+                                <li ng-repeat="type in typeArr" ng-click="selectType(type,null)"><a>{{type}}</a></li>
                             </ul>
                         </div>
-                        <div class="btn-group col-md-3">
+                        <div class="btn-group col-md-3 m-t-10">
                             <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
                                 <li ng-repeat="(key,value) in newFieldOptionsObj">
@@ -92,11 +134,11 @@
                             {{newFieldOptionsDisplay}}
                         </div>
                     </div>
-                    <!--card box closes -->
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- modal --><!-- 
-<mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal> -->
+<!-- modal -->
+<!-- <mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal> -->
