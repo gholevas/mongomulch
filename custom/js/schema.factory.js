@@ -1,40 +1,43 @@
+//using mongoose to generate unique IDs for our schemas..
+var mongoose = require('mongoose');
+
 app.factory('SchemaFactory', function($http, $rootScope) {
-	var schemas = [];
+    
+    var schemas = []; //root data structure
+
+    var Schema = function(name){
+        this.name = name || "";
+        this.id = mongoose.Types.ObjectId().toString();
+        this.fields = [];
+    }
+
+    Schema.prototype.addField = function(name, type, options){
+        this.fields.push(new Field(name,type,options));
+        $rootScope.$broadcast('newField', this.schemaId);
+    }
+
+    var Field = function(name, type, options){
+        this.name = name || "";
+        this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
+        this.options = options || {};
+    }
+
     return {
         getSchemas: function() {
             return schemas;
         },
         addSchema: function(name){
-        	var newSchema = new Schema(name);
-        	schemas.push(newSchema);
-        	$rootScope.$broadcast('newSchema', newSchema.id);
+            var newSchema = new Schema(name);
+            schemas.push(newSchema);
+            $rootScope.$broadcast('newSchema', newSchema.id);
         },
         deleteSchema: function(){
 
         },
         getSchemaById: function(id){
-        	var scchma = schemas.filter(schema => schema.id === id )[0];
-        	return scchma;
-        },
-        addNewField: function(schemaId, name, type, options){
-        	var field = new Field(name,type,options);
-        	this.getSchemaById(schemaId).fields.push(field);
-        	$rootScope.$broadcast('newField', schemaId);
+            return schemas.filter(schema => schema.id === id )[0];
         }
     };
+
 });
 
-//using mongoose to generate unique IDs for our schemas..
-var mongoose = require('mongoose');
-
-function Schema(name){
-	this.name = name || "";
-	this.id = mongoose.Types.ObjectId().toString();
-	this.fields = [];
-}
-
-function Field(name, type, options){
-	this.name = name || "";
-	this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
-    this.options = options || {};
-}
