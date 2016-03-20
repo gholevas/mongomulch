@@ -1,6 +1,5 @@
 <!-- ROWS (fields) -->
-<div ng-repeat="field in schema.fields" class ="clearfix" style ="clear:both;">
-
+<div ng-repeat="field in schema.fields" class="clearfix" style="clear:both;">
     <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
         {{field.name}}
     </div>
@@ -9,7 +8,6 @@
             <input type="text" class="form-control" placeholder="Field Name" ng-model="field.name">
         </div>
     </div>
-
     <div class="col-md-4 m-t-10 m-b-10" ng-hide="editingField===field">
         {{field.type}}
     </div>
@@ -17,23 +15,24 @@
         <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{field.type}} <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
             <li ng-repeat="type in typeArr" ng-click="field.type = type"><a>{{type}}</a></li>
+            <array-Dropdown method="selectArrType"> </array-Dropdown>
+            <reference-Dropdown method="selectObjType"> </reference-Dropdown>
+            <li><a ui-sref="newstate">Object</a></li>
         </ul>
     </div>
-
     <div class="col-md-2 m-t-10 m-b-10" ng-hide="editingField===field">
         {{field.options | json}}
+        <!--display all the keys-->
     </div>
     <div class="btn-group col-md-2 m-t-10 m-b-10" ng-show="editingField===field">
         <options-dropdown field="field"></options-dropdown>
     </div>
-
     <div class="col-md-2 m-t-10 m-b-10" ng-click="editField(field)">
         <i class="glyphicon glyphicon-edit"></i>
     </div>
-
     <!-- this div on new line -->
     <!-- this is "details" view -->
     <!-- <div ng-show="field.type===obj">
-        details
-     </div> -->
+                            details
+                         </div> -->
 </div>
