@@ -12,17 +12,14 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     }
 
     Schema.prototype.addField = function(field){
-        // if(this.fields.indexOf(field) === -1){
-        //     console.log('not here')
-        // }
-        this.fields.push(new Field(field.name,field.type,field.options));
-        Storage.set('schemas', schemas);
+        if(this.fields.indexOf(field) !== -1){
+            this.fields[this.fields.indexOf(field)] = field;
+        }else{
+            this.fields.push(new Field(field.name,field.type,field.options));
+            Storage.set('schemas', schemas);
+        }
     }
 
-    //  Schema.prototype.editField = function(field){
-    //     this.fields.push(new Field(field.name,field.type,field.options));
-    //     Storage.set('schemas', schemas);
-    // }
 
 
     Schema.prototype.deleteField = function(field){
