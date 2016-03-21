@@ -1,7 +1,7 @@
 app.directive('optionsDropdown', function() {
   return {
   	restrict: 'E',
-    templateUrl: 'custom/templates/optionsdropdown.directive.html',
+    templateUrl: 'custom/schemabuilder/dropdowns/optionsdropdown.directive.html',
     scope: {
     	field: "="
     },
