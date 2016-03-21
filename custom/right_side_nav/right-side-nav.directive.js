@@ -18,8 +18,8 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, $log, 
 			}
 		}
 
-		$scope.typeArr = ['String', 'Number', 'Boolean','Buffer','Array of...','Reference to...','Embed...'];
-		$scope.arrOf = ['Strings', 'Numbers', 'Booleans','Buffers'];
+		$scope.typeArr = ['String', 'Number', 'Boolean','Buffer','Date','Array of...','Reference to...','Embed...'];
+		$scope.arrOf = ['Strings', 'Numbers', 'Booleans','Dates','Buffers'];
 
         //checkbox stuff begins
         $scope.items = ['Unique', 'Required','Select', 'Sparse', 'Text'];
