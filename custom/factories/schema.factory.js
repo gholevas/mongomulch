@@ -12,9 +12,15 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
 
     Schema.prototype.addField = function(name, type, options){
         this.fields.push(new Field(name,type,options));
-        $rootScope.$broadcast('newField', this.schemaId);
         Storage.set('schemas', schemas);
+        $rootScope.$broadcast('newField', this.schemaId);
     }
+
+    Schema.prototype.deleteField = function(field){
+        this.fields.splice(this.fields.indexOf(field), 1);
+        Storage.set('schemas', schemas);
+        $rootScope.$broadcast('newField', this.schemaId);
+    }    
 
     var Field = function(name, type, options){
         this.name = name || "";
@@ -22,11 +28,11 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         this.options = options || {select: true};
     }
 
-    var convertPlainToSchema = function(sObj){
+    var convertPojoToSchema = function(sObj){
         return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options)))
     }
 
-    var schemas = Storage.get('schemas').map(sObj => convertPlainToSchema(sObj) ) || []; //root data structure
+    var schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
 
     return {
         Schema: Schema,
@@ -40,8 +46,9 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             Storage.set('schemas', schemas);
             $rootScope.$broadcast('newSchema', newSchema.id);
         },
-        deleteSchema: function(){
-            // schemas.indexOf()
+        deleteSchema: function(schema){
+            schemas.splice(schemas.indexOf(schema), 1);
+            Storage.set('schemas', schemas);
         },
         deleteAll: function(){
             schemas = [];

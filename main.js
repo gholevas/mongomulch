@@ -7,6 +7,14 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
+const notifier = require('node-notifier');
+
+/////local storage using configstore/////
+const Configstore = require('configstore');
+const path = require('path');
+var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
+const conf = new Configstore(storageAppKey, {os_username: process.env.USER || process.env.LOGNAME});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -30,6 +38,13 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+  
+  mainWindow.on('close', function() {
+    notifier.notify({
+      'title': 'MongoMulch',
+      'message': 'Goodbye ' + conf.get('os_username')
+    });
+  });
 }
 
 // This method will be called when Electron has finished
@@ -51,17 +66,4 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
-});
-
-const Configstore = require('configstore');
-const path = require('path');
-var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
-const conf = new Configstore(storageAppKey, {os_username: process.env.USER || process.env.LOGNAME});
-
-// You can use 'before-quit' instead of (or with) the close event
-app.on('before-quit', function (e) {
-   require('dialog').showMessageBox({
-            message: "Close button has been pressed! goodbye "+conf.all.os_username,
-            buttons: ["OK"]
-        });
 });

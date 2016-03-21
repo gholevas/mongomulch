@@ -36,6 +36,11 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
 
+    $scope.deleteSchema = function(schema) {
+        SchemaFactory.deleteSchema(schema);
+        reloadSchemas();
+    }
+
     //////////admin-ish////////////
     $scope.deleteAll = function() {
         SchemaFactory.deleteAll();
@@ -48,4 +53,11 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
+});
+
+app.directive('sidebarSchemaButton', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'custom/side_nav_bar/sidebar_schemabutton.directive.html'
+    };
 });
