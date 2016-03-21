@@ -6,10 +6,12 @@
             <ul>
                 <!-- <li class="text-muted menu-title">Schemas</li> -->
                 <li ng-repeat="schema in schemas" class="has_sub" style="text-align: center">
-                    <a ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect"><span> {{schema.name}} </span> </a>
+                    <sidebar-schema-button></sidebar-schema-button>
                 </li>
                 <br>
                 <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button>
+                <button ng-click="deleteAll()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">DELETE ALL (temp)</button>
+                <button ng-click="showStorage()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">SHOW STORAGE (temp)</button>
             </ul>
             <div class="clearfix"></div>
         </div>

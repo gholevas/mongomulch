@@ -6,10 +6,7 @@ app.directive('sidebar', function() {
     };
 });
 
-var storage = require('electron-json-storage');
-
-
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage) {
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
@@ -39,6 +36,28 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory) {
         reloadSchemas();
     }
 
-    $scope.$on('newSchema', reloadSchemas);
+    $scope.deleteSchema = function(schema) {
+        SchemaFactory.deleteSchema(schema);
+        reloadSchemas();
+    }
 
+    //////////admin-ish////////////
+    $scope.deleteAll = function() {
+        SchemaFactory.deleteAll();
+        reloadSchemas();
+    }
+    $scope.showStorage = function() {
+        console.log(Storage.all());
+    }
+    //////////admin-ish////////////
+
+    $scope.$on('newSchema', reloadSchemas);
+    reloadSchemas();
+});
+
+app.directive('sidebarSchemaButton', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'custom/side_nav_bar/sidebar_schemabutton.directive.html'
+    };
 });

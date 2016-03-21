@@ -28,6 +28,7 @@
   "dependencies": {
     "angular-ui-router": "^0.2.18",
     "babel": "^5.0.12",
+    "configstore": "^2.0.0",
     "electron-json-storage": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
@@ -42,6 +43,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "mongoose": "4.0.7",
+    "node-notifier": "^4.5.0",
     "run-sequence": "^1.1.5"
   }
 }
