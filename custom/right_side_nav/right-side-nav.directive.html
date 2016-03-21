@@ -1,0 +1,150 @@
+<style>
+.checkboxdemoSyncing .checkboxDemo1 div {
+    clear: both;
+}
+
+.checkboxdemoSyncing legend {
+    color: #3F51B5;
+}
+
+.checkboxdemoSyncing legend code {
+    color: #3F51B5;
+    font-weight: normal;
+}
+
+.checkboxdemoSyncing p {
+    padding-left: 8px;
+}
+
+.checkboxdemoSyncing .info {
+    padding-left: 13px;
+}
+
+.checkboxdemoSyncing div.standard {
+    padding: 8px;
+    padding-left: 15px;
+}
+
+.checkboxdemoSyncing fieldset.standard {
+    border-style: solid;
+    border-width: 1px;
+    height: 100%;
+}
+</style>
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Schema Field</h1>
+    </md-toolbar>
+    <md-content ng-controller="RightCtrl" layout-padding>
+        <form>
+            <div layout="row">
+                <md-input-container flex>
+                    <label for="testInput">Field Name</label>
+                    <input type="text" id="testInput" ng-model="data" md-autofocus>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Data Type</label>
+                    <md-select ng-click="refreshSchemas()" ng-model="selectedType">
+                        <md-option layout="column" layout-align="start start" ng-repeat="type in typeArr" ng-value="type">
+                            {{ type }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex ng-show="selectedType==='Array of...'">
+                    <label>Data Type</label>
+                    <md-select ng-model="selectedArrType">
+                        <md-option layout="column" layout-align="start start" ng-repeat="type in arrOf" ng-value="type">
+                            {{ type }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex ng-show="selectedType==='Reference to...'">
+                    <label>Schema</label>
+                    <md-select ng-model="selectedSchema">
+                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
+                            {{ schema.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex ng-show="selectedType==='Embed...'">
+                    <label>Schema</label>
+                    <md-select ng-model="selectedEmbed">
+                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
+                            {{ schema.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex>
+                    <label for="testInput">Default Value</label>
+                    <input type="text" ng-model="defaultValue" md-autofocus>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <div flex class="md-padding checkboxdemoBasicUsage" layout="row" layout-wrap>
+                    <fieldset class="standard">
+                        <legend>Options </legend>
+                        <div layout="row" layout-wrap flex>
+                            <div flex="100" ng-repeat="item in items">
+                                <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                    {{ item }}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+           
+            <!-- 
+            <div layout="row">
+            <div flex class="md-padding checkboxdemoSyncing">
+                <div layout="row" layout-wrap="">
+                    <div flex="100"  layout="column">
+                        <div>
+                            <fieldset class="standard">
+                                <legend>Options</legend>
+                                <div layout="row" layout-wrap="" flex="">
+                                    <div flex="50" ng-repeat="item in items">
+                                        <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                            {{ item }}
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div> -->
+            <br>
+            <div layout="row">
+                <md-button flex class="md-raised md-primary" ng-click="close()">
+                    Save Field
+                </md-button>
+            </div>
+        </form>
+    </md-content>
+</md-sidenav>
+<!-- <div ng-keyup="$event.keyCode == 13 && addRow()">
+    <div class="col-md-4 m-t-10">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Field Name" ng-model="newFieldName">
+        </div>
+    </div>
+    <div class="btn-group col-md-4 m-t-10">
+        <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">{{newFieldType}} <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="type in typeArr" ng-click="selectType(type,null)"><a href="#">{{type}}</a></li>
+            <array-Dropdown method="selectArrType(type,null)"> </array-Dropdown>
+            <reference-Dropdown method="selectObjType(type,null)"> </reference-Dropdown>
+            <li ><a ui-sref="newstate">Object</a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="btn-group col-md-4 m-t-10">
+        <options-dropdown field="newField"></options-dropdown>
+    </div>
+</div -->
