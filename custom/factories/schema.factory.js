@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     
+    // Storage.set('schemas',[]);
 
     var Schema = function(name, id, fields){
         this.name = name || "";
@@ -10,11 +11,19 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         this.fields = fields || [];
     }
 
-    Schema.prototype.addField = function(name, type, options){
-        this.fields.push(new Field(name,type,options));
+    Schema.prototype.addField = function(field){
+        // if(this.fields.indexOf(field) === -1){
+        //     console.log('not here')
+        // }
+        this.fields.push(new Field(field.name,field.type,field.options));
         Storage.set('schemas', schemas);
-        $rootScope.$broadcast('newField', this.schemaId);
     }
+
+    //  Schema.prototype.editField = function(field){
+    //     this.fields.push(new Field(field.name,field.type,field.options));
+    //     Storage.set('schemas', schemas);
+    // }
+
 
     Schema.prototype.deleteField = function(field){
         this.fields.splice(this.fields.indexOf(field), 1);
