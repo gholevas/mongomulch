@@ -4,9 +4,9 @@
 <br>
 <br>
 <div class="content-page">
-    <div class="input-group">
+    <!-- <div class="input-group">
         <input ng-show="!schemaLoaded" ng-model="schemaName" ng-keyup="$event.keyCode == 13 && addSchema(schemaName)" type="text" class="form-control" placeholder="Enter Schema Name" aria-describedby="basic-addon2">
-    </div>
+    </div> -->
     <!-- Start content -->
     <div class="content ">
         <div class="container" ng-hide="!schemaLoaded">
@@ -16,7 +16,6 @@
                     <p class="text-muted m-b-30 font-13">
                         <!-- description could go here  -->
                     </p>
-
                     <!-- HEADERS -->
                     <div class="col-md-4">
                         <h5>Field Name</h5>
@@ -27,15 +26,17 @@
                     <div class="col-md-4">
                         <h5>Options</h5>
                     </div>
-
-
                     <schema-editor></schema-editor>
-                    <schema-builder ng-show = "!editingField"> </schema-builder>         
-
+                    <schema-builder ng-show="!editingField"> </schema-builder>
                 </div>
             </div>
         </div>
     </div>
+
+    <md-button class="md-raised" ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+        Add Field
+    </md-button>
+
 </div>
 <!-- modal -->
 <!-- <mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal> -->
