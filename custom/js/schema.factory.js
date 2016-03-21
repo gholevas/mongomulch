@@ -19,10 +19,12 @@ app.factory('SchemaFactory', function($http, $rootScope) {
     var Field = function(name, type, options){
         this.name = name || "";
         this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
-        this.options = options || {};
+        this.options = options || {select: true};
     }
 
     return {
+        Schema: Schema,
+        Field: Field,
         getSchemas: function() {
             return schemas;
         },

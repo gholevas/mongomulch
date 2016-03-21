@@ -10,7 +10,7 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	
 	/////////INITIALIZE/////////
 	// setTableEditable();
-	resetNewFieldVals($scope);
+	resetNewFieldVals();
 	$scope.typeArr = ['String', 'Number', 'Boolean','Buffer'];
 	refreshSchema();
 	$scope.schemaLoaded = $scope.schema ? true : false;
@@ -31,7 +31,7 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	});
 
 	$scope.addRow = () => {
-		$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newFieldOptionsObj);
+		$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newField.options);
 		resetNewFieldVals($scope);
 	};
 
@@ -40,6 +40,13 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		//else field.updateType
 	};
 
+	//only for new fields
+	//DEPRECATED, logic is right in the ng-click
+	// $scope.selectOption =(name, value) => {
+	// 	if(!name || !value) return;
+	// 	$scope.newFieldOptionsObj[name] = value;
+	// 	$scope.newFieldOptionsDisplay = Object.keys($scope.newFieldOptionsObj).reduce((prev, key) => {return prev==""?key:prev+", "+key; },"");
+	// }
 
 	$scope.selectArrType = (type,field) => {
 		console.log('click');
@@ -55,14 +62,6 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		//else field.updateType
 	};
 
-
-	$scope.selectOption =(name, value, field) => {
-		if(!field) $scope.newFieldOptionsObj[name] = value;
-		// else get fields optionsarr...
-		$scope.newFieldOptionsDisplay = Object.keys($scope.newFieldOptionsObj).reduce((prev, key) => {return prev==""?key:prev+", "+key; },"");
-	}
-
-
 	$scope.editField =(field) => {
 		if($scope.editingField) $scope.editingField = null;
 		else $scope.editingField = field;
@@ -73,12 +72,14 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 		$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 	}
 
+
 	function resetNewFieldVals(){
-		$scope.newFieldOptionsDisplay ='';
-		$scope.newFieldOptionsObj = {};
+		$scope.newField = new SchemaFactory.Field();
+		// $scope.newFieldOptionsDisplay ='';
+		// $scope.newFieldOptionsObj = {};
 		$scope.newFieldType ='Pick Data Type';
-		$scope.newOptionValue = '';
-		$scope.newOptionName = '';
+		// $scope.newOptionValue = '';
+		// $scope.newOptionName = '';
 		$scope.newFieldName = '';
 	}
 
