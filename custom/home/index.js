@@ -1,4 +1,4 @@
-var app = angular.module("mongomulch", ['ui.router']);
+var app = angular.module("mongomulch", ['ui.router','ngMaterial']);
 
 
 

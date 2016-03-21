@@ -7,35 +7,38 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
     <link rel="shortcut icon" href="assets/images/favicon_1.ico">
-    <title>Ubold - Responsive Admin Dashboard Template</title>
-
+    <title>mongoMulch</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-
-  
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <script src="assets/js/modernizr.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <link href="assets/css/mulch.css" rel="stylesheet" type="text/css" />
-
-<!--<script src = "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css"></script> -->
+    <!--<script src = "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css"></script> -->
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="public/main.js"></script>
 </head>
 
-<body class="fixed-left" ng-controller="AppCtrl">
-        <navbar></navbar>
-        <sidebar></sidebar>
-        <div class="content-page">
-            <ui-view></ui-view>
-        </div>
+<body class="fixed-left" ng-controller="AppCtrl" style="background-color:#4A5563;">
+    <navbar></navbar>
+    <sidebar></sidebar>
+    <div class="content-page">
+        <ui-view></ui-view>
+    </div>
+    <right-side-nav></right-side-nav>
 </body>
 <footer>
     <script>
-        window.$ = window.jQuery = require('./assets/js/jquery.min.js');
+    window.$ = window.jQuery = require('./assets/js/jquery.min.js');
     </script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/detect.js"></script>
