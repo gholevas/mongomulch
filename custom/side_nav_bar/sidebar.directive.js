@@ -1,7 +1,7 @@
 app.directive('sidebar', function() {
     return {
         restrict: 'E',
-        templateUrl: 'custom/templates/sidebar.html',
+        templateUrl: 'custom/side_nav_bar/sidebar.html',
         controller: 'SideBarCtrl'
     };
 });

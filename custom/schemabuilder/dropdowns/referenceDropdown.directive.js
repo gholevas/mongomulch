@@ -1,7 +1,7 @@
 app.directive('referenceDropdown', function(SchemaFactory) {
     return {
         restrict: 'E',
-        templateUrl: 'custom/templates/dropdowns/referencedropdown.html',
+        templateUrl: 'custom/schemabuilder/dropdowns/referencedropdown.html',
         controller: 'SchemaBuilderCtrl',
         scope: {
             method: "&"

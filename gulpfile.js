@@ -31,7 +31,7 @@ gulp.task('reloadCSS', function () {
 
 gulp.task('lintJS', function () {
 
-    return gulp.src(['./custom/js/**/*.js']) //, './server/**/*.js'
+    return gulp.src(['./custom/**/*.js']) //, './server/**/*.js'
         .pipe(plumber({
             errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
         }))
@@ -42,7 +42,7 @@ gulp.task('lintJS', function () {
 });
 
 gulp.task('buildJS', ['lintJS'], function () {
-    return gulp.src(['./custom/js/index.js', './custom/js/**/*.js'])
+    return gulp.src(['./custom/home/index.js', './custom/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
@@ -108,7 +108,7 @@ gulp.task('buildJS', ['lintJS'], function () {
 // });
 
 gulp.task('buildJSProduction', function () {
-    return gulp.src(['./custom/js/index.js', './custom/js/**/*.js'])
+    return gulp.src(['./custom/home/index.js', './custom/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(babel())
         .pipe(ngAnnotate())
@@ -134,7 +134,7 @@ gulp.task('default', function () {
     gulp.start('build');
 
     // Run when anything inside of browser/js changes.
-    gulp.watch('custom/js/**', function () {
+    gulp.watch('custom/**', function () {
         runSeq('buildJS', 'reload');
     });
 
