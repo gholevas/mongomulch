@@ -26,7 +26,7 @@ gulp.task('reload', function () {
 });
 
 gulp.task('reloadCSS', function () {
-    return gulp.src('./custom/css/style.css').pipe(livereload());
+    return gulp.src(['./custom/css/style.css','./assets/css/**/*.css']).pipe(livereload());
 });
 
 gulp.task('lintJS', function () {

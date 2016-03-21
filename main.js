@@ -7,6 +7,14 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
+const notifier = require('node-notifier');
+
+/////local storage using configstore/////
+const Configstore = require('configstore');
+const path = require('path');
+var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
+const conf = new Configstore(storageAppKey, {os_username: process.env.USER || process.env.LOGNAME});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -29,6 +37,13 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+  });
+  
+  mainWindow.on('close', function() {
+    notifier.notify({
+      'title': 'MongoMulch',
+      'message': 'Goodbye ' + conf.get('os_username')
+    });
   });
 }
 
