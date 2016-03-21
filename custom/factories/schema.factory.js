@@ -11,9 +11,10 @@ app.factory('SchemaFactory', function($http, $rootScope) {
         this.fields = [];
     }
 
-    Schema.prototype.addField = function(name, type, options){
-        this.fields.push(new Field(name,type,options));
-        $rootScope.$broadcast('newField', this.schemaId);
+    Schema.prototype.addField = function(field){
+        // if(this.fields.indexOf(field) === -1)
+        this.fields.push(new Field(field.name,field.type,field.options));
+        // $rootScope.$broadcast('newField', this.schemaId);
     }
 
     var Field = function(name, type, options){

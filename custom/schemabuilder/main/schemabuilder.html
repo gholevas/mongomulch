@@ -1,22 +1,68 @@
 <br>
 <br>
 <br>
-<br>
-<br>
 <div class="content-page">
-    <!-- <div class="input-group">
+    <!--     <div class="input-group">
         <input ng-show="!schemaLoaded" ng-model="schemaName" ng-keyup="$event.keyCode == 13 && addSchema(schemaName)" type="text" class="form-control" placeholder="Enter Schema Name" aria-describedby="basic-addon2">
     </div> -->
     <!-- Start content -->
     <div class="content ">
-        <div class="container" ng-hide="!schemaLoaded">
+        <div class="container">
             <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="m-t-0 header-title"><b>{{schema.name}} Schema</b></h4>
+                                <!--  <p class="text-muted font-13">
+                                    Create responsive tables by wrapping any <code>.table</code> in <code>.table-responsive</code> to make them scroll horizontally on small devices (under 768px).
+                                </p> -->
+                                <div class="p-20">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Field Name</th>
+                                                    <th>Data Type</th>
+                                                    <th>Options</th>
+                                                    <th>Edit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="field in schema.fields">
+                                                    <td>{{field.name}}</td>
+                                                    <td>{{field.type}}</td>
+                                                    <td>{{field.options}}</td>
+                                                    <td>
+                                                        <md-button ng-click="toggleRight(schema,field)" class="md-warn">
+                                                            Edit
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <md-button class="md-raised" ng-click="toggleRight(schema)" ng-hide="isOpenRight()" class="md-primary">
+                                                            Add Field
+                                                        </md-button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--         <div class="row">
                 <div class="col-sm-12">
                     <h4 class="m-t-0 header-title"><b>{{schema.name}}</b></h4>
                     <p class="text-muted m-b-30 font-13">
-                        <!-- description could go here  -->
                     </p>
-                    <!-- HEADERS -->
                     <div class="col-md-4">
                         <h5>Field Name</h5>
                     </div>
@@ -26,17 +72,32 @@
                     <div class="col-md-4">
                         <h5>Options</h5>
                     </div>
-                    <schema-editor></schema-editor>
-                    <schema-builder ng-show="!editingField"> </schema-builder>
-                </div>
-            </div>
+                    <div ng-repeat="field in fieldsx">
+                        <div class="col-md-4 m-t-10">
+                            <div class="input-group">
+                                <h3 ng-model="fieldName"></h3>
+                            </div>
+                        </div>
+                        <div class="btn-group col-md-4 m-t-10">
+                            <div class="input-group">
+                                <h3 ng-model="fieldType"></h3>
+                            </div>
+                        </div>
+                        <div class="btn-group col-md-4 m-t-10">
+                            <div class="input-group">
+                                <h3 ng-model="fieldOptions"></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <schema-editor></schema-editor> -->
+            <!-- <schema-builder ng-show="!editingField"> </schema-builder> -->
+            <!-- </div> -->
+            <!-- </div>  -->
         </div>
     </div>
-
-    <md-button class="md-raised" ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+    <!-- <md-button class="md-raised" ng-click="toggleRight(schema)" ng-hide="isOpenRight()" class="md-primary">
         Add Field
-    </md-button>
-
+    </md-button> -->
 </div>
 <!-- modal -->
 <!-- <mulch-modal temp-directive ng-model="optionsModel" submit="addRow()"></mulch-modal> -->
