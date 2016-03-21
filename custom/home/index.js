@@ -1,7 +1,6 @@
 var app = angular.module("mongomulch", ['ui.router']);
 
 
-
 app.controller("AppCtrl", function($scope) {
 
 

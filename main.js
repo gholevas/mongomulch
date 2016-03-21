@@ -50,3 +50,16 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+const Configstore = require('configstore');
+const path = require('path');
+var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
+const conf = new Configstore(storageAppKey, {os_username: process.env.USER || process.env.LOGNAME});
+
+// You can use 'before-quit' instead of (or with) the close event
+app.on('before-quit', function (e) {
+   require('dialog').showMessageBox({
+            message: "Close button has been pressed! goodbye "+conf.all.os_username,
+            buttons: ["OK"]
+        });
+});
