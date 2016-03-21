@@ -49,16 +49,14 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	// }
 
 	$scope.selectArrType = (type,field) => {
-		console.log('click');
-		console.log($scope.newFieldType);
+
 		if(!field) $scope.newFieldType = "Array of "+ type;
 		//else field.updateType
 	};
 
 	$scope.selectObjType = (type,field) => {
-		console.log('click');
-		console.log($scope.newFieldType);
-		if(!field) $scope.newFieldType = "Referenceing "+ type;
+		console.log('this is the type', type);
+		if(!field) $scope.newFieldType = "Referencing "+ type;
 		//else field.updateType
 	};
 

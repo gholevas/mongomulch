@@ -8,7 +8,7 @@ app.directive('referenceDropdown', function(SchemaFactory) {
         },
         link : function(scope){
         	scope.schemas = SchemaFactory.getSchemas();
-        	console.log(scope.schemas);
+
         }
 
     };
