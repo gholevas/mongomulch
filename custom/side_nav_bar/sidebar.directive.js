@@ -17,6 +17,10 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     //     console.log(keys)
     // });
+    $scope.exportSchemas = () =>{
+
+        SchemaFactory.exportSchemas();
+    }
 
     // storage.get('schemas2', function(error, data) {
     //     if (error) throw error;
@@ -47,7 +51,7 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
     $scope.showStorage = function() {
-        console.log(Storage.all());
+        //console.log(Storage.all());
     }
     //////////admin-ish////////////
 
