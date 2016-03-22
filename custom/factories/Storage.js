@@ -3,6 +3,8 @@ const path = require('path');
 var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
 const conf = new Configstore(storageAppKey);
 
+// conf.clear();
+
 // //=> true
 
 // // use dot notation to access nested properties (provided by `dot-prop` module)
