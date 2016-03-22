@@ -17,15 +17,15 @@ function save_schema(schema) {
 
 function generate_schema(schema) {
 	//console.log(schema[0].fields);
-
-    var schemaStr = 'var schema = new mongoose.Schema({';
+    console.log(schema);
+    var schemaStr = 'var mongoose = require("mongoose");' + "\n" +  'var schema = new mongoose.Schema({';
     var fieldLength = schema[0].fields.length;
 
     schema[0].fields.forEach((field, index) => {
         if (index === fieldLength - 1) {
-            schemaStr += "\n" + parse_name_type(field) + "\n" + "});"
+            schemaStr += '\n' + parse_name_type(field) + '\n' + "});" + '\n' + 'mongoose.model(' + schema[0].name + ', schema);'
         } else {
-            schemaStr += "\n" + parse_name_type(field) + ",";
+            schemaStr += '\n' + parse_name_type(field) + ",";
         }
 
     })
