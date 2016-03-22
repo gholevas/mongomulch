@@ -10,7 +10,7 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	
 
 	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
-	console.log(SchemaFactory.getSchemaById($stateParams.schemaId))
+	//console.log(SchemaFactory.getSchemaById($stateParams.schemaId))
 
 	$scope.addSchema = (schemaName) => {
 		SchemaFactory.addSchema(schemaName);
@@ -19,6 +19,8 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	$scope.addRow = () => {
 		$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newField.options);
 	};
+
+
 
 
 });
