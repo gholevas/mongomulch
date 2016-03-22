@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     
-    // Storage.set('schemas',[]);
+    if(!Storage.get('schemas')) Storage.set('schemas',[]);
 
     var Schema = function(name, id, fields){
         this.name = name || "";
