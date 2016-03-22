@@ -1,10 +1,38 @@
-<!-- ========== Left Sidebar ========== -->
-<div class="left side-menu">
+            <div class="left side-menu">
+                <div class="sidebar-inner slimscrollleft">
+                    <!--- Divider -->
+                    <div id="sidebar-menu">
+                        <ul>
+
+                            <li class="text-muted menu-title">Schemas</li>
+
+                            <li ng-repeat="schema in schemas" class="has_sub">
+                                <a ng-mouseenter="show = true" ng-mouseleave="show = false" ui-sref-active="active" ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect waves-light">
+                                <i class="ti-server"></i><span ng-show="show" class="label label-danger pull-right" ng-click="deleteSchema(schema)">X</span> <span> {{schema.name}} </span> 
+                                </a>
+                                
+                            </li>
+
+                            <li class="has_sub">
+                                <a data-toggle="modal" style="color:#76b6fe;" data-target="#newSchemaModal" href="#" class="waves-effect waves-light"><i class="ti-plus"></i> <span> Add Schema </span> </a>
+                            </li>
+
+                            <!-- <br>
+                            <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button> -->
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+
+
+<!-- <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
-        <!--- Divider -->
         <div id="sidebar-menu">
             <ul>
-                <!-- <li class="text-muted menu-title">Schemas</li> -->
                 <li ng-repeat="schema in schemas" class="has_sub" style="text-align: center">
                     <sidebar-schema-button></sidebar-schema-button>
                 </li>
@@ -23,8 +51,9 @@
         </div>
         <div class="clearfix"></div>
     </div>
-</div>
-<!-- Modal -->
+</div> -->
+
+
 <div id="newSchemaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
