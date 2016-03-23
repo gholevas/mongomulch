@@ -13,22 +13,14 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
         $scope.field = {
             options: {}
         };
-        $scope.defaultValue = '';
     }
 
     resetField();
 
     $scope.saveField = function() {
-        // if ($scope.field.type === "Array of...") {
-        //     $scope.field.type = '[' + $scope.selectedArrType + ']';
-        // } else if ($scope.field.type === 'Embed...') {
-        //     $scope.field.type = '[' + $scope.selectedEmbed + ']';
-        // } else if ($scope.field.type === 'Reference to...') {
-        //     $scope.field.type = 'mongoose.Schema.Types.ObjectId';
-        //     $scope.field.options['ref'] = $scope.selectedSchema;
-        // } else if ($scope.defaultValue) {
-        //     $scope.field.options['default'] = $scope.defaultValue;
-        // }
+        if($scope.field.options.default === ''){
+            delete $scope.field.options.default;
+        }
         $scope.schema.addField($scope.field)
         resetField();
         $mdSidenav('right').close()

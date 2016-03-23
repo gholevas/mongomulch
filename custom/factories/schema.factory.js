@@ -12,12 +12,21 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     }
 
     Schema.prototype.addField = function(field){
-        if(this.fields.indexOf(field) !== -1){
-            this.fields[this.fields.indexOf(field)] = field;
-        }else{
-            this.fields.push(new Field(field.name,field.type,field.options));
-            Storage.set('schemas', schemas);
+        console.log('current fields',this.fields)
+        console.log('new field',field)
+        var edited = false;
+        this.fields.forEach(function(onefield){
+            if(onefield.name === field.name){
+                onefield = field;
+                edited = true;
+            }
+        })
+        if(edited === false){
+            this.fields.push(new Field(field.name,field.type,field.options,field.selectedArrType));
         }
+        edited = false;
+            Storage.set('schemas', schemas);
+
     }
 
 
@@ -28,14 +37,15 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         $rootScope.$broadcast('newField', this.schemaId);
     }    
 
-    var Field = function(name, type, options){
+    var Field = function(name, type, options, selectedArrType){
         this.name = name || "";
         this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
+        this.selectedArrType = selectedArrType || null;
         this.options = options || {select: true};
     }
 
     var convertPojoToSchema = function(sObj){
-        return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options)))
+        return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType)))
     }
 
     var schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
