@@ -23,22 +23,32 @@
                     <label>Data Type</label>
                     <md-select ng-model="selectedArrType">
                         <md-option layout="column" layout-align="start start" ng-repeat="type in arrOf" ng-value="type">
-                            {{ type }}
+                            {{ type }}s
                         </md-option>
                     </md-select>
                 </md-input-container>
+        <!--         <md-input-container flex ng-show="field.type==='Embed...'">
+                    <label>Data Type</label>
+                    <md-select ng-model="selectedEmbed">
+                        <md-option layout="column" layout-align="start start" ng-repeat="schema in allSchemas" ng-value="schema">
+                            {{ schema }}
+                        </md-option>
+                    </md-select>
+                </md-input-container> -->
+
                 <md-input-container flex ng-show="field.type==='Reference to...'">
                     <label>Schema</label>
                     <md-select ng-model="selectedSchema">
-                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
+                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" ng-value="schema.name">
                             {{ schema.name }}
                         </md-option>
                     </md-select>
                 </md-input-container>
+                
                 <md-input-container flex ng-show="field.type==='Embed...'">
                     <label>Schema</label>
                     <md-select ng-model="selectedEmbed">
-                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
+                        <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" ng-value="schema.name">
                             {{ schema.name }}
                         </md-option>
                     </md-select>
