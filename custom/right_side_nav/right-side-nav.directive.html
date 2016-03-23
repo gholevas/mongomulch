@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div layout="row">
+            <div ng-show="field.type==='String'||field.type==='Number'||field.type==='Boolean'||field.type==='Buffer'||field.type==='Date'" layout="row">
                 <md-input-container flex>
                     <label style="color:#98a6ad;">Default Value</label>
                     <input type="text" ng-model="field.options.default">
