@@ -19,6 +19,10 @@
 
                             <!-- <br>
                             <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button> -->
+                            <li>
+                               <button ng-click="exportSchemas()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light glyphicon glyphicon-export"> Export</button>
+
+                            </li>
 
                         </ul>
                         <div class="clearfix"></div>
@@ -41,13 +45,11 @@
                 <button ng-click="deleteAll()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">DELETE ALL (temp)</button>
                 <button ng-click="showStorage()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">SHOW STORAGE (temp)</button>
                 </br>
-                 </br>
-                  </br>
-                
+                </br>
+                </br>
             </ul>
-
             <ul>
-             <button ng-click ="exportSchemas()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light glyphicon glyphicon-export"> Export</button>
+                <button ng-click="exportSchemas()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light glyphicon glyphicon-export"> Export</button>
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -74,9 +76,7 @@
         </div>
     </div>
 </div>
-
 <!-- Modal for export -->
-
 <!-- <div id="exportSchemaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -94,5 +94,4 @@
             </div>
         </div>
     </div>
-</div> -->
-
+</div> --
