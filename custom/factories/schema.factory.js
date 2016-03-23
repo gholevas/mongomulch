@@ -78,7 +78,11 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         exportSchemas : function(path){
             index_file(schemas,path);
             save_schema(schemas,path);
+        },
+        getSchemaByName: function(name){
+            return schemas.filter(schema => schema.name === name )[0];
         }
+
     };
 
 });

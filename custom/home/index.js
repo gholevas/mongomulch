@@ -26,16 +26,3 @@ app.config(function($mdThemingProvider) {
     .primaryPalette('amazingPaletteName')
     .dark();
 });
-
-
-
-
-app.config(function($stateProvider) {
-    $stateProvider.state('index', {
-        url: '/',
-        templateUrl: 'custom/templates/index.html',
-        controller: 'StoreCtrl'
-    });
-});
-
-
