@@ -13,8 +13,9 @@
                 </li>
                 <li class="text-muted menu-title">Actions</li>
 
-                  <li class="has_sub">
-                    <a data-toggle="modal" style="color:#81c868;" data-target="#newExportModal" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span> </a>
+                <li class="has_sub">
+                    <a  style="color:#81c868;" ng-click = "exportSchemas()" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span></a>
+                </li>
 
                 <li class="has_sub">
                     <a ui-sref="visualizer" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-layout-grid2"></i> <span> Visualizer </span> </a>
@@ -50,7 +51,7 @@
     </div>
 </div>
 
-<div id="newExportModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+<!-- <div id="newExportModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <h4 class="custom-modal-title">Export Schemas To</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -58,12 +59,13 @@
             <div class="modal-body">
                 <div class="input-group m-t-10">
                     <input autofocus ng-model="pathName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Path Name">
+    <!--               <input ng-model ="pathName" type="file" id="ctrl" webkitdirectory directory multiple/> -->
                     <span class="input-group-btn">
-                        <button ng-click="exportSchemas(path)" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newExportModal">Submit</button>
+                        <button ng-click="exportSchemas(pathName)" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newExportModal">Submit</button>
                      </span>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 

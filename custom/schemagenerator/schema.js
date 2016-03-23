@@ -11,8 +11,8 @@ function index_file(schemas,path) {
         schemaStr += 'require("./' + schema.name + '");' + '\n\n';
     })
 
-    mkdirp(__dirname + '/models', function(err) {
-        fs.writeFile(__dirname + "/models/index.js", schemaStr, function(err) {
+    mkdirp(path + '/models', function(err) {
+        fs.writeFile(path + "/models/index.js", schemaStr, function(err) {
             if (err) {
                 console.log(err);
             } else {
@@ -28,11 +28,11 @@ function index_file(schemas,path) {
 function save_schema(schemas, path) {
     var schemaArr = schemas;
 
-    mkdirp(__dirname + '/models', function(err) {
+    mkdirp(path + '/models', function(err) {
 
         schemas.forEach((schema) => {
 
-            fs.writeFile(__dirname + "/models/" + schema.name + ".js", generate_schema(schema), function(err) {
+            fs.writeFile(path + "/models/" + schema.name + ".js", generate_schema(schema), function(err) {
                 if (err) {
                     console.log(err);
                 } else {

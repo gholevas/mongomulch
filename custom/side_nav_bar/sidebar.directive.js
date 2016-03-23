@@ -1,3 +1,8 @@
+// var dialog = require('dialog');
+// var BrowserWindow = require('browser-window');
+var remote = require('remote');
+var dialog = remote.require('dialog');
+
 app.directive('sidebar', function() {
     return {
         restrict: 'E',
@@ -23,33 +28,40 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
-    $scope.exportSchemas = (path) => {
+    $scope.exportSchemas = () => {
+        var remote = require('remote');
+        var dialog = remote.require('dialog');
 
-        SchemaFactory.exportSchemas(path);
+        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+            if (dirNamesArr === undefined) return;
+            var dirName = dirNamesArr[0];
+
+            SchemaFactory.exportSchemas(dirName);
+        });
 
     }
 
-    $scope.addSchema = function() {
-        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-        SchemaFactory.addSchema(sanitzedSchemaName);
-        reloadSchemas();
-    }
 
-    $scope.deleteSchema = function(schema) {
-        SchemaFactory.deleteSchema(schema);
-        reloadSchemas();
-    }
-
-    //////////admin-ish////////////
-    $scope.deleteAll = function() {
-        SchemaFactory.deleteAll();
-        reloadSchemas();
-    }
-    $scope.showStorage = function() {
-        console.log(Storage.all());
-    }
-    //////////admin-ish////////////
-
-    $scope.$on('newSchema', reloadSchemas);
+$scope.addSchema = function() {
+    var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+    SchemaFactory.addSchema(sanitzedSchemaName);
     reloadSchemas();
-});
+}
+
+$scope.deleteSchema = function(schema) {
+    SchemaFactory.deleteSchema(schema);
+    reloadSchemas();
+}
+
+//////////admin-ish////////////
+$scope.deleteAll = function() {
+    SchemaFactory.deleteAll();
+    reloadSchemas();
+}
+$scope.showStorage = function() {
+    console.log(Storage.all());
+}
+//////////admin-ish////////////
+
+$scope.$on('newSchema', reloadSchemas); reloadSchemas();
+})
