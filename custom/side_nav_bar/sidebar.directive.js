@@ -12,31 +12,25 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         $scope.newSchemaName = '';
     }
 
-    // storage.keys(function(error, keys) {
-    //     if (error) throw error;
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+            if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+            return index == 0 ? match.toLowerCase() : match.toUpperCase();
+        });
+    }
 
-    //     console.log(keys)
-    // });
-    $scope.exportSchemas = () =>{
+    String.prototype.capitalizeFirstLetter = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+
+    $scope.exportSchemas = () => {
 
         SchemaFactory.exportSchemas();
     }
 
-    // storage.get('schemas2', function(error, data) {
-    //     if (error) throw error;
-
-    //     console.log(data);
-    // });
-    // console.log()
     $scope.addSchema = function() {
-        // storage.get('schemas', function(error, data) {
-        //     if (error) throw error;
-        //     console.log(data);
-        // });
-        // storage.set('schemas2', [{ name: $scope.newSchemaName }], function(error) {
-        //     if (error) throw error;
-        // })
-        SchemaFactory.addSchema($scope.newSchemaName);
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        SchemaFactory.addSchema(sanitzedSchemaName);
         reloadSchemas();
     }
 
@@ -51,17 +45,10 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
     $scope.showStorage = function() {
-        //console.log(Storage.all());
-    }
-    //////////admin-ish////////////
+            //console.log(Storage.all());
+        }
+        //////////admin-ish////////////
 
     $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-});
-
-app.directive('sidebarSchemaButton', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'custom/side_nav_bar/sidebar_schemabutton.directive.html'
-    };
 });
