@@ -3,7 +3,7 @@ var beautify = require('js-beautify').js_beautify;
 
 
 function save_schema(schema) {
-    fs.writeFile("/Users/JaiPrasad/Desktop/test.js", generate_schema(schema), function(err) {
+    fs.writeFile( __dirname + "/test.js", generate_schema(schema), function(err) {
         if (err) {
             console.log(err);
         } else {
@@ -37,8 +37,18 @@ function generate_schema(schema) {
 function parse_name_type(field) {
     var fieldStr = '';
 
-    if (field.type === "Array") {
+    //do switch case
+
+    if (field.type === "Array of...") {
+        fieldStr += field.name + ':{ type: ' + '['+field.selectedArrType+']' + ', ' + parse_options(field.options) + '}';
         //do something
+    } else if(field.type === "Embed..."){
+        fieldStr += field.name + ':{ type: ' + '['+field.selectedEmbed+']' + ', ' + parse_options(field.options) + '}';
+
+    } else if(field.type === 'Reference to...' ){
+
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId' + parse_options(field.options) + '}';
+
     } else {
 
         fieldStr += field.name + ':{ type: ' + field.type + ', ' + parse_options(field.options) + '}';
