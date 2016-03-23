@@ -6,13 +6,13 @@
         <form>
             <div layout="row">
                 <md-input-container flex>
-                    <label for="testInput">Field Name</label>
+                    <label style="color:#98a6ad;" for="testInput">Field Name</label>
                     <input type="text" id="testInput" ng-model="field.name" md-autofocus>
                 </md-input-container>
             </div>
             <div layout="row">
                 <md-input-container flex>
-                    <label>Data Type</label>
+                    <label style="color:#98a6ad;">Data Type</label>
                     <md-select ng-click="refreshSchemas()" ng-model="field.type">
                         <md-option layout="column" layout-align="start start" ng-repeat="type in typeArr" ng-value="type">
                             {{ type }}
@@ -20,7 +20,7 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container flex ng-show="field.type==='Array of...'">
-                    <label>Data Type</label>
+                    <label style="color:#98a6ad;">Data Type</label>
                     <md-select ng-model="selectedArrType">
                         <md-option layout="column" layout-align="start start" ng-repeat="type in arrOf" ng-value="type">
                             {{ type }}
@@ -28,7 +28,7 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container flex ng-show="field.type==='Reference to...'">
-                    <label>Schema</label>
+                    <label style="color:#98a6ad;">Schema</label>
                     <md-select ng-model="selectedSchema">
                         <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
                             {{ schema.name }}
@@ -36,7 +36,7 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container flex ng-show="field.type==='Embed...'">
-                    <label>Schema</label>
+                    <label style="color:#98a6ad;">Schema</label>
                     <md-select ng-model="selectedEmbed">
                         <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" value="{{schema.name}}">
                             {{ schema.name }}
@@ -60,7 +60,7 @@
             </div>
             <div layout="row">
                 <md-input-container flex>
-                    <label for="testInput">Default Value</label>
+                    <label style="color:#98a6ad;" for="testInput">Default Value</label>
                     <input type="text" ng-model="defaultValue" md-autofocus>
                 </md-input-container>
             </div>
