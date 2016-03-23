@@ -31,12 +31,11 @@ body {
   background: transparent;
 }
 html {
-  
   background: #485563;
   /* fallback for old browsers */
-  /*background: -webkit-linear-gradient(to left, #485563, #29323c);*/
+  background: -webkit-linear-gradient(to left, #485563, #29323c);
   /* Chrome 10-25, Safari 5.1-6 */
-  /*background: linear-gradient(to left, #485563, #29323c);*/
+  background: linear-gradient(to left, #485563, #29323c);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   position: relative;
   min-height: 100%;
@@ -336,7 +335,7 @@ hr {
 /* Card Box */
 .card-box {
   padding: 20px;
-  border: 0px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1350,13 +1349,13 @@ body.fixed-left .side-menu.left {
   position: fixed;
 }
 .content-page {
-  margin-left: 160px;
-  overflow: visible;
+  margin-left: 240px;
+  overflow: hidden;
 }
 .content-page > .content {
   margin-bottom: 60px;
-  margin-top: 10px;
-  padding: 10px 5px 15px 5px;
+  margin-top: 60px;
+  padding: 20px 5px 15px 5px;
 }
 .button-menu-mobile {
   background: transparent;
