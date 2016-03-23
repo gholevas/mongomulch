@@ -4,31 +4,40 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-    <meta name="author" content="Coderthemes">
     <link rel="shortcut icon" href="assets/images/favicon_1.ico">
     <title>mongoMulch</title>
+    <!--Form Wizard-->
+    <link rel="stylesheet" type="text/css" href="assets/plugins/jquery.steps/demo/css/jquery.steps.css" />
+    <!-- End Form Wizard -->
+    <!-- start theme stuff -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-    <script src="assets/js/modernizr.min.js"></script>
+    <!-- end theme stuff -->
+    <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- End Angular -->
+    <!-- Angular Material -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-    <link href="assets/css/mulch.css" rel="stylesheet" type="text/css" />
-    <!--<script src = "http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css"></script> -->
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- End Angular Material -->
+    <!-- Custom -->
+    <!-- <link href="assets/css/mulch.css" rel="stylesheet" type="text/css" /> -->
     <script src="public/main.js"></script>
+    <!-- End Custom -->
+
+    <script src="assets/js/modernizr.min.js"></script>
+
 </head>
 
-<body class="fixed-left" style="background-color:#4A5563;">
+<body class="fixed-left" style="background-color:#4A5563;background:linear-gradient(to left, #485563, #29323c);">
     <navbar></navbar>
     <sidebar></sidebar>
     <div class="content-page">
@@ -43,25 +52,23 @@
     <script>
     window.$ = window.jQuery = require('./assets/js/jquery.min.js');
     </script>
-    <script src="assets/js/jquery.min.js"></script>
+    <!-- jQuery  -->
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/detect.js"></script>
     <script src="assets/js/fastclick.js"></script>
     <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/jquery.blockUI.js"></script>
+    <!-- <script src="assets/js/jquery.blockUI.js"></script> -->
     <script src="assets/js/waves.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js"></script>
+    <!-- <script src="assets/js/wow.min.js"></script> -->
+<!--     <script src="assets/js/jquery.nicescroll.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.core.js"></script>
-    <script src="assets/js/jquery.app.js"></script>
-
-    <script src="assets/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script src="assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
-    <script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
-    <script src="assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
-    <script src="assets/plugins/tiny-editable/numeric-input-example.js"></script>
-    <script src="assets/pages/datatables.editable.init.js"></script>
+    <script src="assets/js/jquery.app.js"></script> -->
+    <!--Form Wizard-->
+    <script src="assets/plugins/jquery.steps/build/jquery.steps.min.js" type="text/javascript"></script>
+    <!--wizard initialization-->
+    <script src="assets/pages/jquery.wizard-init.js" type="text/javascript"></script>
 </footer>
 
 </html>
