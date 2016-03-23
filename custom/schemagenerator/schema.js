@@ -3,7 +3,7 @@ var beautify = require('js-beautify').js_beautify;
 
 
 function save_schema(schema) {
-    fs.writeFile("/Users/JaiPrasad/Desktop/test.js", generate_schema(schema), function(err) {
+    fs.writeFile(__dirname+"/test.js", generate_schema(schema), function(err) {
         if (err) {
             console.log(err);
         } else {

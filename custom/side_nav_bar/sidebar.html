@@ -17,12 +17,17 @@
                                 <a data-toggle="modal" style="color:#81c868;" data-target="#newSchemaModal" href="#" class="waves-effect waves-light"><i class="ti-plus"></i> <span> Add Schema </span> </a>
                             </li>
 
+                            <li class="text-muted menu-title">Actions</li>
                             <!-- <br>
                             <button data-toggle="modal" data-target="#newSchemaModal" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light">Add Schema</button> -->
-                            <li>
+                            <li class="has_sub">
+                                <a ng-click="exportSchemas()"  style="color:#81c868;" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export </span> </a>
+                            </li>
+
+                           <!--  <li>
                                <button ng-click="exportSchemas()" type="button" style="height:60px;width:100%;" class="btn btn-primary waves-effect waves-light glyphicon glyphicon-export"> Export</button>
 
-                            </li>
+                            </li> -->
 
                         </ul>
                         <div class="clearfix"></div>
@@ -76,22 +81,3 @@
         </div>
     </div>
 </div>
-<!-- Modal for export -->
-<!-- <div id="exportSchemaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="mySmallModalLabel">Export Schema</h4>
-            </div>
-            <div class="modal-body">
-                <div class="input-group m-t-10">
-                    <input ng-model="newSchemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
-                    <span class="input-group-btn">
-                        <button ng-click="addSchema()" type="button" class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target="#exportSchemaModal">Submit</button>
-                     </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --
