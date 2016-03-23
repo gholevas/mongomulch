@@ -12,12 +12,24 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         $scope.newSchemaName = '';
     }
 
-    $scope.exportSchemas = () =>{
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+            if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+            return index == 0 ? match.toLowerCase() : match.toUpperCase();
+        });
+    }
+
+    String.prototype.capitalizeFirstLetter = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+
+    $scope.exportSchemas = () => {
         SchemaFactory.exportSchemas();
     }
 
     $scope.addSchema = function() {
-        SchemaFactory.addSchema($scope.newSchemaName);
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        SchemaFactory.addSchema(sanitzedSchemaName);
         reloadSchemas();
     }
 
@@ -38,11 +50,4 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-});
-
-app.directive('sidebarSchemaButton', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'custom/side_nav_bar/sidebar_schemabutton.directive.html'
-    };
 });

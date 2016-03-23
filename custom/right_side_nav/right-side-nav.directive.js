@@ -22,6 +22,9 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
         if($scope.field.options.default === ''){
             delete $scope.field.options.default;
         }
+        if($scope.field.type === 'Array of...' || $scope.field.type === 'Reference to...' || $scope.field.type === 'Embed...'){
+            delete $scope.field.options.default;
+        }
         $scope.schema.addField($scope.field)
         resetField();
         $mdSidenav('right').close()
