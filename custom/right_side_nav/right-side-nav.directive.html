@@ -29,7 +29,7 @@
                 </md-input-container>
                 <md-input-container flex ng-show="field.type==='Reference to...'">
                     <label style="color:#98a6ad;">Schema</label>
-                    <md-select ng-model="field.selectedSchema">
+                    <md-select ng-model="field.reference">
                         <md-option layout="column" layout-align="start start" ng-repeat="schema in schemas" ng-value="schema.name">
                             {{ schema.name }}
                         </md-option>
