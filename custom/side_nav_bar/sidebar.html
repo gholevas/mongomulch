@@ -12,15 +12,21 @@
                     <a data-toggle="modal" style="color:#81c868;" data-target="#newSchemaModal" href="#" class="waves-effect waves-light"><i class="ti-plus"></i> <span> Add Schema </span> </a>
                 </li>
                 <li class="text-muted menu-title">Actions</li>
-                <li class="has_sub">
-                    <a ng-click="exportSchemas()" id="sa-success"style="color:#81c868;" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span> </a>
-                </li>
+
+                  <li class="has_sub">
+                    <a data-toggle="modal" style="color:#81c868;" data-target="#newExportModal" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span> </a>
+
                 <li class="has_sub">
                     <a ui-sref="visualizer" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-layout-grid2"></i> <span> Visualizer </span> </a>
                 </li>
                 <li class="has_sub">
                     <a ui-sref="seeder" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Seed Wizard </span> </a>
+
                 </li>
+
+               <!--  <li class="has_sub">
+                    <a ng-click="exportSchemas()" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export </span> </a>
+                </li> -->
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -43,3 +49,21 @@
         </div>
     </div>
 </div>
+
+<div id="newExportModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <h4 class="custom-modal-title">Export Schemas To</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content" style="background-color:#343D47;">
+            <div class="modal-body">
+                <div class="input-group m-t-10">
+                    <input autofocus ng-model="pathName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Path Name">
+                    <span class="input-group-btn">
+                        <button ng-click="exportSchemas(path)" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newExportModal">Submit</button>
+                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

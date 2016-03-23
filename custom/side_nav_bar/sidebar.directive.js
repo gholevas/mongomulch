@@ -23,8 +23,10 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
-    $scope.exportSchemas = () => {
-        SchemaFactory.exportSchemas();
+    $scope.exportSchemas = (path) => {
+
+        SchemaFactory.exportSchemas(path);
+
     }
 
     $scope.addSchema = function() {

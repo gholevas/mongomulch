@@ -1,28 +1,59 @@
 var fs = require('fs');
 var beautify = require('js-beautify').js_beautify;
+var mkdirp = require('mkdirp');
 
 
-function save_schema(schema) {
-    fs.writeFile(__dirname + "/test.js", generate_schema(schema), function(err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("The file was saved!");
-        }
+function index_file(schemas,path) {
+
+    var schemaStr = '\n\n';
+
+    schemas.forEach((schema) => {
+        schemaStr += 'require("./' + schema.name + '");' + '\n\n';
+    })
+
+    mkdirp(__dirname + '/models', function(err) {
+        fs.writeFile(__dirname + "/models/index.js", schemaStr, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("The file was saved!");
+            }
+        });
+
     });
+
 }
 
 
+function save_schema(schemas, path) {
+    var schemaArr = schemas;
+
+    mkdirp(__dirname + '/models', function(err) {
+
+        schemas.forEach((schema) => {
+
+            fs.writeFile(__dirname + "/models/" + schema.name + ".js", generate_schema(schema), function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("The file was saved!");
+                }
+            });
+        })
+    });
+
+}
+
 
 function generate_schema(schema) {
-    console.log(schema[0].fields);
+    console.log(schema.fields);
 
     var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
-    var fieldLength = schema[0].fields.length;
+    var fieldLength = schema.fields.length;
 
-    schema[0].fields.forEach((field, index) => {
+    schema.fields.forEach((field, index) => {
         if (index === fieldLength - 1) {
-            schemaStr += '\n' + parse_name_type(field) + '\n' + "});" + '\n \n' + 'mongoose.model("' + schema[0].name +'", schema);'
+            schemaStr += '\n' + parse_name_type(field) + '\n' + "});" + '\n \n' + 'mongoose.model("' + schema.name + '", schema);'
         } else {
             schemaStr += '\n' + parse_name_type(field) + ",";
         }
@@ -46,7 +77,7 @@ function parse_name_type(field) {
 
     } else if (field.type === 'Reference to...') {
 
-        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",'  + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
 
     } else {
 
@@ -66,19 +97,19 @@ function parse_options(schemaOptions) {
     for (var i = 0; i < size; i++) {
 
         if (i === size - 1) {
-            if(Object.keys(schemaOptions)[i] === 'default'){
+            if (Object.keys(schemaOptions)[i] === 'default') {
                 optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '"';
-            } else{
+            } else {
                 optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]];
             }
-            
+
         } else {
-            if(Object.keys(schemaOptions)[i] === 'default'){
+            if (Object.keys(schemaOptions)[i] === 'default') {
                 optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '", ';
-              } else{
+            } else {
                 optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]] + ', ';
-              }
-            
+            }
+
         }
 
     }
@@ -88,4 +119,4 @@ function parse_options(schemaOptions) {
 
 
 // var x = generate_schema ({name:'User', 
-// fields:[{name:'George', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Prakash', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Jai', type:"String",options:{select:true, unique:true, default:"yay"}}]})
+// fields:[{name:'George', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Prakash', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Jai', type:"String",options:{select:true, unique:true, default:"yay"}}
