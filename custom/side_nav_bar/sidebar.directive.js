@@ -1,5 +1,3 @@
-// var dialog = require('dialog');
-// var BrowserWindow = require('browser-window');
 var remote = require('remote');
 var dialog = remote.require('dialog');
 
