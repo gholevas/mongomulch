@@ -26,6 +26,3 @@ app.config(function($mdThemingProvider) {
     .primaryPalette('amazingPaletteName')
     .dark();
 });
-
-
-
