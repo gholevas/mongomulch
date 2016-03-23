@@ -1,19 +1,25 @@
 var mongoose = require("mongoose");
+
 var schema = new mongoose.Schema({
-  vedqw: {
-    type: Number,
+
+  dfdd: {
+    type: Boolean,
     Unique: true,
     Required: true
   },
-  dfcdsx: {
-    type: [Number],
-    Text: true,
-    default: evwedqw
+  cc: {
+    type: [null],
+    Select: true
   },
-  gdvwde: {
-    type: Number,
-    Select: true,
-    Sparse: true
+  ddd: {
+    type: [Buffer],
+  },
+  xxx: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    Required: true,
+    default: "dddd"
   }
 });
-mongoose.model(User, schema);
+
+mongoose.model("user", schema);
