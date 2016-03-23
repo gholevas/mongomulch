@@ -24,7 +24,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     }
 
     $scope.exportSchemas = () => {
-
         SchemaFactory.exportSchemas();
     }
 
@@ -45,9 +44,9 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
     $scope.showStorage = function() {
-            //console.log(Storage.all());
-        }
-        //////////admin-ish////////////
+        console.log(Storage.all());
+    }
+    //////////admin-ish////////////
 
     $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
