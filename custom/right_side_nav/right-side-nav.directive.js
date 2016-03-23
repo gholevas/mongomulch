@@ -50,6 +50,15 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
     $scope.toggleRight = function(schema, field) {
         if (field) $scope.field = field;
         else resetField();
+        var schemas = SchemaFactory.getSchemas();
+
+        schemas.forEach(function(schema){
+            if($scope.arrOf.indexOf(schema.name) === -1){
+                $scope.arrOf.push(schema.name)
+            }
+        })
+
+         console.log($scope.arrOf);
         $scope.schema = schema;
         $mdSidenav('right').toggle()
     }
