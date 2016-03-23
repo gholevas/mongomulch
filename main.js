@@ -21,7 +21,11 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1066, height: 600});
+  mainWindow = new BrowserWindow({
+    center: true
+  });
+
+  mainWindow.maximize();
 
   mainWindow.setMinimumSize(1066, 600);
 

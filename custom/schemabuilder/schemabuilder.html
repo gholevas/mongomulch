@@ -1,44 +1,35 @@
 <br>
-<br>
-<br>
-<br>
-    <!-- Start content -->
-    <div class="content ">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card-box">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="m-t-0 header-title"><b>{{schema.name}} Schema</b></h4>
-                                <div class="p-20">
-                                    <table class="table table table-hover m-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Field Name</th>
-                                                <th>Data Type</th>
-                                                <th>Options</th>
-                                                <!-- <th>Edit</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-click="toggleRight(schema,field)" ng-repeat="field in schema.fields">
-                                                <td>{{field.name}}</td>
-                                      
-                                                <td ng-hide="field.type==='Array of...' || field.type==='Embed...'" >{{field.type}}</td>
-                                                <td ng-show="(field.type==='Array of...' && !field.selectedArrType) ">Array of...</td>
-                                                <td ng-show="(field.type==='Array of...' && field.selectedArrType) || (field.type==='Embed...' && field.selectedArrType)">Array of {{field.selectedArrType}}s</td>
-                                         
-                          
-                                                <td>{{field.options}}</td>
-                                       
-                                                <!-- <td></td> -->
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                    <button type="button" ng-click="toggleRight(schema)" ng-hide="isOpenRight()" class="btn btn-success btn-custom waves-effect waves-light">Add Field</button>
-                                </div>
+<div class="content ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="m-t-0 header-title"><b>{{schema.name}} Schema</b></h4>
+                            <div class="p-20">
+                                <table class="table table table-hover m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Field Name</th>
+                                            <th>Data Type</th>
+                                            <th>Options</th>
+                                            <!-- <th>Edit</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-click="toggleRight(schema,field)" ng-repeat="field in schema.fields">
+                                            <td>{{field.name}}</td>
+                                            <td ng-hide="field.type==='Array of...' || field.type==='Embed...'">{{field.type}}</td>
+                                            <td ng-show="(field.type==='Array of...' && !field.selectedArrType) ">Array of...</td>
+                                            <td ng-show="(field.type==='Array of...' && field.selectedArrType) || (field.type==='Embed...' && field.selectedArrType)">Array of {{field.selectedArrType}}s</td>
+                                            <td>{{field.options}}</td>
+                                            <!-- <td></td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <button type="button" ng-click="toggleRight(schema)" ng-hide="isOpenRight()" class="btn btn-success btn-custom waves-effect waves-light">Add Field</button>
                             </div>
                         </div>
                     </div>
@@ -46,3 +37,4 @@
             </div>
         </div>
     </div>
+</div>
