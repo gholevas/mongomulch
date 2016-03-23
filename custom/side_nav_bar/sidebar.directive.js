@@ -12,30 +12,11 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         $scope.newSchemaName = '';
     }
 
-    // storage.keys(function(error, keys) {
-    //     if (error) throw error;
-
-    //     console.log(keys)
-    // });
     $scope.exportSchemas = () =>{
-
         SchemaFactory.exportSchemas();
     }
 
-    // storage.get('schemas2', function(error, data) {
-    //     if (error) throw error;
-
-    //     console.log(data);
-    // });
-    // console.log()
     $scope.addSchema = function() {
-        // storage.get('schemas', function(error, data) {
-        //     if (error) throw error;
-        //     console.log(data);
-        // });
-        // storage.set('schemas2', [{ name: $scope.newSchemaName }], function(error) {
-        //     if (error) throw error;
-        // })
         SchemaFactory.addSchema($scope.newSchemaName);
         reloadSchemas();
     }
@@ -51,7 +32,7 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
     $scope.showStorage = function() {
-        //console.log(Storage.all());
+        console.log(Storage.all());
     }
     //////////admin-ish////////////
 
