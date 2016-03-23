@@ -22,7 +22,7 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             }
         })
         if(edited === false){
-            this.fields.push(new Field(field.name,field.type,field.options,field.selectedArrType));
+            this.fields.push(new Field(field.name,field.type,field.options,field.selectedArrType, field.selectedEmbed, field.reference));
         }
         edited = false;
             Storage.set('schemas', schemas);
@@ -37,15 +37,17 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         $rootScope.$broadcast('newField', this.schemaId);
     }    
 
-    var Field = function(name, type, options, selectedArrType){
+    var Field = function(name, type, options, selectedArrType, selectedEmbed, reference){
         this.name = name || "";
         this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
         this.selectedArrType = selectedArrType || null;
+        this.selectedEmbed = selectedEmbed || null;
+        this.reference = reference || null;
         this.options = options || {select: true};
     }
 
     var convertPojoToSchema = function(sObj){
-        return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType)))
+        return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType, f.selectedEmbed, f.reference)))
     }
 
     var schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure

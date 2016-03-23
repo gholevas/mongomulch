@@ -15,14 +15,14 @@ function save_schema(schema) {
 
 
 function generate_schema(schema) {
-    //console.log(schema[0].fields);
-    console.log(schema);
-    var schemaStr = 'var mongoose = require("mongoose");' + "\n" + 'var schema = new mongoose.Schema({';
+    console.log(schema[0].fields);
+
+    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
     var fieldLength = schema[0].fields.length;
 
     schema[0].fields.forEach((field, index) => {
         if (index === fieldLength - 1) {
-            schemaStr += '\n' + parse_name_type(field) + '\n' + "});" + '\n' + 'mongoose.model(' + schema[0].name + ', schema);'
+            schemaStr += '\n' + parse_name_type(field) + '\n' + "});" + '\n \n' + 'mongoose.model("' + schema[0].name +'", schema);'
         } else {
             schemaStr += '\n' + parse_name_type(field) + ",";
         }
@@ -46,7 +46,7 @@ function parse_name_type(field) {
 
     } else if (field.type === 'Reference to...') {
 
-        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId' + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",'  + parse_options(field.options) + '}';
 
     } else {
 
@@ -66,9 +66,19 @@ function parse_options(schemaOptions) {
     for (var i = 0; i < size; i++) {
 
         if (i === size - 1) {
-            optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]];
+            if(Object.keys(schemaOptions)[i] === 'default'){
+                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '"';
+            } else{
+                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]];
+            }
+            
         } else {
-            optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]] + ', ';
+            if(Object.keys(schemaOptions)[i] === 'default'){
+                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '", ';
+              } else{
+                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]] + ', ';
+              }
+            
         }
 
     }

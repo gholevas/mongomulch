@@ -24,9 +24,12 @@
                                         <tbody>
                                             <tr ng-click="toggleRight(schema,field)" ng-repeat="field in schema.fields">
                                                 <td>{{field.name}}</td>
-                                                <td ng-hide="field.type==='Array of...'">{{field.type}}</td>
-                                                <td ng-show="field.type==='Array of...' && !field.selectedArrType">Array of...</td>
-                                                <td ng-show="field.type==='Array of...' && field.selectedArrType">Array of {{field.selectedArrType}}s</td>
+                                      
+                                                <td ng-hide="field.type==='Array of...' || field.type==='Embed...'" >{{field.type}}</td>
+                                                <td ng-show="(field.type==='Array of...' && !field.selectedArrType) ">Array of...</td>
+                                                <td ng-show="(field.type==='Array of...' && field.selectedArrType) || (field.type==='Embed...' && field.selectedArrType)">Array of {{field.selectedArrType}}s</td>
+                                         
+                          
                                                 <td>{{field.options}}</td>
                                                 <!-- <td></td> -->
                                             </tr>

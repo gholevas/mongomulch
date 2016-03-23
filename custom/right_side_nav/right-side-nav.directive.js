@@ -18,6 +18,7 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
     resetField();
 
     $scope.saveField = function() {
+        console.log($scope.field, "field on controller");
         if($scope.field.options.default === ''){
             delete $scope.field.options.default;
         }

@@ -1,20 +1,24 @@
 var mongoose = require("mongoose");
+
 var schema = new mongoose.Schema({
-  name: {
-    type: Number,
+  dfdd: {
+    type: Boolean,
+    Unique: true,
     Required: true
   },
-  other field: {
-    type: Number,
-    Required: true
+  cc: {
+    type: [null],
+    Select: true
   },
-  erwev: {
-    type: [Number],
-    Required: true
+  ddd: {
+    type: [Buffer],
   },
-  wed: {
-    type: Number,
-    Required: true
+  xxx: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    Required: true,
+    default: "dddd"
   }
 });
-mongoose.model(User, schema);
+
+mongoose.model("user", schema);
