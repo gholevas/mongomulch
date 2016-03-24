@@ -1,24 +1,32 @@
-<br>
-<br>
-<br>
+<style>
+md-tabs {
+    height: 700px;
+}
+</style>
 <br>
 <div class="content ">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div ng-controller="SeederCtrl" ng-cloak>
-                    <md-content style="display:inherit;background:transparent;" class="md-padding">
-                        <md-tabs style="display:inherit;" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+
+                        <!-- <pre>{{questions  | json }}</pre> -->
+                        <md-tabs style="display:inherit; " md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+
                             <md-tab ng-repeat="question in questions" id="tab1">
                                 <md-tab-label>Question {{$index+1}}</md-tab-label>
                                 <md-tab-body>
-                                    <div layout-align="center" layout="row">
-                                        <h2>{{question.text}}</h2>
-                                    </div>
+                                <!--     <div layout-align="center" layout="row">
+                                        <h2>{{question}}</h2>
+                                    </div> -->
                                     <br>
-                                    <!--                     <div layout-align="center" layout="row">
-                        <md-button class="md-raised" sibs ng-click="selectAnswer(question,answer)" ng-repeat="answer in question.answers">{{answer.text}}</md-button>
-                    </div> -->
+                    
+                                    <seed-Primitive ng-show = "question.Qtype === 'hintsQ'" question = "question"> </seed-Primitive>
+                                    <seed-Amount ng-show = "question.Qtype === 'amountQ'" question= "question" > </seed-Amount>
+                        
+
+                                        <!-- <md-button class="md-raised">answer.text</md-button> -->
+                                    <br>
                                     <br>
                                     <div layout-align="center" layout="row">
                                         <div ng-hide="$first" layout="column">
@@ -46,10 +54,10 @@
         </div>
     </div>
 </div>
-
 <style>
-  md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-    color: rgb(129,200,104); 
-    background: rgb(129,200,104);
-  }
+md-tabs.md-default-theme md-ink-bar,
+md-tabs md-ink-bar {
+    color: rgb(129, 200, 104);
+    background: rgb(129, 200, 104);
+}
 </style>

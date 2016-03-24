@@ -3,7 +3,7 @@ var beautify = require('js-beautify').js_beautify;
 var mkdirp = require('mkdirp');
 
 
-function index_file(schemas,path) {
+function index_file(schemas, path) {
 
     var schemaStr = '\n\n';
 
@@ -21,6 +21,14 @@ function index_file(schemas,path) {
         });
 
     });
+
+}
+
+function require_schemas(schemas){
+
+    var requireStr ='';
+
+    schemas.forEach((schema) => requireStr += 'var ' + schema.name + ' = require("./' + schema.name + '");' + '\n' )
 
 }
 
@@ -46,7 +54,7 @@ function save_schema(schemas, path) {
 
 
 function generate_schema(schema) {
-    console.log(schema.fields);
+
 
     var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
     var fieldLength = schema.fields.length;
@@ -70,8 +78,14 @@ function parse_name_type(field) {
     //do switch case
 
     if (field.type === "Array of...") {
-        fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ', ' + parse_options(field.options) + '}';
-        //do something
+        if (field.selectedArrType != 'String' || field.selectedArrType != 'Number' || field.selectedArrType != 'Boolean' || field.selectedArrType != 'Buffer' || field.selectedArrType != 'Date' ) {
+            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
+        } else {
+
+            fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ', ' + parse_options(field.options) + '}';
+
+        }
+
     } else if (field.type === "Embed...") {
         fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ', ' + parse_options(field.options) + '}';
 
@@ -119,4 +133,4 @@ function parse_options(schemaOptions) {
 
 
 // var x = generate_schema ({name:'User', 
-// fields:[{name:'George', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Prakash', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Jai', type:"String",options:{select:true, unique:true, default:"yay"}}
+// fields:[{name:'George', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Prakash', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Jai', type:"String",options:{select:true, unique:true, default:"yay"}
