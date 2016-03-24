@@ -1,4 +1,9 @@
-<div class="left side-menu" style="overflow:auto;">
+<style>
+    #side::-webkit-scrollbar{
+        display: none;
+    }
+</style>
+<div id="side"class="left side-menu" style="overflow:auto;">
     <div class="sidebar-inner slimscrollleft">
         <div id="sidebar-menu">
             <ul>
@@ -18,6 +23,10 @@
                 </li>
                 <li class="has_sub">
                     <a ui-sref-active="active"  ui-sref="seeder" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Seed Wizard </span> </a>
+
+                </li>
+                <li class="has_sub">
+                    <a ui-sref="mongogui" ng-click="connect()" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Connect to Mongo </span> </a>
 
                 </li>
                 <li class="text-muted menu-title">Actions</li>

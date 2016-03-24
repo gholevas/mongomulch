@@ -1,8 +1,36 @@
+<style>
+    #selector {
+    position: relative;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 2px solid rgb(129, 200, 104);
+    border-radius: 5px 5px 5px 5px;
+    padding: 6px 25px 6px 12px;
+}
+
+#dropdown {
+    color: rgb(129, 200, 104);
+    font: normal normal 500 normal 14px / 20px Roboto, sans-serif;
+}
+
+#carrot {
+    position: absolute;
+    right: 12px;
+    top: 16px;
+    border-top: 4px dashed rgb(129, 200, 104);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    margin: -2px 0px 0px;
+}
+
+select.bs-select-hidden, select.selectpicker {
+    display: none!important;
+}
+</style>
 <div layout-align="center" layout="row">
     <div class="col-lg-6">
         <div class="panel panel-border panel-success">
             <div class="panel-heading">
-        <h3 class="panel-title">{{question.name}}</h3>
+                <h3 class="panel-title">{{question.name}}</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -15,15 +43,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat = "q in question.fields">
+                            <tr ng-repeat="q in question.fields">
                                 <td>{{q.name}}</td>
                                 <td>{{q.type}}</td>
                                 <td>
-                                    <md-select ng-model="field.type" >
-                                        <md-option layout="column" layout-align="start start" ng-value="type" ng-repeat = "option in StrOpitons">
+                                    <md-select ng-model="q.type">
+                                        <md-option layout="column" layout-align="start start" ng-value="option" ng-repeat="option in StrOpitons">
                                             {{option}}
                                         </md-option>
                                     </md-select>
+                                    <!-- <select class="selectpicker bs-select-hidden" data-style="btn-success btn-custom">
+                                    <option>test</option>
+                                    </select>
+                                    <button type="button" id="selector">
+                                        <span id="dropdown">test</span><span id="carrot"></span>
+                                    </button> -->
                                 </td>
                             </tr>
                         </tbody>
@@ -33,4 +67,4 @@
         </div>
     </div>
     <!-- <md-button class="md-raised">answer.text</md-button> -->
-</div
+    </div
