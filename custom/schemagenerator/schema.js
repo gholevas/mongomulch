@@ -46,9 +46,9 @@ function save_schema(schemas, path) {
 
 
 function generate_schema(schema) {
-    console.log(schema.fields);
 
-    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
+
+    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n"  + 'var schema = new mongoose.Schema({';
     var fieldLength = schema.fields.length;
 
     schema.fields.forEach((field, index) => {
@@ -71,7 +71,7 @@ function parse_name_type(field) {
 
     if (field.type === "Array of...") {
         if (field.selectedArrType != 'String' || field.selectedArrType != 'Number' || field.selectedArrType != 'Boolean' || field.selectedArrType != 'Buffer' || field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"],' + parse_options(field.options) + '}';
+            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
         } else {
 
             fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ', ' + parse_options(field.options) + '}';
