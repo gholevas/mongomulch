@@ -1,0 +1,36 @@
+<div layout-align="center" layout="row">
+    <div class="col-lg-6">
+        <div class="panel panel-border panel-success">
+            <div class="panel-heading">
+        <h3 class="panel-title">{{question.name}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped m-b-0">
+                        <thead>
+                            <tr>
+                                <th>Field Name</th>
+                                <th>Type</th>
+                                <th>Seed Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat = "q in question.fields">
+                                <td>{{q.name}}</td>
+                                <td>{{q.type}}</td>
+                                <td>
+                                    <md-select ng-model="field.type" >
+                                        <md-option layout="column" layout-align="start start" ng-value="type" ng-repeat = "option in StrOpitons">
+                                            {{option}}
+                                        </md-option>
+                                    </md-select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <md-button class="md-raised">answer.text</md-button> -->
+</div
