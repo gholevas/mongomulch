@@ -9,50 +9,23 @@ md-tabs {
         <div class="row">
             <div class="col-md-12">
                 <div ng-controller="SeederCtrl" ng-cloak>
-                    <md-content style="display:inherit;background:transparent;" class="md-padding">
+
                         <!-- <pre>{{questions  | json }}</pre> -->
                         <md-tabs style="display:inherit; " md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+
                             <md-tab ng-repeat="question in questions" id="tab1">
                                 <md-tab-label>Question {{$index+1}}</md-tab-label>
                                 <md-tab-body>
-                                    <div layout-align="center" layout="row">
+                                <!--     <div layout-align="center" layout="row">
                                         <h2>{{question}}</h2>
-                                    </div>
+                                    </div> -->
                                     <br>
-                                    <div layout-align="center" layout="row">
-                                        <div class="col-lg-6">
-                                            <div class="panel panel-border panel-success">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Users</h3>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped m-b-0">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>FieldName</th>
-                                                                    <th>Type</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>name</td>
-                                                                    <td>
-                                                                        <md-select ng-model="dd">
-                                                                            <md-option layout="column" layout-align="start start" ng-repeat="type in [1,2,3]" ng-value="type">
-                                                                                {{ type }}s
-                                                                            </md-option>
-                                                                        </md-select>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    
+                                    <seed-Primitive ng-show = "question.Qtype === 'hintsQ'" question = "question"> </seed-Primitive>
+                                    <seed-Amount ng-show = "question.Qtype === 'amountQ'" question= "question" > </seed-Amount>
+                        
+
                                         <!-- <md-button class="md-raised">answer.text</md-button> -->
-                                    </div>
                                     <br>
                                     <br>
                                     <div layout-align="center" layout="row">
