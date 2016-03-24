@@ -21,15 +21,46 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,Question
     // }];
 
 
+
+
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas ();
-    console.log($scope.questions);
 
-  
+
+    
 
     $scope.submitAnswers = function(){
-        console.log($scope.questions)
+        var obj ={};
+
+        console.log($scope.questions);
+
+        for(var i=0; i<$scope.questions.length; i+=2){
+
+            obj[$scope.questions[i].name] =  obj[$scope.questions[i].name] || {};
+            obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
+            obj[$scope.questions[i].name].fields =  obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
+       
+        }
+
+        console.log(obj);
+
     }
+
+
+
+    function fieldsObj (fields){
+
+        var tempObj = {};
+
+        fields.forEach((field) => tempObj[field.name] = field.hint);
+
+
+
+        return tempObj;
+
+    }
+
+
 
     $scope.data = {
         selectedIndex: 0,
