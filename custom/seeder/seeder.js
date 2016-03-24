@@ -27,6 +27,9 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,Question
 
   
 
+    $scope.submitAnswers = function(){
+        console.log($scope.questions)
+    }
 
     $scope.data = {
         selectedIndex: 0,

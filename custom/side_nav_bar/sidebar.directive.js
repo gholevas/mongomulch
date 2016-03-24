@@ -9,10 +9,15 @@ app.directive('sidebar', function() {
     };
 });
 
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage,MongoFactory) {
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
+    }
+
+    $scope.connect = function(){
+        console.log('connecting')
+        MongoFactory.connect();
     }
 
     function camelize(str) {
