@@ -22,7 +22,10 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,Question
 
 
     $scope.questions = QuestionsFactory.getQuestions();
+    $scope.schemas = SchemaFactory.getSchemas ();
     console.log($scope.questions);
+
+  
 
 
     $scope.data = {

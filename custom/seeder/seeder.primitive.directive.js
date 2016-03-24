@@ -3,8 +3,15 @@ app.directive('seedPrimitive', function() {
         restrict: 'E',
         templateUrl: 'custom/seeder/seeder.primitive.directive.html',
         scope:{
-        	schema: "="
+        	question: "="
         },
-        controller: "SeederCtrl"
+        controller: "SeederCtrl",
+        link : function (scope){
+
+
+        	scope.StrOpitons = ['FirstName', 'LastName', 'Email', 'Password', 'Address', 'Phone Number', 'ImageUrl', 'Url' ]
+        
+
+        }
     };
 });
