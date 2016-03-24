@@ -1,34 +1,67 @@
-<br>
-<div class="content ">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-box">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h4 class="m-t-0 header-title"><b>{{schema.name}} Collections</b></h4>
-                            <div class="p-20">
-                                <table class="table table table-hover m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Field Name</th>
-                                            <th>Data Type</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-click="toggleRight(schema,field)" ng-repeat="field in schema.fields">
-                                            <td>tt</td>
-                                            <td>tt</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <button type="button" ng-click="toggleRight(schema)" ng-hide="isOpenRight()" class="btn btn-success btn-custom waves-effect waves-light">Add Field</button>
+<style>
+    #sidedbs::-webkit-scrollbar{
+        display: none;
+    }
+</style>
+
+<!-- ========== Left Sidebar Start ========== -->
+<div id="sidedbs" class="left side-menu  side-menu-sm" style="overflow:auto;">
+    <div class="sidebar-inner slimscrollleft">
+        <!--- Divider -->
+        <div id="sidebar-menu">
+            <ul>
+                <li class="text-muted menu-title">Local Host</li>
+                <li ng-repeat="db in dbs" class="has_sub">
+                    <a ng-click="showCollections(db.name)" ng-class="{active: currentDB===db.name}" class="waves-effect waves-light"><i class="ti-server"></i> <span> {{db.name}} </span> </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- Left Sidebar End -->
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <!-- <h4 class="m-t-0 header-title"><b>{{schema.name}} Collections</b></h4> -->
+                                    <div class="p-20">
+                                        <table class="table table table-hover m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Collections</th>
+                                                    <!-- <th>Data Type</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-click="toggleRight(schema,field)" ng-repeat="collection in collections">
+                                                    <td>{{collection.collectionName}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div style="min-height: 1000px;"></div>
         </div>
+        <!-- container -->
     </div>
+    <!-- content -->
 </div>
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->

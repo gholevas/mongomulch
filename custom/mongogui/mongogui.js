@@ -6,16 +6,31 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller("MongoGuiCtrl", function($scope, $stateParams, $state, SchemaFactory) {
+app.controller("MongoGuiCtrl", function($scope, $stateParams, $state) {
+    var url = 'mongodb://localhost:27017/';
+    var MongoClient = require('mongodb').MongoClient;
 
-	// $scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
+    MongoClient.connect(url, function(err, db) {
+        var adminDb = db.admin();
+        adminDb.listDatabases(function(err, dbs) {
+            console.log(dbs.databases)
+            $scope.dbs = dbs.databases;
+            $scope.$digest();
+        });
+    });
 
-	// $scope.addSchema = (schemaName) => {
-	// 	SchemaFactory.addSchema(schemaName);
-	// }
+    $scope.showCollections = function(db) {
+    	$scope.currentDB = db;
+    	console.log($scope.currentDB)
+        MongoClient.connect(url + db, function(err, db) {
+            db.collections()
+                .then(function(collections) {
+                    $scope.collections = collections;
+                    $scope.$digest()
+                    console.log('collections', $scope.collections)
+                });
+        });
+    }
 
-	// $scope.addRow = () => {
-	// 	$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newField.options);
-	// };
 
 });
