@@ -24,6 +24,14 @@ function index_file(schemas, path) {
 
 }
 
+function require_schemas(schemas){
+
+    var requireStr ='';
+
+    schemas.forEach((schema) => requireStr += 'var ' + schema.name + ' = require("./' + schema.name + '");' + '\n' )
+
+}
+
 
 function save_schema(schemas, path) {
     var schemaArr = schemas;
@@ -48,7 +56,7 @@ function save_schema(schemas, path) {
 function generate_schema(schema) {
 
 
-    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n"  + 'var schema = new mongoose.Schema({';
+    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
     var fieldLength = schema.fields.length;
 
     schema.fields.forEach((field, index) => {

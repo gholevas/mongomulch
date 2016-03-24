@@ -39,8 +39,8 @@ app.factory('QuestionsFactory', function($rootScope, SchemaFactory) {
 				return;
 			visited.push(schema.name);
 
-			questionsArray.push("How many "+ schema.name + "s do you want?");
-			questionsArray.push("Please provide hint for fields in "+ schema.name);
+			questionsArray.push({text: "How many "+ schema.name + "s do you want?", type: "amountQ", name:schema.name});
+			questionsArray.push({text: "Please provide hint for fields in "+ schema.name, type: "hintsQ",name:schema.name});
 			
 			var childSchemas = schema.fields
 			.map(field => field.selectedEmbed || field.reference || null )

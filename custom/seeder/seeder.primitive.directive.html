@@ -1,0 +1,35 @@
+
+<div class="col-lg-8">
+    <div class="panel panel-border panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{schema.name}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped m-b-0">
+                    <thead>
+                        <tr>
+                            <th>FieldName</th>
+                            <th>Type</th>
+                            <th>Hint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>
+        
+                              <md-select ng-click="refreshSchemas()" ng-model="field.type">
+                                  <md-option layout="column" layout-align="start start" ng-value="type">
+                                      1
+                                  </md-option>
+                              </md-select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -6,13 +6,18 @@
                 <div ng-controller="SeederCtrl" ng-cloak>
                     <md-content style="display:inherit;background:transparent;" class="md-padding">
                     <!-- <pre>{{questions  | json }}</pre> -->
-                        <md-tabs style="display:inherit;" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+                        <md-tabs style="display:block;" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
                             <md-tab ng-repeat="question in questions" id="tab1">
                                 <md-tab-label>Question {{$index+1}}</md-tab-label>
                                 <md-tab-body>
-                                    <div layout-align="center" layout="row">
+                                <!--     <div layout-align="center" layout="row">
                                         <h2>{{question}}</h2>
-                                    </div>
+                                    </div> -->
+                                    <br>
+                                    
+                               
+                                    <seed-Primitive> </seed-Primitive>
+                        
                                     <br>
                                     <!--                     <div layout-align="center" layout="row">
                         <md-button class="md-raised" sibs ng-click="selectAnswer(question,answer)" ng-repeat="answer in question.answers">{{answer.text}}</md-button>

@@ -19,7 +19,10 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,Question
     //     text: 'How many BlogPosts would you like each User to have?',
     //     answers: []
     // }];
+
+
     $scope.questions = QuestionsFactory.getQuestions();
+    console.log($scope.questions);
 
 
     $scope.data = {
