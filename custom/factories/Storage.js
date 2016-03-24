@@ -1,5 +1,6 @@
 const Configstore = require('configstore');
 const path = require('path');
+var expandTilde = require('expand-tilde');
 // var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
 // const conf = new Configstore(storageAppKey);
 
@@ -45,10 +46,12 @@ function copyFile(source, target, cb) {
 
 app.factory('Storage', function($rootScope) {
 
-
     var conf = null;
     var projKey = null;
-    var configDir = (process.env.XDG_CONFIG_HOME || "/Users/prakashmallela/.config")+"/configstore/";
+    // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
+    var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~")+"/.config"))+"/configstore/";
+
+    var tempPath_DELETETHIS="";
 
     return {
     	set: function(key, value){
@@ -88,7 +91,19 @@ app.factory('Storage', function($rootScope) {
         },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
-            copyFile(configDir+fileName, "/Users/prakashmallela/GitHub/mongomulch/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, dirName+"/"+fileName, function(err){console.log("err in storage ",err)});
+        },
+        loadDefault_YO_DELETETHISMETHOD: function(){
+            conf = new Configstore("default.mulch");
+        },
+        unload_YO_DELETETHISMETHOD: function(){
+            tempPath_DELETETHIS = conf.path;
+            conf = null;
+            // conf = new Configstore("default.mulch");
+        },
+        undo_unload_YO_DELETETHISMETHOD: function(){
+            conf = new Configstore(tempPath_DELETETHIS);
+            // conf = new Configstore("default.mulch");
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);

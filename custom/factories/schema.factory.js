@@ -10,6 +10,12 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             if(!Storage.get('schemas')) Storage.set('schemas',[]);
             schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
         }
+        else{
+            //developers only
+            Storage.loadDefault_YO_DELETETHISMETHOD();
+            if(!Storage.get('schemas')) Storage.set('schemas',[]);
+            schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
+        }
     }
 
     var Schema = function(name, id, fields){
@@ -55,7 +61,7 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType, f.selectedEmbed, f.reference)))
     }
 
-    
+    initializeSchemas();
     
         
 
