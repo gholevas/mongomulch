@@ -31,6 +31,7 @@
     "babel": "^5.0.12",
     "configstore": "^2.0.0",
     "electron-json-storage": "^2.0.0",
+    "expand-tilde": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
