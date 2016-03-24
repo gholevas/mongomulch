@@ -1342,7 +1342,7 @@ pre {
 }
 body.fixed-left .side-menu.left {
   bottom: 50px;
-  height: 100%;
+  /*height: 100%;*/
   margin-bottom: -70px;
   margin-top: 0px;
   padding-bottom: 70px;
