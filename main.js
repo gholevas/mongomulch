@@ -9,12 +9,6 @@ const BrowserWindow = electron.BrowserWindow;
 
 const notifier = require('node-notifier');
 
-/////local storage using configstore/////
-const Configstore = require('configstore');
-const path = require('path');
-var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
-const conf = new Configstore(storageAppKey, {os_username: process.env.USER || process.env.LOGNAME});
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -43,12 +37,12 @@ function createWindow () {
     mainWindow = null;
   });
   
-  mainWindow.on('close', function() {
-    notifier.notify({
-      'title': 'MongoMulch',
-      'message': 'Goodbye ' + conf.get('os_username')
-    });
-  });
+  // mainWindow.on('close', function() {
+  //   notifier.notify({
+  //     'title': 'MongoMulch',
+  //     'message': 'Goodbye ' + conf.get('os_username')
+  //   });
+  // });
 }
 
 // This method will be called when Electron has finished
