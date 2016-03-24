@@ -33,6 +33,7 @@ app.factory('QuestionsFactory', function($rootScope, SchemaFactory) {
 	}
 	
 	var _buildQuestions = function(schemas, questionsArray, visited){
+
 		schemas.forEach(function(schema){
 			
 			if(visited.indexOf(schema.name) > -1)
@@ -50,6 +51,7 @@ app.factory('QuestionsFactory', function($rootScope, SchemaFactory) {
 			_buildQuestions(childSchemas, questionsArray, visited);
 
 		});
+		
 	}
 
 
