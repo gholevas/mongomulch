@@ -58,8 +58,9 @@ $scope.deleteAll = function() {
     SchemaFactory.deleteAll();
     reloadSchemas();
 }
-$scope.showStorage = function() {
+$scope.save = function() {
     console.log(Storage.all());
+    Storage.saveFile();
 }
 //////////admin-ish////////////
 
