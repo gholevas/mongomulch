@@ -1,0 +1,630 @@
+{
+	"os_username": "George",
+	"schemas": [
+		{
+			"name": "User",
+			"id": "56f32f2fcf283eff1bac0a41",
+			"fields": [
+				{
+					"name": "email",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:150"
+				},
+				{
+					"name": "profile",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Profile",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:151"
+				},
+				{
+					"name": "password",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:152"
+				},
+				{
+					"name": "twitter",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Twitter",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:153"
+				},
+				{
+					"name": "facebook",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Facebook",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:154"
+				},
+				{
+					"name": "google",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Google",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:155"
+				},
+				{
+					"name": "isAdmin",
+					"type": "Boolean",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "false"
+					},
+					"$$hashKey": "object:156"
+				},
+				{
+					"name": "isSeller",
+					"type": "Boolean",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "false"
+					},
+					"$$hashKey": "object:157"
+				},
+				{
+					"name": "store",
+					"type": "Reference to...",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": "Store",
+					"options": {},
+					"$$hashKey": "object:158"
+				},
+				{
+					"name": "orders",
+					"type": "Array of...",
+					"selectedArrType": "Order",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:159"
+				},
+				{
+					"name": "cart",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Cart",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:160"
+				},
+				{
+					"name": "resetPasswordToken",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:161"
+				},
+				{
+					"name": "resetPasswordExpires",
+					"type": "Date",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:162"
+				}
+			],
+			"$$hashKey": "object:4"
+		},
+		{
+			"name": "Profile",
+			"id": "56f32f5ecf283eff1bac0a42",
+			"fields": [
+				{
+					"name": "firstName",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:196"
+				},
+				{
+					"name": "lastName",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:197"
+				},
+				{
+					"name": "address",
+					"type": "Embed...",
+					"selectedArrType": null,
+					"selectedEmbed": "Address",
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:198"
+				}
+			],
+			"$$hashKey": "object:5"
+		},
+		{
+			"name": "Address",
+			"id": "56f32f79cf283eff1bac0a43",
+			"fields": [
+				{
+					"name": "street",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:212"
+				},
+				{
+					"name": "apt",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:213"
+				},
+				{
+					"name": "city",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:214"
+				},
+				{
+					"name": "state",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:215"
+				},
+				{
+					"name": "zip",
+					"type": "Number",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:216"
+				}
+			],
+			"$$hashKey": "object:6"
+		},
+		{
+			"name": "Twitter",
+			"id": "56f32fdecf283eff1bac0a44",
+			"fields": [
+				{
+					"name": "id",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:234"
+				},
+				{
+					"name": "username",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:235"
+				},
+				{
+					"name": "token",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:236"
+				},
+				{
+					"name": "tokenSecret",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:237"
+				}
+			],
+			"$$hashKey": "object:7"
+		},
+		{
+			"name": "Facebook",
+			"id": "56f33012cf283eff1bac0a45",
+			"fields": [
+				{
+					"name": "id",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:253"
+				}
+			],
+			"$$hashKey": "object:8"
+		},
+		{
+			"name": "Google",
+			"id": "56f3302ecf283eff1bac0a46",
+			"fields": [
+				{
+					"name": "id",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:263"
+				}
+			],
+			"$$hashKey": "object:9"
+		},
+		{
+			"name": "Store",
+			"id": "56f33072cf283eff1bac0a47",
+			"fields": [
+				{
+					"name": "name",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:273"
+				},
+				{
+					"name": "url",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"Unique": true
+					},
+					"$$hashKey": "object:274"
+				},
+				{
+					"name": "pic",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "http://lorempixel.com/400/400/"
+					},
+					"$$hashKey": "object:275"
+				},
+				{
+					"name": "headline",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:276"
+				},
+				{
+					"name": "seller",
+					"type": "Reference to...",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": "User",
+					"options": {},
+					"$$hashKey": "object:277"
+				},
+				{
+					"name": "products",
+					"type": "Array of...",
+					"selectedArrType": "Product",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:278"
+				},
+				{
+					"name": "orders",
+					"type": "Array of...",
+					"selectedArrType": "Order",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:279"
+				},
+				{
+					"name": "likers",
+					"type": "Array of...",
+					"selectedArrType": "User",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:280"
+				}
+			],
+			"$$hashKey": "object:10"
+		},
+		{
+			"name": "Order",
+			"id": "56f33088cf283eff1bac0a48",
+			"fields": [
+				{
+					"name": "totalPrice",
+					"type": "Number",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:304"
+				},
+				{
+					"name": "contents",
+					"type": "Array of...",
+					"selectedArrType": "Product",
+					"selectedEmbed": null,
+					"reference": "Review",
+					"options": {},
+					"$$hashKey": "object:305"
+				},
+				{
+					"name": "date",
+					"type": "Date",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "Date.now"
+					},
+					"$$hashKey": "object:306"
+				},
+				{
+					"name": "user",
+					"type": "Reference to...",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": "User",
+					"options": {},
+					"$$hashKey": "object:307"
+				},
+				{
+					"name": "confirmationNum",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:308"
+				},
+				{
+					"name": "status",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "Pending"
+					},
+					"$$hashKey": "object:309"
+				}
+			],
+			"$$hashKey": "object:11"
+		},
+		{
+			"name": "Cart",
+			"id": "56f3309bcf283eff1bac0a49",
+			"fields": [
+				{
+					"name": "isGuest",
+					"type": "Boolean",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "false"
+					},
+					"$$hashKey": "object:1019"
+				},
+				{
+					"name": "guestId",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "false"
+					}
+				}
+			],
+			"$$hashKey": "object:12"
+		},
+		{
+			"name": "Product",
+			"id": "56f42a631a3f5da8307faba1",
+			"fields": [
+				{
+					"name": "name",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"Required": true
+					},
+					"$$hashKey": "object:329"
+				},
+				{
+					"name": "price",
+					"type": "Number",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"Unique": true
+					},
+					"$$hashKey": "object:330"
+				},
+				{
+					"name": "imgUrl",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:331"
+				},
+				{
+					"name": "tags",
+					"type": "Array of...",
+					"selectedArrType": "String",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:332"
+				},
+				{
+					"name": "available",
+					"type": "Boolean",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"default": "true"
+					},
+					"$$hashKey": "object:333"
+				},
+				{
+					"name": "store",
+					"type": "Reference to...",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": "Store",
+					"options": {},
+					"$$hashKey": "object:334"
+				}
+			],
+			"$$hashKey": "object:13"
+		},
+		{
+			"name": "Question",
+			"id": "56f42a7a1a3f5da8307faba2",
+			"fields": [
+				{
+					"name": "text",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:354"
+				},
+				{
+					"name": "answers",
+					"type": "Array of...",
+					"selectedArrType": "Answers",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:355"
+				}
+			],
+			"$$hashKey": "object:14"
+		},
+		{
+			"name": "Review",
+			"id": "56f42aec1a3f5da8307faba3",
+			"fields": [
+				{
+					"name": "user",
+					"type": "Reference to...",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": "User",
+					"options": {},
+					"$$hashKey": "object:367"
+				},
+				{
+					"name": "title",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:368"
+				},
+				{
+					"name": "body",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:369"
+				},
+				{
+					"name": "r",
+					"type": "Number",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:370"
+				}
+			],
+			"$$hashKey": "object:15"
+		},
+		{
+			"name": "Answer",
+			"id": "56f42b3e1a3f5da8307faba5",
+			"fields": [
+				{
+					"name": "text",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:386"
+				},
+				{
+					"name": "tags",
+					"type": "Array of...",
+					"selectedArrType": "String",
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:387"
+				}
+			],
+			"$$hashKey": "object:16"
+		}
+	]
+}

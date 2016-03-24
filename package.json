@@ -26,6 +26,7 @@
     "electron-prebuilt": "^0.36.0"
   },
   "dependencies": {
+    "angular-ui-bootstrap": "^1.2.5",
     "angular-ui-router": "^0.2.18",
     "babel": "^5.0.12",
     "configstore": "^2.0.0",
