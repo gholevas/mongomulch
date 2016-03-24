@@ -1,7 +1,7 @@
 <style>
-    md-tabs{
-        height: 400px;
-    }
+md-tabs {
+    height: 700px;
+}
 </style>
 <br>
 <div class="content ">
@@ -36,8 +36,14 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>name}</td>
-                                                                    <td>string</td>
+                                                                    <td>name</td>
+                                                                    <td>
+                                                                        <md-select ng-model="dd">
+                                                                            <md-option layout="column" layout-align="start start" ng-repeat="type in [1,2,3]" ng-value="type">
+                                                                                {{ type }}s
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
