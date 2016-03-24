@@ -1,0 +1,43 @@
+{
+	"schemas": [
+		{
+			"name": "Schema1",
+			"id": "56f44b1828fb004fb424b76a",
+			"fields": [
+				{
+					"name": "skjskj",
+					"type": "Number",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"Unique": true,
+						"default": "sss"
+					},
+					"$$hashKey": "object:122"
+				},
+				{
+					"name": "sasas",
+					"type": "String",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {},
+					"$$hashKey": "object:135"
+				},
+				{
+					"name": "adad",
+					"type": "Date",
+					"selectedArrType": null,
+					"selectedEmbed": null,
+					"reference": null,
+					"options": {
+						"Unique": true
+					},
+					"$$hashKey": "object:145"
+				}
+			],
+			"$$hashKey": "object:80"
+		}
+	]
+}

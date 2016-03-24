@@ -36,7 +36,8 @@ function copyFile(source, target, cb) {
 
   function done(err) {
     if (!cbCalled) {
-      cb(err);
+      if(err) cb(err);
+      else cb("all good")
       cbCalled = true;
     }
   }
@@ -77,13 +78,13 @@ app.factory('Storage', function($rootScope) {
         getProjName: function(){
             return projKey;
         },
-        newConfStore: function(pKey){
+        newConfStore: function(pKey, dirName){
             projKey = pKey;
             var fileName = projKey+".mulch.json";
 
             conf = new Configstore(projKey+".mulch");
 
-            copyFile(configDir+fileName, "/Users/prakashmallela/GitHub/mongomulch/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, dirName+"/"+fileName, function(err){console.log("err in storage ",err)});
         },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
