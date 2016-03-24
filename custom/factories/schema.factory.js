@@ -3,7 +3,14 @@ var mongoose = require('mongoose');
 
 app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     
-    if(!Storage.get('schemas')) Storage.set('schemas',[]);
+    var schemas;
+
+    function initializeSchemas(){
+        if(Storage.isProjLoaded()){
+            if(!Storage.get('schemas')) Storage.set('schemas',[]);
+            schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
+        }
+    }
 
     var Schema = function(name, id, fields){
         this.name = name || "";
@@ -29,8 +36,6 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
 
     }
 
-
-
     Schema.prototype.deleteField = function(field){
         this.fields.splice(this.fields.indexOf(field), 1);
         Storage.set('schemas', schemas);
@@ -50,7 +55,9 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType, f.selectedEmbed, f.reference)))
     }
 
-    var schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
+    
+    
+        
 
     return {
         Schema: Schema,
@@ -81,6 +88,9 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
         },
         getSchemaByName: function(name){
             return schemas.filter(schema => schema.name === name )[0];
+        },
+        initialize: function(){
+            initializeSchemas();
         }
 
     };
