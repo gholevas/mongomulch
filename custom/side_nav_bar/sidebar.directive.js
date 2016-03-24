@@ -9,16 +9,12 @@ app.directive('sidebar', function() {
     };
 });
 
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage,MongoFactory) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage) {
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
     }
 
-    $scope.connect = function(){
-        console.log('connecting')
-        MongoFactory.connect();
-    }
 
     function camelize(str) {
         return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {

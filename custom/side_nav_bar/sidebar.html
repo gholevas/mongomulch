@@ -10,7 +10,7 @@
                 <li class="text-muted menu-title">Schemas</li>
                 <li ng-repeat="schema in schemas" class="has_sub">
                     <a ng-mouseenter="show = true" ng-mouseleave="show = false" ui-sref-active="active" ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect waves-light">
-                        <i class="ti-server"></i><span ng-show="show" class="label label-danger pull-right" ng-click="deleteSchema(schema)">X</span> <span> {{schema.name}} </span>
+                        <i class="ti-layout-list-thumb"></i><span ng-show="show" class="label label-danger pull-right" ng-click="deleteSchema(schema)">X</span> <span> {{schema.name}} </span>
                     </a>
                 </li>
                 <li class="has_sub">
@@ -19,14 +19,14 @@
                 <li class="text-muted menu-title">Views</li>
 
                 <li class="has_sub">
-                    <a ui-sref-active="active" ui-sref="visualizer" class="waves-effect waves-light"><i class="ti-layout-grid2"></i> <span> Visualizer </span> </a>
+                    <a ui-sref-active="active" ui-sref="visualizer" class="waves-effect waves-light"><i class="ti-layout-grid2"></i> <span> Schema Visualizer </span> </a>
                 </li>
                 <li class="has_sub">
                     <a ui-sref-active="active"  ui-sref="seeder" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Seed Wizard </span> </a>
 
                 </li>
                 <li class="has_sub">
-                    <a ui-sref="mongogui" ng-click="connect()" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Connect to Mongo </span> </a>
+                    <a ui-sref-active="active" ui-sref="mongogui" ng-click="getCollections()" class="waves-effect waves-light"><i class="ti-server"></i> <span> MongoDB GUI </span> </a>
 
                 </li>
                 <li class="text-muted menu-title">Actions</li>
