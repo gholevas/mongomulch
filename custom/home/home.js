@@ -30,7 +30,7 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 			$state.go('visualizer');
 	      } 
 	      if(result.action=="new"){
-	      	Storage.newConfStore(result.projName);
+	      	Storage.newConfStore(result.projName, result.dirName);
 	      	SchemaFactory.initialize();
 	      	$state.go('visualizer');
 	      } 
@@ -48,14 +48,19 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 
 	$scope.newProject = function (projName) {
 		$scope.makingNewProj = false;
-		$uibModalInstance.close({action:"new", projName: projName});
+		var remote = require('remote');
+        var dialog = remote.require('dialog');
+        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+	        if (dirNamesArr === undefined) return;
+	        var dirName = dirNamesArr[0];
+			$uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
+        });
 	};
 
 	$scope.loadProject = function () {
 		var remote = require('remote');
         var dialog = remote.require('dialog');
         dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
-        	console.log(dirNamesArr);
 	        if (dirNamesArr === undefined) return;
 	        var dirName = dirNamesArr[0];
 	        $uibModalInstance.close({action:"load", dir: dirName});
