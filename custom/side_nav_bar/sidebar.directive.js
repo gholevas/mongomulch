@@ -9,7 +9,7 @@ app.directive('sidebar', function() {
     };
 });
 
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage,MongoFactory) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage, MongoFactory, $state) {
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
@@ -49,7 +49,11 @@ $scope.save = function() {
     Storage.saveFile();
 }
 $scope.load = function() {
+    Storage.unload_YO_DELETETHISMETHOD();
     $state.go('home')
+}
+$scope.DELETETHIS = function() {
+    Storage.undo_unload_YO_DELETETHISMETHOD();
 }
 
 $scope.addSchema = function() {

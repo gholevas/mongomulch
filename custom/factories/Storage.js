@@ -51,6 +51,8 @@ app.factory('Storage', function($rootScope) {
     // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
     var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~")+"/.config"))+"/configstore/";
 
+    var tempPath_DELETETHIS="";
+
     return {
     	set: function(key, value){
             if(!conf) return;
@@ -93,6 +95,15 @@ app.factory('Storage', function($rootScope) {
         },
         loadDefault_YO_DELETETHISMETHOD: function(){
             conf = new Configstore("default.mulch");
+        },
+        unload_YO_DELETETHISMETHOD: function(){
+            tempPath_DELETETHIS = conf.path;
+            conf = null;
+            // conf = new Configstore("default.mulch");
+        },
+        undo_unload_YO_DELETETHISMETHOD: function(){
+            conf = new Configstore(tempPath_DELETETHIS);
+            // conf = new Configstore("default.mulch");
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);
