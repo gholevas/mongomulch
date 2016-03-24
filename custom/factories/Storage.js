@@ -45,10 +45,9 @@ function copyFile(source, target, cb) {
 
 app.factory('Storage', function($rootScope) {
 
-
     var conf = null;
     var projKey = null;
-    var configDir = (process.env.XDG_CONFIG_HOME || "/Users/prakashmallela/.config")+"/configstore/";
+    var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
 
     return {
     	set: function(key, value){
@@ -88,7 +87,7 @@ app.factory('Storage', function($rootScope) {
         },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
-            copyFile(configDir+fileName, "/Users/prakashmallela/GitHub/mongomulch/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, dirName+"/"+fileName, function(err){console.log("err in storage ",err)});
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);
