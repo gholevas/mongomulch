@@ -53,6 +53,7 @@
 }
 .footable.breakpoint.toggle-circle > tbody > tr > td > span.footable-toggle:before {
   content: "\e004";
+  color: #81c868;
 }
 .footable.breakpoint.toggle-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
   content: "\e003";
@@ -152,7 +153,7 @@
   display: none;
 }
 .footable-row-detail{
-  background-color:#f5f5f5
+  /*background-color:#f5f5f5*/
 }
 .footable-row-detail-inner {
   display: table;  
@@ -177,5 +178,5 @@
   display: table-cell;
 }
 .footable-odd {
-  background-color: #f7f7f7;
+  /*background-color: #f7f7f7;*/
 }
