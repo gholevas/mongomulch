@@ -13,7 +13,7 @@ md-tabs {
                         <!-- <pre>{{questions  | json }}</pre> -->
                         <md-tabs style="display:inherit; " md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
 
-                            <md-tab ng-repeat="question in questions" id="tab1">
+                            <md-tab ng-repeat="question in questions">
                                 <md-tab-label>Question {{$index+1}}</md-tab-label>
                                 <md-tab-body>
                                 <!--     <div layout-align="center" layout="row">

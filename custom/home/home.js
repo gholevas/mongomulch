@@ -47,10 +47,10 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 	$scope.makingNewProj = false;
 
 	$scope.newProject = function (projName) {
-		$scope.makingNewProj = false;
 		var remote = require('remote');
         var dialog = remote.require('dialog');
         dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+			$scope.makingNewProj = false;
 	        if (dirNamesArr === undefined) return;
 	        var dirName = dirNamesArr[0];
 			$uibModalInstance.close({action:"new", projName: projName, dirName: dirName});

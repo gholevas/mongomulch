@@ -33,7 +33,7 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
 
     $scope.typeArr = ['String', 'Number', 'Boolean', 'Buffer', 'Date', 'Array of...', 'Reference to...', 'Embed...'];
     $scope.arrOf = ['String', 'Number', 'Boolean', 'Date', 'Buffer'];
-    $scope.possibleOptions = ['Unique', 'Required', 'Select', 'Sparse', 'Text'];
+    $scope.possibleOptions = ['unique', 'required', 'select', 'sparse', 'text'];
 
     $scope.toggle = function(option) {
         if ($scope.field.options[option]) {

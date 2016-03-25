@@ -29,6 +29,7 @@
     "angular-ui-bootstrap": "^1.2.5",
     "angular-ui-router": "^0.2.18",
     "babel": "^5.0.12",
+    "chance": "^1.0.1",
     "configstore": "^2.0.0",
     "electron-json-storage": "^2.0.0",
     "expand-tilde": "^1.2.0",
@@ -48,6 +49,7 @@
     "mkdirp": "^0.5.1",
     "mongodb": "^2.1.11",
     "mongoose": "4.0.7",
+    "mongoose-seeder": "^1.2.1",
     "node-notifier": "^4.5.0",
     "run-sequence": "^1.1.5"
   }

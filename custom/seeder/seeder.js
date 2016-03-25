@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,QuestionsFactory) {
+app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, QuestionsFactory, SeedFactory) {
 
     // $scope.questions = [{
     //     text: 'How many Users would you like?',
@@ -24,31 +24,52 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory,Question
 
 
     $scope.questions = QuestionsFactory.getQuestions();
-    $scope.schemas = SchemaFactory.getSchemas ();
+    $scope.schemas = SchemaFactory.getSchemas();
 
 
-    
 
-    $scope.submitAnswers = function(){
-        var obj ={};
 
-        console.log($scope.questions);
+    $scope.submitAnswers = function() {
+        var obj = {};
 
-        for(var i=0; i<$scope.questions.length; i+=2){
+        for (var i = 0; i < $scope.questions.length; i += 2) {
 
-            obj[$scope.questions[i].name] =  obj[$scope.questions[i].name] || {};
+            obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
             obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
-            obj[$scope.questions[i].name].fields =  obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
-       
+            obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
+
         }
 
-        console.log(obj);
+        var seedObj = buildSeedObj(obj);
+        var seedJSON = JSON.stringify(seedObj);
+
+        SeedFactory.seed("mongodb://localhost:27017/SeederTest", seedJSON);
 
     }
 
+    //build obj that we'll provide to the seeder library
+    function buildSeedObj(schemaDataObj) {
+        var seedObj = {"_dependencies": {"Chance": "chance"} };
+        for (var schema in schemaDataObj) {
+            if (schemaDataObj.hasOwnProperty(schema)) {
 
+                seedObj[schema] = {"_model": schema}
+                
+                for(fieldKey in schemaDataObj[schema].fields){
+                    console.log("key " ,fieldKey);
+                    schemaDataObj[schema].fields[fieldKey] = "=new Chance()."+schemaDataObj[schema].fields[fieldKey]+"()";
+                }
 
-    function fieldsObj (fields){
+                for(var i=0; i<schemaDataObj[schema].amount; i++){
+                    seedObj[schema][schema.toLowerCase() + i] = schemaDataObj[schema].fields;
+                }
+            
+            }
+        }
+        return seedObj;
+    }
+
+    function fieldsObj(fields) {
 
         var tempObj = {};
 
