@@ -41,36 +41,43 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     }
 
-$scope.save = function() {
-    console.log(Storage.all());
-    Storage.saveFile();
-}
-$scope.load = function() {
-    Storage.unload_YO_DELETETHISMETHOD();
-    $state.go('home')
-}
-$scope.DELETETHIS = function() {
-    Storage.undo_unload_YO_DELETETHISMETHOD();
-}
+    $scope.save = function() {
+        console.log(Storage.all());
+        Storage.saveFile();
+    }
+    $scope.load = function() {
+        Storage.unload_YO_DELETETHISMETHOD();
+        $state.go('home')
+    }
+    $scope.DELETETHIS = function() {
+        Storage.undo_unload_YO_DELETETHISMETHOD();
+    }
 
-$scope.addSchema = function() {
-    var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-    SchemaFactory.addSchema(sanitzedSchemaName);
+    $scope.addSchema = function() {
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        SchemaFactory.addSchema(sanitzedSchemaName);
+        reloadSchemas();
+    }
+
+    $scope.deleteSchema = function(schema) {
+        SchemaFactory.deleteSchema(schema);
+        reloadSchemas();
+    }
+
+    //////////admin-ish////////////
+    $scope.deleteAll = function() {
+            SchemaFactory.deleteAll();
+            reloadSchemas();
+        }
+        //////////admin-ish////////////
+
+
+    $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-}
-
-$scope.deleteSchema = function(schema) {
-    SchemaFactory.deleteSchema(schema);
-    reloadSchemas();
-}
-
-//////////admin-ish////////////
-$scope.deleteAll = function() {
-    SchemaFactory.deleteAll();
-    reloadSchemas();
-}
-//////////admin-ish////////////
 
 
-$scope.$on('newSchema', reloadSchemas); reloadSchemas();
+
+
+
+
 })
