@@ -1,10 +1,20 @@
 <style>
-    #sidedbs::-webkit-scrollbar{
-        display: none;
-    }
-</style>
+#sidedbs::-webkit-scrollbar {
+    display: none;
+}
 
-<!-- ========== Left Sidebar Start ========== -->
+#sidecollections::-webkit-scrollbar {
+    display: none;
+}
+
+#thedocuments::-webkit-scrollbar {
+    display: none
+}
+#documentView::-webkit-scrollbar {
+    display: none
+}
+</style>
+<!-- dbbar -->
 <div id="sidedbs" class="left side-menu  side-menu-sm" style="overflow:auto;">
     <div class="sidebar-inner slimscrollleft">
         <!--- Divider -->
@@ -20,48 +30,88 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<!-- Left Sidebar End -->
-<!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
 <div class="content-page">
-    <!-- Start content -->
-    <div class="content">
-        <div class="container">
+    <!-- collectionbar -->
+    <div ng-show="currentDB" id="sidecollections" class="left side-menu  side-menu-sm" style="overflow:auto;">
+        <div class="sidebar-inner slimscrollleft">
+            <!--- Divider -->
+            <div id="sidebar-menu">
+                <ul>
+                    <li class="text-muted menu-title">Collections</li>
+                    <li ng-repeat="collection in collections" class="has_sub">
+                        <a ng-click="showDocuments(collection)" ng-class="{active: currentCollection===collection}" class="waves-effect waves-light"><i class="ti-folder"></i> <span> {{collection.collectionName}} </span> </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content" style="margin-top:15px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <!-- <h4 class="m-t-0 header-title"><b>{{schema.name}} Collections</b></h4> -->
-                                    <div class="p-20">
-                                        <table class="table table table-hover m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Collections</th>
-                                                    <!-- <th>Data Type</th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-click="toggleRight(schema,field)" ng-repeat="collection in collections">
-                                                    <td>{{collection.collectionName}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Page-Title -->
+                <!--  <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="page-title">Local Host</h4>
+                            <ol class="breadcrumb">
+                                <li>
+                                    {{currentDB}}
+                                </li>
+                                <li class="active">
+                                    {{currentCollectionName}}
+                                </li>
+                            </ol>
                         </div>
+                    </div>
+                </div> -->
+                <div class="row" ng-show="currentCollection">
+                    <div class="col-lg-12">
+                            <ol class="breadcrumb">
+                                 <li>Local Host
+                                 </li>
+                                <li>
+                                    {{currentDB}}
+                                </li>
+                                <li class="active">
+                                    {{currentCollectionName}}
+                                </li>
+                            </ol>
+                            <h4 class="m-t-0 header-title"><b>Documents</b></h4>
+                            <p class="text-muted m-b-30 font-13">
+                                {{docs.length}} documents found.
+                            </p>
+                        <div id="thedocuments"class="card-box" style="height:25vh;overflow:auto;">
+                            <!-- <div class="p-20"> -->
+                            <table class="table table table-hover m-0">
+                              <!--   <thead>
+                                    <tr>
+                                        <th>MongoDB _id</th>
+                                        <th># of Fields</th>
+                                    </tr>
+                                </thead> -->
+                                <tbody>
+                                    <tr ng-class="{active: currentDoc===doc}" ng-click="showDoc(doc)" ng-repeat="doc in docs">
+                                        <td><b>_id: </b>{{doc._id}}</td>
+                                        <td>{{doc.numFields}} <b>fields</b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <pre id="documentView"style="height:44vh;overflow:auto;"ng-show="currentDoc">{{currentDoc | json}}</pre>
                     </div>
                 </div>
             </div>
-            <div style="min-height: 1000px;"></div>
+            <!-- container -->
         </div>
-        <!-- container -->
+        <!-- content -->
     </div>
-    <!-- content -->
 </div>
-<!-- ============================================================== -->
-<!-- End Right content here -->
-<!-- ============================================================== -->
