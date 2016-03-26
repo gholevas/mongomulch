@@ -26,12 +26,9 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas();
 
-
-
-
     $scope.submitAnswers = function() {
         var obj = {};
-
+        console.log($scope.dbname);
         for (var i = 0; i < $scope.questions.length; i += 2) {
 
             obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
@@ -44,7 +41,7 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
         //     return generate_schema_With_Seed(schema);
         // });
         
-        var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),"MCHANCETEST2", $scope.questions)
+        var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),$scope.dbname, $scope.questions)
         console.log(result);
         eval(result);
 

@@ -45,6 +45,12 @@ md-tabs {
                                             </md-button>
                                         </div>
                                     </div>
+                                    <div layout-align="center" layout="row">
+                                        <div ng-show="$last" layout="column">
+                                            <label>enter database name to seed</label>
+                                            <input ng-model="dbname" placeholder="dbname"></input>
+                                        </div>
+                                    </div>
                                 </md-tab-body>
                             </md-tab>
                         </md-tabs>

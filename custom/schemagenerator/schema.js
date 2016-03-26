@@ -73,15 +73,19 @@ function generate_schema(schema) {
 
 function generate_schemas_for_seeds(schemas,DB_NAME, questions){
 
+    console.log(DB_NAME);
+
+    DB_NAME = DB_NAME || 'MulchSeed';
+
+    var connectionString = 'mongodb://localhost:27017/'+DB_NAME;
+
     var amtObj = {};
 
     questions.forEach(function(question){
         if(question.amount) amtObj[question.name] = question.amount;
     })
-    console.log(amtObj)
 
-    DB_NAME = DB_NAME || "TestDB";
-    var connectionString= '\nvar db = mongoose.connect(\'mongodb://localhost:27017/'+DB_NAME+'\').connection; '
+    var connectionString= '\nvar db = mongoose.connect("'+connectionString+'").connection; '
     var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'mchance\')(db);\n '
 
     var bodyStr = "";
@@ -125,10 +129,10 @@ function parse_name_type_with_seed(field) {
     //do switch case
 
     if (field.type === "Array of...") {
-        if (field.selectedArrType != 'String' || field.selectedArrType != 'Number' || field.selectedArrType != 'Boolean' || field.selectedArrType != 'Buffer' || field.selectedArrType != 'Date' ) {
+        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
             fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: 2}';
         } else {
-            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ' \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: 2} ';
+            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ', \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: 2} ';
         }
 
     } else if (field.type === "Embed...") {
@@ -153,7 +157,7 @@ function parse_name_type(field) {
     //do switch case
 
     if (field.type === "Array of...") {
-        if (field.selectedArrType != 'String' || field.selectedArrType != 'Number' || field.selectedArrType != 'Boolean' || field.selectedArrType != 'Buffer' || field.selectedArrType != 'Date' ) {
+        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
             fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
         } else {
 
