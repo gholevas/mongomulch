@@ -14,6 +14,7 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	      controller: 'ModalInstanceCtrl',
 	      size: 'lg',
 	      backdrop: 'static',
+	      keyboard  : false,
 	      resolve: {
 	        items: function () {
 	          return [];
@@ -24,7 +25,6 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	    modalInstance.result.then(function (result) {
 	      if(result.action=="load"){
 	      	Storage.loadConfStore(result.dir);
-			// Storage.newConfStore(result.dir);
 			SchemaFactory.initialize();
 			$rootScope.$broadcast('newSchema');
 			$state.go('visualizer');
@@ -32,6 +32,7 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	      if(result.action=="new"){
 	      	Storage.newConfStore(result.projName, result.dirName);
 	      	SchemaFactory.initialize();
+	      	$rootScope.$broadcast('newSchema');
 	      	$state.go('visualizer');
 	      } 
 	    }, function (errMsg) {

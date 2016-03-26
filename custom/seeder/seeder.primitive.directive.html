@@ -47,7 +47,7 @@ select.bs-select-hidden, select.selectpicker {
                                 <td>{{q.name}}</td>
                                 <td>{{q.type}}</td>
                                 <td>
-                                    <md-select ng-model="q.hint">
+                                    <md-select ng-model="q.hint" aria-label="lol">
                                         <md-option layout="column" layout-align="start start" ng-value="option" ng-repeat="option in StrOpitons">
                                             {{option}}
                                         </md-option>

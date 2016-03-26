@@ -40,12 +40,22 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
 
         }
 
-        var seedObj = buildSeedObj(obj);
-        var seedJSON = JSON.stringify(seedObj);
+        // var schemasWmchance = SchemaFactory.getSchemas().map(function(schema){
+        //     return generate_schema_With_Seed(schema);
+        // });
+        
+        var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),"MCHANCETEST2", $scope.questions)
+        console.log(result);
+        eval(result);
 
-        SeedFactory.seed("mongodb://localhost:27017/SeederTest", seedJSON);
+        //' db.seed({'++'}).then(function(dbCache){console.log("seeded", dbCache)})'
+        
+        //seeder lib method
+        // var seedObj = buildSeedObj(obj);
+        // var seedJSON = JSON.stringify(seedObj);
+        // SeedFactory.seed("mongodb://localhost:27017/SeederTest", seedJSON);
 
-    }
+    };
 
     //build obj that we'll provide to the seeder library
     function buildSeedObj(schemaDataObj) {
@@ -56,7 +66,6 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
                 seedObj[schema] = {"_model": schema}
                 
                 for(fieldKey in schemaDataObj[schema].fields){
-                    console.log("key " ,fieldKey);
                     schemaDataObj[schema].fields[fieldKey] = "=new Chance()."+schemaDataObj[schema].fields[fieldKey]+"()";
                 }
 

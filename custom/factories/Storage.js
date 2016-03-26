@@ -46,12 +46,11 @@ function copyFile(source, target, cb) {
 
 app.factory('Storage', function($rootScope) {
 
+    var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~")+"/.config"))+"/configstore/";
+    // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
     var conf = null;
     var projKey = null;
-    // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
-    var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~")+"/.config"))+"/configstore/";
-
-    var tempPath_DELETETHIS="";
+    var currentRepo = null;
 
     return {
     	set: function(key, value){
@@ -68,7 +67,7 @@ app.factory('Storage', function($rootScope) {
     		return conf.del(key);
     	},
     	all: function(){
-            // if(!conf) return;
+            if(!conf) return;
     		return conf.all;
     	},
         path: function(){
@@ -81,27 +80,24 @@ app.factory('Storage', function($rootScope) {
         getProjName: function(){
             return projKey;
         },
-        newConfStore: function(pKey, dirName){
-            projKey = pKey;
-            var fileName = projKey+".mulch.json";
-
-            conf = new Configstore(projKey+".mulch");
-
-            copyFile(configDir+fileName, dirName+"/"+fileName, function(err){console.log("err in storage ",err)});
-        },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
-            copyFile(configDir+fileName, dirName+"/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){console.log("err in storage ",err)});
         },
         loadDefault_YO_DELETETHISMETHOD: function(){
             conf = new Configstore("default.mulch");
         },
         unload_YO_DELETETHISMETHOD: function(){
-            tempPath_DELETETHIS = conf.path;
             conf = null;
         },
-        undo_unload_YO_DELETETHISMETHOD: function(){
-            conf = new Configstore(tempPath_DELETETHIS);
+        newConfStore: function(pKey, dirName){
+            projKey = pKey;
+            currentRepo = dirName;
+            var fileName = projKey+".mulch.json";
+
+            conf = new Configstore(projKey+".mulch");
+
+            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){console.log("err in storage ",err)});
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);
@@ -112,13 +108,13 @@ app.factory('Storage', function($rootScope) {
                 console.log("error, multiple mulch files found");
                 return;
             }
+            currentRepo = directory;
             var mulchFile = mulchFiles[0];
             projKey = mulchFile.substr(0, mulchFile.indexOf("."));
 
             conf = new Configstore(projKey+".mulch");
             var savedstuff = fs.readFileSync(directory+"/"+mulchFile);            
             conf.set(JSON.parse(savedstuff))
-
         }
     };
 

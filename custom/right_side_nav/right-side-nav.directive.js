@@ -32,7 +32,6 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
 
 
     $scope.typeArr = ['String', 'Number', 'Boolean', 'Buffer', 'Date', 'Array of...', 'Reference to...', 'Embed...'];
-    $scope.arrOf = ['String', 'Number', 'Boolean', 'Date', 'Buffer'];
     $scope.possibleOptions = ['unique', 'required', 'select', 'sparse', 'text'];
 
     $scope.toggle = function(option) {
@@ -51,14 +50,15 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
         if (field) $scope.field = field;
         else resetField();
         var schemas = SchemaFactory.getSchemas();
-
+        
+        //moved this down here in case of deleted schemas
+        $scope.arrOf = ['String', 'Number', 'Boolean', 'Date', 'Buffer'];
         schemas.forEach(function(schema){
-            if($scope.arrOf.indexOf(schema.name) === -1){
+            // if($scope.arrOf.indexOf(schema.name) === -1){
                 $scope.arrOf.push(schema.name)
-            }
+            // }
         })
 
-         console.log($scope.arrOf);
         $scope.schema = schema;
         $mdSidenav('right').toggle()
     }

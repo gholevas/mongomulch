@@ -42,15 +42,11 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     }
 
 $scope.save = function() {
-    console.log(Storage.all());
     Storage.saveFile();
 }
 $scope.load = function() {
     Storage.unload_YO_DELETETHISMETHOD();
     $state.go('home')
-}
-$scope.DELETETHIS = function() {
-    Storage.undo_unload_YO_DELETETHISMETHOD();
 }
 
 $scope.addSchema = function() {
