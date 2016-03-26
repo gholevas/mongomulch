@@ -34,7 +34,6 @@ function require_schemas(schemas){
 
 
 function save_schema(schemas, path) {
-    var schemaArr = schemas;
 
     mkdirp(path + '/models', function(err) {
 
@@ -72,22 +71,72 @@ function generate_schema(schema) {
 
 }
 
-function parse_name_type(field) {
+function generate_schemas_for_seeds(schemas,DB_NAME, questions){
+
+    console.log(DB_NAME);
+
+    DB_NAME = DB_NAME || 'MulchSeed';
+
+    var connectionString = 'mongodb://localhost:27017/'+DB_NAME;
+
+    var amtObj = {};
+
+    questions.forEach(function(question){
+        if(question.amount) amtObj[question.name] = question.amount;
+    })
+
+    var connectionString= '\nvar db = mongoose.connect("'+connectionString+'").connection; '
+    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'mchance\')(db);\n '
+
+    var bodyStr = "";
+    var footerStr = "db.seed({ ";
+
+    schemas.map(function(schema, index){
+        bodyStr+= generate_schema_With_Seed(schema);
+        footerStr+= schema.name +": " + amtObj[schema.name] + (index==schemas.length-1?"": ",\n");
+    });
+
+    footerStr+= "}).then(function(dbCache){ mongoose.disconnect(); console.log(dbCache)})"
+
+    return headerString +'\n\n'+ bodyStr +'\n \n'+ footerStr;
+
+
+}
+
+
+function generate_schema_With_Seed(schema, DB_NAME) {
+
+
+    var schemaStr = ' \n var schema = new mongoose.Schema({'
+
+    var fieldLength = schema.fields.length;
+
+    schema.fields.forEach((field, index) => {
+        if (index === fieldLength - 1) {
+            schemaStr += '\n' + parse_name_type_with_seed(field) + '\n' + "});" + '\n \n' + 'mongoose.model("' + schema.name + '", schema);'
+        } else {
+            schemaStr += '\n' + parse_name_type_with_seed(field) + ",";
+        }
+    })
+    schemaStr+="\n"
+    return beautify(schemaStr, { indent_size: 2 })
+
+}
+
+function parse_name_type_with_seed(field) {
     var fieldStr = '';
 
     //do switch case
 
     if (field.type === "Array of...") {
-        if (field.selectedArrType != 'String' || field.selectedArrType != 'Number' || field.selectedArrType != 'Boolean' || field.selectedArrType != 'Buffer' || field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
+        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
+            fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: 2}';
         } else {
-
-            fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ', ' + parse_options(field.options) + '}';
-
+            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ', \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: 2} ';
         }
 
     } else if (field.type === "Embed...") {
-        fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ', ' + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ' ' + parse_options(field.options) + '}';
 
     } else if (field.type === 'Reference to...') {
 
@@ -95,7 +144,37 @@ function parse_name_type(field) {
 
     } else {
 
-        fieldStr += field.name + ':{ type: ' + field.type + ', ' + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + (field.hint?", seed: mchance."+field.hint:"") + '}';
+    }
+
+    return fieldStr;
+
+}
+
+function parse_name_type(field) {
+    var fieldStr = '';
+
+    //do switch case
+
+    if (field.type === "Array of...") {
+        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
+            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
+        } else {
+
+            fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ' ' + parse_options(field.options) + '}';
+
+        }
+
+    } else if (field.type === "Embed...") {
+        fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ' ' + parse_options(field.options) + '}';
+
+    } else if (field.type === 'Reference to...') {
+
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
+
+    } else {
+
+        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + '}';
     }
 
     return fieldStr;
@@ -107,6 +186,7 @@ function parse_options(schemaOptions) {
 
     var optionStr = '';
     var size = Object.keys(schemaOptions).length;
+    if(size>0) optionStr+=", "
 
     for (var i = 0; i < size; i++) {
 
