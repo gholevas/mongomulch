@@ -1,9 +1,9 @@
 <style>
-    #side::-webkit-scrollbar{
-        display: none;
-    }
+#side::-webkit-scrollbar {
+    display: none;
+}
 </style>
-<div id="side"class="left side-menu" style="overflow:auto;">
+<div id="side" class="left side-menu" style="overflow:auto;">
     <div class="sidebar-inner slimscrollleft">
         <div id="sidebar-menu">
             <ul>
@@ -17,25 +17,20 @@
                     <a data-toggle="modal" style="color:#81c868;" data-target="#newSchemaModal" href="#" class="waves-effect waves-light"><i class="ti-plus"></i> <span> Add Schema </span> </a>
                 </li>
                 <li class="text-muted menu-title">Views</li>
-
                 <li class="has_sub">
                     <a ui-sref-active="active" ui-sref="visualizer" class="waves-effect waves-light"><i class="ti-layout-grid2"></i> <span> Schema Visualizer </span> </a>
                 </li>
                 <li class="has_sub">
-                    <a ui-sref-active="active"  ui-sref="seeder" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Seed Wizard </span> </a>
-
+                    <a ui-sref-active="active" ui-sref="seeder" class="waves-effect waves-light"><i class="ti-wand"></i> <span> Seed Wizard </span> </a>
                 </li>
                 <li class="has_sub">
                     <a ui-sref-active="active" ui-sref="mongogui" ng-click="getCollections()" class="waves-effect waves-light"><i class="ti-server"></i> <span> MongoDB GUI </span> </a>
-
                 </li>
                 <li class="text-muted menu-title">Actions</li>
-
                 <li class="has_sub">
-                    <a  style="color:#81c868;" ng-click = "exportSchemas()" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span></a>
+                    <a style="color:#81c868;" ng-click="exportSchemas()" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span></a>
                 </li>
-
-               <!--  <li class="has_sub">
+                <!--  <li class="has_sub">
                     <a ng-click="exportSchemas()" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export </span> </a>
                 </li> -->
             </ul>
@@ -44,10 +39,10 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<div id="newSchemaModal" class="modal fade bs-example-modal-sm" role="dialog"  style="display: none;">
+<div id="newSchemaModal" class="modal fade bs-example-modal-sm" role="dialog" style="display: none;">
     <div class="modal-dialog modal-sm">
-        <h4 class="custom-modal-title">Add Schema</h4>
-        <button type="button" class="close" data-dismiss="modal" >×</button>
+        <h4 style="background-color:rgb(129,200,104);"class="custom-modal-title">Add Schema</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
         <div class="modal-content" style="background-color:#343D47;">
             <div class="modal-body">
                 <div class="input-group m-t-10">
@@ -60,7 +55,6 @@
         </div>
     </div>
 </div>
-
 <!-- <div id="newExportModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
         <h4 class="custom-modal-title">Export Schemas To</h4>
@@ -70,12 +64,11 @@
                 <div class="input-group m-t-10">
                     <input autofocus ng-model="pathName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Path Name">
     <!--               <input ng-model ="pathName" type="file" id="ctrl" webkitdirectory directory multiple/> -->
-                    <span class="input-group-btn">
+<span class="input-group-btn">
                         <button ng-click="exportSchemas(pathName)" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newExportModal">Submit</button>
                      </span>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </div> -->
-

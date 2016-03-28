@@ -41,38 +41,58 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     }
 
-$scope.save = function() {
-    Storage.saveFile();
-}
-$scope.load = function() {
-    Storage.unload_YO_DELETETHISMETHOD();
-    $state.go('home')
-}
+    $scope.save = function() {
+        Storage.saveFile();
+    }
+    $scope.load = function() {
+        Storage.unload_YO_DELETETHISMETHOD();
+        $state.go('home')
+    }
 
-$scope.addSchema = function() {
-    var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-    var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
-    console.log('the newSchme is',newSchema );
-    $state.go("schemabuilder",newSchema.id) 
-    // reloadSchemas();
-}
+    $scope.addSchema = function() {
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
+        console.log('the newSchme is', newSchema);
+        $state.go("schemabuilder", newSchema.id)
+            // reloadSchemas();
+    }
 
-$scope.deleteSchema = function(schema) {
-    SchemaFactory.deleteSchema(schema);
+    $scope.save = function() {
+        Storage.saveFile();
+    }
+    $scope.load = function() {
+        Storage.unload_YO_DELETETHISMETHOD();
+        $state.go('home')
+    }
+
+
+
+    $scope.addSchema = function() {
+        if ($scope.newSchemaName !== '') {
+            var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+            SchemaFactory.addSchema(sanitzedSchemaName);
+            reloadSchemas();
+        }
+    }
+
+    $scope.deleteSchema = function(schema) {
+        SchemaFactory.deleteSchema(schema);
+        reloadSchemas();
+    }
+
+    //////////admin-ish////////////
+    $scope.deleteAll = function() {
+            SchemaFactory.deleteAll();
+            reloadSchemas();
+        }
+        //////////admin-ish////////////
+
+
+    $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-}
 
-//////////admin-ish////////////
-$scope.deleteAll = function() {
-    SchemaFactory.deleteAll();
+
+
+    $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-}
-//////////admin-ish////////////
-
-
-$scope.$on('newSchema', reloadSchemas); 
- reloadSchemas();
 })
-
-
-
