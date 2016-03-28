@@ -11,6 +11,10 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 
 	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 
+	$scope.deleteField = (schemaField) => {
+		$scope.schema.deleteField(schemaField);
+	}
+
 	//not needed, schemas are added from sidebar
 	// $scope.addSchema = (schemaName) => {
 	// 	SchemaFactory.addSchema(schemaName);
