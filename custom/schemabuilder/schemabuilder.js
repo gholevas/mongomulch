@@ -10,12 +10,14 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 
 	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 
-	$scope.addSchema = (schemaName) => {
-		SchemaFactory.addSchema(schemaName);
-	}
+	//not needed, schemas are added from sidebar
+	// $scope.addSchema = (schemaName) => {
+	// 	SchemaFactory.addSchema(schemaName);
+	// }
 
-	$scope.addRow = () => {
-		$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newField.options);
-	};
+	//seemingly not being used
+	// $scope.addRow = () => {
+	// 	$scope.schema.addField($scope.newFieldName,	$scope.newFieldType, $scope.newField.options);
+	// };
 
 });
