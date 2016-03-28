@@ -52,10 +52,24 @@ function save_schema(schemas, path) {
 }
 
 
+
+function embeded (schema){//ads require for embedded schema 
+    console.log('got in here');
+    var requireStr ='';
+    schema.fields.forEach((field) => {
+        if(field.type === "Embed...")
+            requireStr += 'var ' + field.selectedEmbed + ' = require("./' + field.selectedEmbed + '");' + '\n\n';
+
+    })
+    return requireStr;
+}
+
+
 function generate_schema(schema) {
 
+    var embededStr = embeded(schema);
 
-    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + 'var schema = new mongoose.Schema({';
+    var schemaStr = 'var mongoose = require("mongoose");' + "\n \n" + embededStr + 'var schema = new mongoose.Schema({';
     var fieldLength = schema.fields.length;
 
     schema.fields.forEach((field, index) => {
