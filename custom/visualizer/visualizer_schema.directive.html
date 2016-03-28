@@ -1,4 +1,5 @@
-<div class="col-lg-4">
+<div class="col-lg-4" >
+    <a ui-sref="schemabuilder({ schemaId: schema.id})">
     <div class="panel panel-border panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">{{schema.name}}</h3>
@@ -15,11 +16,18 @@
                     <tbody>
                         <tr ng-repeat="field in schema.fields">
                             <td>{{field.name}}</td>
-                            <td>{{field.type}}</td>
+                            <td ng-hide="field.type==='Array of...' || field.type==='Reference to...' || field.type==='Embed...'">{{field.type}}</td>
+                            <td ng-show="(field.type==='Array of...' && !field.selectedArrType) ">Array of...</td>
+                            <td ng-show="(field.type==='Array of...' && field.selectedArrType)">Array of {{field.selectedArrType}}s</td>
+                            <td ng-show="(field.type==='Reference to...' && !field.reference) ">Reference to...</td>
+                            <td ng-show="(field.type==='Reference to...' && field.reference)">Reference to {{field.reference}}s</td>
+                            <td ng-show="(field.type==='Embed...' && !field.selectedEmbed) ">Embed...</td>
+                            <td ng-show="(field.type==='Embed...' && field.selectedEmbed)">Embed {{field.selectedEmbed}}s</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+</a>
 </div>

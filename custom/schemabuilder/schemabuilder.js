@@ -8,6 +8,7 @@ app.config(function($stateProvider) {
 
 app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, SchemaFactory) {
 
+
 	$scope.schema = SchemaFactory.getSchemaById($stateParams.schemaId);
 
 	//not needed, schemas are added from sidebar

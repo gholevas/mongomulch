@@ -1,42 +1,17 @@
-<div class="modal-header">
+<!-- <div class="modal-header" style="background-color:rgb(129,200,104);">
     <h3 class="modal-title">Welcome</h3>
-</div>
+</div> -->
 <div class="modal-body">
 	<div ng-show="!makingNewProj">
-    	<button class="btn btn-primary" type="button" ng-click="makingNewProj = true ">New Mulch</button>
-    	<button class="btn btn-primary" type="button" ng-click="loadProject()">Load Mulch</button>
+    	<!-- <button class="btn btn-primary" type="button" ng-click="makingNewProj = true ">New Mulch</button> -->
+        <button type="button" ng-click="makingNewProj = true " class="btn btn-success btn-custom waves-effect waves-light">New Project</button>
+    	<button type="button" ng-click="loadProject()" class="btn btn-warning btn-custom waves-effect waves-light">Load Mulch</button>
+        <!-- <button class="btn btn-warning" type="button" ng-click="loadProject()">Load Mulch</button> -->
 	</div>
 	<div ng-show="makingNewProj">
-		Name your Project and pick your repo directory
-    	<input autofocus ng-model="projectName" class="form-control" placeholder="Project Name">
-    	<button class="btn btn-primary waves-effect waves-light btn-lg" ng-click="newProject(projectName)">Go!</button>
-    	<button class="btn btn-primary waves-effect waves-light btn-lg" ng-click="makingNewProj = false ">Cancel</button>
+		<p>Name your Project and pick your repo directory</p>
+    	<input autofocus ng-model="projectName" class="form-control" placeholder="Project Name"><br>
+        <button type="button" ng-click="newProject(projectName)" class="btn btn-success btn-custom waves-effect waves-light">Go!</button>
+        <button type="button" ng-click="makingNewProj = false " class="btn btn-danger btn-custom waves-effect waves-light">Cancel</button>
 	</div>
 </div>
-<div class="modal-footer">
-	footer
-</div>
-
-
-<!-- 
-<div id="newProjectModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-sm">
-        <h4 class="custom-modal-title">Welcome</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <div class="modal-content" style="background-color:#343D47;">
-            <div class="modal-body">
-                <div class="container" ng-hide="makeNewProj">
-                    <button ng-click="makeNewProj=true" class="btn waves-effect waves-light btn-lg">New Project</button>
-                    <button class="btn waves-effect waves-light btn-lg">Load Project</button>
-                </div>
-                <div class="input-group m-t-10" ng-show"makeNewProj">
-                    <input autofocus ng-model="newProjectName" class="form-control" placeholder="Project Name">
-                    <span class="input-group-btn">
-                        <button ng-click="newProject(newProjectName)" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newProjectModal">Create!</button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
- -->
