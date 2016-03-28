@@ -1,48 +1,6 @@
 const Configstore = require('configstore');
 const path = require('path');
 var expandTilde = require('expand-tilde');
-// var storageAppKey = require(path.join(__dirname, './env')).storageAppKey;
-// const conf = new Configstore(storageAppKey);
-
-// conf.clear();
-
-// //=> true
-
-// // use dot notation to access nested properties (provided by `dot-prop` module)
-// conf.set('bar.baz', true);
-
-// console.log(conf.all);
-// //=> { foo: 'bar', awesome: true, bar: { baz: true } }
-
-// conf.del('awesome');
-
-// console.log(conf.get('awesome'));
-// //=> undefined
-
-function copyFile(source, target, cb) {
-  var cbCalled = false;
-
-  var rd = fs.createReadStream(source);
-  rd.on("error", function(err) {
-    done(err);
-  });
-  var wr = fs.createWriteStream(target);
-  wr.on("error", function(err) {
-    done(err);
-  });
-  wr.on("close", function(ex) {
-    done();
-  });
-  rd.pipe(wr);
-
-  function done(err) {
-    if (!cbCalled) {
-      if(err) cb(err);
-      else cb("all good")
-      cbCalled = true;
-    }
-  }
-}
 
 app.factory('Storage', function($rootScope) {
 
@@ -119,3 +77,28 @@ app.factory('Storage', function($rootScope) {
     };
 
 });
+
+function copyFile(source, target, cb) {
+  var cbCalled = false;
+
+  var rd = fs.createReadStream(source);
+  rd.on("error", function(err) {
+    done(err);
+  });
+  var wr = fs.createWriteStream(target);
+  wr.on("error", function(err) {
+    done(err);
+  });
+  wr.on("close", function(ex) {
+    done();
+  });
+  rd.pipe(wr);
+
+  function done(err) {
+    if (!cbCalled) {
+      if(err) cb(err);
+      else cb("all good")
+      cbCalled = true;
+    }
+  }
+}
