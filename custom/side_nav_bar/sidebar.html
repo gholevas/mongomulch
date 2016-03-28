@@ -39,21 +39,25 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<div id="newSchemaModal" class="modal fade bs-example-modal-sm" role="dialog" style="display: none;">
+
+<div id="newSchemaModal" class="modal fade bs-example-modal-sm" role="dialog"  style="display: none;">
+<form name = "newSchemaForm">
+
     <div class="modal-dialog modal-sm">
         <h4 style="background-color:rgb(129,200,104);" class="custom-modal-title">Add Schema</h4>
         <button type="button" class="close" data-dismiss="modal">×</button>
         <div class="modal-content" style="background-color:#343D47;">
             <div class="modal-body">
                 <div class="input-group m-t-10">
-                    <input autofocus ng-model="newSchemaName" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
+                    <input autofocus ng-model="newSchemaName" required id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name">
                     <span class="input-group-btn">
-                        <button ng-click="addSchema()" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newSchemaModal">Submit</button>
+                        <button ng-click="addSchema()" ng-disabled="newSchemaForm.$invalid" type="submit" class="btn waves-effect waves-light btn-success" data-toggle="modal" data-target="#newSchemaModal">Submit</button>
                      </span>
                 </div>
             </div>
         </div>
     </div>
+</form>
 </div>
 <!-- <div id="newExportModal" class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm">
