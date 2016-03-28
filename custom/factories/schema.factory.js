@@ -76,6 +76,7 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             schemas.push(newSchema);
             Storage.set('schemas', schemas);
             $rootScope.$broadcast('newSchema', newSchema.id);
+            return newSchema;
         },
         deleteSchema: function(schema){
             schemas.splice(schemas.indexOf(schema), 1);
