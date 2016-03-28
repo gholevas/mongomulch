@@ -41,6 +41,21 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     }
 
+    $scope.save = function() {
+        Storage.saveFile();
+    }
+    $scope.load = function() {
+        Storage.unload_YO_DELETETHISMETHOD();
+        $state.go('home')
+    }
+
+    $scope.addSchema = function() {
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
+        console.log('the newSchme is', newSchema);
+        $state.go("schemabuilder", newSchema.id)
+            // reloadSchemas();
+    }
 
     $scope.save = function() {
         Storage.saveFile();
@@ -53,10 +68,11 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
 
     $scope.addSchema = function() {
-        if($scope.newSchemaName !== '')
-        {var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-                SchemaFactory.addSchema(sanitzedSchemaName);
-                reloadSchemas();}
+        if ($scope.newSchemaName !== '') {
+            var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+            SchemaFactory.addSchema(sanitzedSchemaName);
+            reloadSchemas();
+        }
     }
 
     $scope.deleteSchema = function(schema) {
@@ -77,7 +93,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
 
 
-
-
-
+    $scope.$on('newSchema', reloadSchemas);
+    reloadSchemas();
 })
