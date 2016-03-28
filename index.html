@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/favicon_1.ico">
     <title>mongoMulch</title>
-    <!--Form Wizard-->
-    <link rel="stylesheet" type="text/css" href="assets/plugins/jquery.steps/demo/css/jquery.steps.css" />
-    <!-- End Form Wizard -->
+    <!-- Plugins css-->
+    <link href="assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/select2/select2.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <!-- end plugin -->
     <!-- start theme stuff -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
     <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
@@ -34,7 +38,6 @@
     <!-- <link href="assets/css/mulch.css" rel="stylesheet" type="text/css" /> -->
     <script src="public/main.js"></script>
     <!-- End Custom -->
-
     <script src="assets/js/modernizr.min.js"></script>
     <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
@@ -46,32 +49,28 @@
         <ui-view></ui-view>
     </div>
     <right-side-nav></right-side-nav>
-
- 
-
 </body>
 <footer>
     <script>
     window.$ = window.jQuery = require('./assets/js/jquery.min.js');
-</script>
-<script src="assets/js/jquery.app.js"></script>
+    </script>
+    <script>
+    // require('./assets/js/bootstrap.min.js');
+    </script>
+
+    </script>
     <!-- jQuery  -->
-    <!-- <script src="assets/js/jquery.min.js"></script> -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/detect.js"></script>
     <script src="assets/js/fastclick.js"></script>
     <script src="assets/js/jquery.slimscroll.js"></script>
-    <!-- <script src="assets/js/jquery.blockUI.js"></script> -->
+    <script src="assets/js/jquery.blockUI.js"></script>
     <script src="assets/js/waves.js"></script>
-    <!-- <script src="assets/js/wow.min.js"></script> -->
-<!--     <script src="assets/js/jquery.nicescroll.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.core.js"></script>
-    <script src="assets/js/jquery.app.js"></script> -->
-    <!--Form Wizard-->
-    <script src="assets/plugins/jquery.steps/build/jquery.steps.min.js" type="text/javascript"></script>
-    <!--wizard initialization-->
-    <script src="assets/pages/jquery.wizard-init.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.app.js"></script>
 </footer>
 
 </html>

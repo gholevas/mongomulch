@@ -53,9 +53,10 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
 
     $scope.addSchema = function() {
-        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-        SchemaFactory.addSchema(sanitzedSchemaName);
-        reloadSchemas();
+        if($scope.newSchemaName !== '')
+        {var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+                SchemaFactory.addSchema(sanitzedSchemaName);
+                reloadSchemas();}
     }
 
     $scope.deleteSchema = function(schema) {

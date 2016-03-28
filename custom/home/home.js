@@ -12,7 +12,7 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	      animation: true,
 	      templateUrl: 'custom/home/newprojmodal.html',
 	      controller: 'ModalInstanceCtrl',
-	      size: 'lg',
+	      size: 'sm',
 	      backdrop: 'static',
 	      keyboard  : false,
 	      resolve: {

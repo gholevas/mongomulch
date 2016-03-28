@@ -1038,7 +1038,8 @@ button.list-group-item .list-group-item-heading {
 .modal .modal-dialog .modal-content {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-  border-color: #DDDDDD;
+  background-color:#343D47;
+  /*border-color: #DDDDDD;*/
   border-radius: 2px;
   box-shadow: none;
   padding: 25px;
@@ -1274,7 +1275,7 @@ pre {
   font-size: 16px;
 }
 .profile img {
-  border: 2px solid #edf0f0;
+  /*border: 2px solid #edf0f0;*/
   height: 36px;
   width: 36px;
 }
