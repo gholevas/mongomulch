@@ -86,7 +86,7 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
     })
 
     var connectionString= '\nvar db = mongoose.connect("'+connectionString+'").connection; '
-    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'mchance\')(db);\n '
+    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'./mchance_mod.js\')(db);\n '
 
     var bodyStr = "";
     var footerStr = "db.seed({ ";

@@ -10,12 +10,12 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             if(!Storage.get('schemas')) Storage.set('schemas',[]);
             schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
         }
-        else{
-            //developers only
-            Storage.loadDefault_YO_DELETETHISMETHOD();
-            if(!Storage.get('schemas')) Storage.set('schemas',[]);
-            schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
-        }
+        // else{
+        //     //developers only
+        //     Storage.loadDefault_YO_DELETETHISMETHOD();
+        //     if(!Storage.get('schemas')) Storage.set('schemas',[]);
+        //     schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
+        // }
     }
 
     var Schema = function(name, id, fields){
