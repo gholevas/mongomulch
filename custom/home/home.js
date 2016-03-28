@@ -6,41 +6,54 @@ app.config(function($stateProvider) {
     })
 });
 
-app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal) {
+app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal, ModalSvc) {
 	if(!Storage.isProjLoaded()){
-	    var modalInstance = $uibModal.open({
-	      animation: true,
-	      templateUrl: 'custom/home/newprojmodal.html',
-	      controller: 'ModalInstanceCtrl',
-	      size: 'lg',
-	      backdrop: 'static',
-	      keyboard  : false,
-	      resolve: {
-	        items: function () {
-	          return [];
-	        }
-	      }
-	    });
-
-	    modalInstance.result.then(function (result) {
-	      if(result.action=="load"){
-	      	Storage.loadConfStore(result.dir);
-			SchemaFactory.initialize();
-			$rootScope.$broadcast('newSchema');
-			$state.go('visualizer');
-	      } 
-	      if(result.action=="new"){
-	      	Storage.newConfStore(result.projName, result.dirName);
-	      	SchemaFactory.initialize();
-	      	$rootScope.$broadcast('newSchema');
-	      	$state.go('visualizer');
-	      } 
-	    }, function (errMsg) {
-	      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
-	    });	
+		ModalSvc.open();
 	} else {
 		$state.go('visualizer')
 	}
+});
+
+app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $uibModal) {
+
+		return {
+
+			open: function(){
+				console.log("KAKALKALKALKA");
+			    var modalInstance = $uibModal.open({
+			      animation: true,
+			      templateUrl: 'custom/home/newprojmodal.html',
+			      controller: 'ModalInstanceCtrl',
+			      size: 'lg',
+			      backdrop: 'static',
+			      keyboard  : false,
+			      resolve: {
+			        items: function () {
+			          return [];
+			        }
+			      }
+			    });
+
+			    modalInstance.result.then(function (result) {
+			      if(result.action=="load"){
+			      	Storage.loadConfStore(result.dir);
+					SchemaFactory.initialize();
+					$rootScope.$broadcast('newSchema');
+					$state.go('visualizer');
+			      } 
+			      if(result.action=="new"){
+			      	Storage.newConfStore(result.projName, result.dirName);
+			      	SchemaFactory.initialize();
+			      	$rootScope.$broadcast('newSchema');
+			      	$state.go('visualizer');
+			      } 
+			    }, function (errMsg) {
+			      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
+			    });
+			}
+
+		}
+
 });
 
 app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage, $state) {
@@ -68,13 +81,4 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
         });
 	};
 
-	// $uibModalInstance.dismiss(...);
-
 });
-
-// app.directive('newProjModal', function() {
-//     return {
-//         restrict: 'E',
-//         templateUrl: 'custom/home/newprojmodal.html'
-//     };
-// });

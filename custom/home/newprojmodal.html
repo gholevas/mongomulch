@@ -4,16 +4,13 @@
 <div class="modal-body">
 	<div ng-show="!makingNewProj">
     	<button class="btn btn-primary" type="button" ng-click="makingNewProj = true ">New Mulch</button>
-    	<button class="btn btn-warning" type="button" ng-click="loadProject()">Load Mulch</button>
-
-    	<button class="btn btn-warning" type="button" ng-click="showStorage()">temp</button>
-
+    	<button class="btn btn-primary" type="button" ng-click="loadProject()">Load Mulch</button>
 	</div>
 	<div ng-show="makingNewProj">
 		Name your Project and pick your repo directory
     	<input autofocus ng-model="projectName" class="form-control" placeholder="Project Name">
-    	<button class="btn waves-effect waves-light btn-lg" ng-click="newProject(projectName)">Go!</button>
-    	<button class="btn waves-effect waves-light btn-lg" ng-click="makingNewProj = false ">Cancel</button>
+    	<button class="btn btn-primary waves-effect waves-light btn-lg" ng-click="newProject(projectName)">Go!</button>
+    	<button class="btn btn-primary waves-effect waves-light btn-lg" ng-click="makingNewProj = false ">Cancel</button>
 	</div>
 </div>
 <div class="modal-footer">
