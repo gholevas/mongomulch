@@ -50,10 +50,11 @@ $scope.load = function() {
 }
 
 $scope.addSchema = function() {
+    $('#newSchemaModal').modal('hide');
     var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
     var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
-    console.log('the newSchme is',newSchema );
-    $state.go("schemabuilder",newSchema.id) 
+
+    $state.go("schemabuilder",{schemaId : newSchema.id}) 
     // reloadSchemas();
 }
 
