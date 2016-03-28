@@ -1107,7 +1107,8 @@ File: Components
   border-bottom: 2px solid #424e5b;
 }
 tbody {
-  color: #98a6ad;
+  /*color: #98a6ad;*/
+  color:white;
 }
 th {
   color: #eeeeee;

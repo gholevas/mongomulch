@@ -41,39 +41,44 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
 
     }
 
-$scope.save = function() {
-    Storage.saveFile();
-}
-$scope.load = function() {
-    Storage.unload_YO_DELETETHISMETHOD();
-    $state.go('home')
-}
 
-$scope.addSchema = function() {
-    $('#newSchemaModal').modal('hide');
-    var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-    var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
+    $scope.addSchema = function() {
+        $('#newSchemaModal').modal('hide');
+        var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
+        var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
 
-    $state.go("schemabuilder",{schemaId : newSchema.id}) 
-    // reloadSchemas();
-}
+        $state.go("schemabuilder", { schemaId: newSchema.id })
+            // reloadSchemas();
+    }
 
-$scope.deleteSchema = function(schema) {
-    SchemaFactory.deleteSchema(schema);
+
+
+
+    $scope.save = function() {
+        Storage.saveFile();
+    }
+    $scope.load = function() {
+        Storage.unload_YO_DELETETHISMETHOD();
+        $state.go('home')
+    }
+
+
+
+    $scope.deleteSchema = function(schema) {
+        SchemaFactory.deleteSchema(schema);
+        reloadSchemas();
+    }
+
+    //////////admin-ish////////////
+    $scope.deleteAll = function() {
+            SchemaFactory.deleteAll();
+            reloadSchemas();
+        }
+        //////////admin-ish////////////
+
+
+
+
+    $scope.$on('newSchema', reloadSchemas);
     reloadSchemas();
-}
-
-//////////admin-ish////////////
-$scope.deleteAll = function() {
-    SchemaFactory.deleteAll();
-    reloadSchemas();
-}
-//////////admin-ish////////////
-
-
-$scope.$on('newSchema', reloadSchemas); 
- reloadSchemas();
 })
-
-
-
