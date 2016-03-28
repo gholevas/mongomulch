@@ -10,7 +10,7 @@ app.directive('sidebar', function() {
 });
 
 
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage, $state) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage, $state, ModalSvc) {
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
@@ -58,8 +58,25 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         Storage.saveFile();
     }
     $scope.load = function() {
-        Storage.unload_YO_DELETETHISMETHOD();
-        $state.go('home')
+        var remote = require('remote');
+        var dialog = remote.require('dialog');
+        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+            if (dirNamesArr === undefined) return;
+            var dirName = dirNamesArr[0];
+            // $uibModalInstance.close({action:"load", dir: dirName});
+            ModalSvc.load(dirName);
+        });
+    }
+    $scope.new = function() {
+        var remote = require('remote');
+        var dialog = remote.require('dialog');
+        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+            $scope.makingNewProj = false;
+            if (dirNamesArr === undefined) return;
+            var dirName = dirNamesArr[0];
+            // $uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
+            ModalSvc.new(projName, dirName);
+        });
     }
 
 

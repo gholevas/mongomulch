@@ -8,6 +8,7 @@ app.config(function($stateProvider) {
 
 app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal, ModalSvc) {
 	if(!Storage.isProjLoaded()){
+		console.log("loading home state");
 		ModalSvc.open();
 		// var modalInstance = $uibModal.open({
 		// 	      animation: true,
@@ -48,36 +49,51 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 
 		return {
 
+			load: function(dir){
+
+				Storage.loadConfStore(dir);
+				SchemaFactory.initialize();
+				$rootScope.$broadcast('newSchema');
+				$state.go('visualizer');
+
+			},
+			new: function(projName, dirName){
+				Storage.newConfStore(projName, dirName);
+		      	SchemaFactory.initialize();
+		      	$rootScope.$broadcast('newSchema');
+		      	$state.go('visualizer');
+			},
 			open: function(){
-				console.log("KAKALKALKALKA");
 			    var modalInstance = $uibModal.open({
 			      animation: true,
 			      templateUrl: 'custom/home/newprojmodal.html',
 			      controller: 'ModalInstanceCtrl',
 			      size: 'lg',
 			      backdrop: 'static',
-			      keyboard  : false,
-			      resolve: {
-			        items: function () {
-			          return [];
-			        }
-			      }
+			      keyboard  : false
+			      // ,resolve: {
+			      //   items: function () {
+			      //     return [];
+			      //   }
+			      // }
 			    });
 
-			    modalInstance.result.then(function (result) {
+			    modalInstance.result.then((result) => {
 			      if(result.action=="load"){
-			      	Storage.loadConfStore(result.dir);
-					SchemaFactory.initialize();
-					$rootScope.$broadcast('newSchema');
-					$state.go('visualizer');
+			  	    // Storage.loadConfStore(result.dir);
+					// SchemaFactory.initialize();
+					// $rootScope.$broadcast('newSchema');
+					// $state.go('visualizer');
+					this.load(result.dir);
 			      } 
 			      if(result.action=="new"){
-			      	Storage.newConfStore(result.projName, result.dirName);
-			      	SchemaFactory.initialize();
-			      	$rootScope.$broadcast('newSchema');
-			      	$state.go('visualizer');
+			      	// Storage.newConfStore(result.projName, result.dirName);
+			      	// SchemaFactory.initialize();
+			      	// $rootScope.$broadcast('newSchema');
+			      	// $state.go('visualizer');
+			      	this.new(result.projName, result.dirName);
 			      } 
-			    }, function (errMsg) {
+			    }, (errMsg) => {
 			      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
 			    });
 			}
