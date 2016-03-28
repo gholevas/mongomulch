@@ -10,7 +10,19 @@ app.directive('sidebar', function() {
 });
 
 
-app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage, $state) {
+app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storage, $state, $mdToast) {
+
+       
+        // $scope.showSimpleToast = function() {
+        //     console.log('hi')
+        //     $mdToast.show(
+        //         $mdToast.simple()
+        //         .textContent('Simple Toast!')
+        //         .position('bottom right')
+        //         .hideDelay(3000)
+        //     );
+        // };
+
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();
         $scope.newSchemaName = '';
