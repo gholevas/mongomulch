@@ -10,38 +10,9 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	if(!Storage.isProjLoaded()){
 		console.log("loading home state");
 		ModalSvc.open();
-		// var modalInstance = $uibModal.open({
-		// 	      animation: true,
-		// 	      templateUrl: 'custom/home/newprojmodal.html',
-		// 	      controller: 'ModalInstanceCtrl',
-		// 	      size: 'lg',
-		// 	      backdrop: 'static',
-		// 	      keyboard  : false,
-		// 	      resolve: {
-		// 	        items: function () {
-		// 	          return [];
-		// 	        }
-		// 	      }
-		// 	    });
-
-		// 	    modalInstance.result.then(function (result) {
-		// 	      if(result.action=="load"){
-		// 	      	Storage.loadConfStore(result.dir);
-		// 			SchemaFactory.initialize();
-		// 			$rootScope.$broadcast('newSchema');
-		// 			$state.go('visualizer');
-		// 	      } 
-		// 	      if(result.action=="new"){
-		// 	      	Storage.newConfStore(result.projName, result.dirName);
-		// 	      	SchemaFactory.initialize();
-		// 	      	$rootScope.$broadcast('newSchema');
-		// 	      	$state.go('visualizer');
-		// 	      } 
-		// 	    }, function (errMsg) {
-		// 	      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
-		// 	    });
 	} else {
-		$state.go('visualizer')
+		console.log("loading vis from home");
+		$state.go('visualizer',{},{reload: true})
 	}
 });
 
@@ -53,17 +24,19 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 
 				Storage.loadConfStore(dir);
 				SchemaFactory.initialize();
+				console.log("going to vis (1)")
+				$state.go('visualizer',{},{reload: true});
 				$rootScope.$broadcast('newSchema');
-				$state.go('visualizer');
 
 			},
 			new: function(projName, dirName){
 				Storage.newConfStore(projName, dirName);
 		      	SchemaFactory.initialize();
+		      	console.log("going to vis (2)")
+		      	$state.go('visualizer',{},{reload: true});
 		      	$rootScope.$broadcast('newSchema');
-		      	$state.go('visualizer');
 			},
-			open: function(){
+			open: function(onlyNew){
 			    var modalInstance = $uibModal.open({
 			      animation: true,
 			      templateUrl: 'custom/home/newprojmodal.html',
@@ -71,26 +44,18 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 			      size: 'lg',
 			      backdrop: 'static',
 			      keyboard  : false
-			      // ,resolve: {
-			      //   items: function () {
-			      //     return [];
-			      //   }
-			      // }
+			      ,resolve: {
+			        onlyNew: function () {
+			          return onlyNew;
+			        }
+			      }
 			    });
 
 			    modalInstance.result.then((result) => {
 			      if(result.action=="load"){
-			  	    // Storage.loadConfStore(result.dir);
-					// SchemaFactory.initialize();
-					// $rootScope.$broadcast('newSchema');
-					// $state.go('visualizer');
 					this.load(result.dir);
 			      } 
 			      if(result.action=="new"){
-			      	// Storage.newConfStore(result.projName, result.dirName);
-			      	// SchemaFactory.initialize();
-			      	// $rootScope.$broadcast('newSchema');
-			      	// $state.go('visualizer');
 			      	this.new(result.projName, result.dirName);
 			      } 
 			    }, (errMsg) => {
@@ -102,9 +67,10 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 
 });
 
-app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage, $state) {
+app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage, $state, onlyNew) {
 	
 	$scope.makingNewProj = false;
+	$scope.onlyNew = onlyNew;
 
 	$scope.newProject = function (projName) {
 		var remote = require('remote');

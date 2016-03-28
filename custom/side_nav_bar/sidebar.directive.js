@@ -79,15 +79,17 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         });
     }
     $scope.new = function() {
-        var remote = require('remote');
-        var dialog = remote.require('dialog');
-        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
-            $scope.makingNewProj = false;
-            if (dirNamesArr === undefined) return;
-            var dirName = dirNamesArr[0];
-            // $uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
-            ModalSvc.new(projName, dirName);
-        });
+        console.log("makingnew")
+        ModalSvc.open(true);
+        // var remote = require('remote');
+        // var dialog = remote.require('dialog');
+        // dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+        //     $scope.makingNewProj = false;
+        //     if (dirNamesArr === undefined) return;
+        //     var dirName = dirNamesArr[0];
+        //     // $uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
+        //     ModalSvc.new(projName, dirName);
+        // });
     }
 
 
