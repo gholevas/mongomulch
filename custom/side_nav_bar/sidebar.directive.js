@@ -51,8 +51,10 @@ $scope.load = function() {
 
 $scope.addSchema = function() {
     var sanitzedSchemaName = camelize($scope.newSchemaName).capitalizeFirstLetter();
-    SchemaFactory.addSchema(sanitzedSchemaName);
-    reloadSchemas();
+    var newSchema = SchemaFactory.addSchema(sanitzedSchemaName);
+    console.log('the newSchme is',newSchema );
+    $state.go("schemabuilder",newSchema.id) 
+    // reloadSchemas();
 }
 
 $scope.deleteSchema = function(schema) {
@@ -68,7 +70,8 @@ $scope.deleteAll = function() {
 //////////admin-ish////////////
 
 
-$scope.$on('newSchema', reloadSchemas); reloadSchemas();
+$scope.$on('newSchema', reloadSchemas); 
+ reloadSchemas();
 })
 
 
