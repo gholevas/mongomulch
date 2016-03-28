@@ -10,8 +10,10 @@
 	</div>
 	<div ng-show="makingNewProj || onlyNew">
 		<p>Name your Project and pick your repo directory</p>
-    	<input autofocus ng-model="projectName" class="form-control" placeholder="Project Name"><br>
-        <button type="button" ng-click="newProject(projectName)" class="btn btn-success btn-custom waves-effect waves-light">Go!</button>
-        <button type="button" ng-click="makingNewProj = false " class="btn btn-danger btn-custom waves-effect waves-light" ng-if="!onlyNew">Cancel</button>
+    	<form name="projform">
+            <input autofocus required ng-model="projectName" class="form-control" placeholder="Project Name"><br>
+            <button type="button" ng-disabled="projform.$invalid" ng-click="newProject(projectName)" class="btn btn-success btn-custom waves-effect waves-light" >Go!</button>
+            <button type="button" ng-click="makingNewProj = false " class="btn btn-danger btn-custom waves-effect waves-light" ng-if="!onlyNew">Cancel</button>
+        </form>
 	</div>
 </div>
