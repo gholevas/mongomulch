@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "MongoMulch",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A Mongoose Schema Generator and MongoDB Seeder",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
@@ -11,17 +11,16 @@
     "url": "git+https://github.com/atom/electron-quick-start.git"
   },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
+    "mongodb",
+    "seeder",
+    "mongoose"
   ],
-  "author": "GitHub",
+  "author": "Team Mulch",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/atom/electron-quick-start/issues"
+    "url": "https://github.com/gholevas/mongomulch/issues"
   },
-  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "homepage": "https://mongomulch.com",
   "devDependencies": {
     "electron-prebuilt": "^0.36.0"
   },
