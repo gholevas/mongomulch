@@ -70,3 +70,6 @@ $scope.deleteAll = function() {
 
 $scope.$on('newSchema', reloadSchemas); reloadSchemas();
 })
+
+
+
