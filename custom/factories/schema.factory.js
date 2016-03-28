@@ -25,8 +25,8 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     }
 
     Schema.prototype.addField = function(field){
-        console.log('current fields',this.fields)
-        console.log('new field',field)
+        // console.log('current fields',this.fields)
+        // console.log('new field',field)
         var edited = false;
         this.fields.forEach(function(onefield){
             if(onefield.name === field.name){

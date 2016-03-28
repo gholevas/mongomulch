@@ -7,7 +7,9 @@ app.directive('rightSideNav', function() {
 });
 
 
-app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, SchemaFactory) {
+app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, SchemaFactory,angularLoad) {
+
+
 
     function resetField() {
         $scope.field = {
@@ -19,10 +21,10 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
 
     $scope.saveField = function() {
         console.log($scope.field, "field on controller");
-        if($scope.field.options.default === ''){
+        if ($scope.field.options.default === '') {
             delete $scope.field.options.default;
         }
-        if($scope.field.type === 'Array of...' || $scope.field.type === 'Reference to...' || $scope.field.type === 'Embed...'){
+        if ($scope.field.type === 'Array of...' || $scope.field.type === 'Reference to...' || $scope.field.type === 'Embed...') {
             delete $scope.field.options.default;
         }
         $scope.schema.addField($scope.field)
@@ -49,13 +51,12 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
     $scope.toggleRight = function(schema, field) {
         if (field) $scope.field = field;
         else resetField();
-        
         //moved this down here in case of deleted schemas
         $scope.arrOf = ['String', 'Number', 'Boolean', 'Date', 'Buffer'];
         SchemaFactory.getSchemas().forEach(function(schema){
             // if($scope.arrOf.indexOf(schema.name) === -1){
-                $scope.arrOf.push(schema.name)
-            // }
+            $scope.arrOf.push(schema.name)
+                // }
         })
 
         $scope.schema = schema;

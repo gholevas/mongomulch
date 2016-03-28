@@ -2,6 +2,10 @@
 md-tabs {
     height: 100vw;
 }
+
+.md-tab:before {
+    content: none;
+}
 </style>
 <br>
 <div class="content ">
@@ -9,51 +13,46 @@ md-tabs {
         <div class="row">
             <div class="col-md-12">
                 <div ng-controller="SeederCtrl" ng-cloak>
-
-                        <!-- <pre>{{questions  | json }}</pre> -->
-                        <md-tabs style="display:inherit; " md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
-
-                            <md-tab ng-repeat="question in questions">
-                                <md-tab-label>Question {{$index+1}}</md-tab-label>
-                                <md-tab-body>
+                    <!-- <pre>{{questions  | json }}</pre> -->
+                    <md-tabs style="display:inherit; " md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+                        <md-tab ng-repeat="question in questions">
+                            <md-tab-label>Question {{$index+1}}</md-tab-label>
+                            <md-tab-body>
                                 <!--     <div layout-align="center" layout="row">
                                         <h2>{{question}}</h2>
                                     </div> -->
-                                    <br>
-                    
-                                    <seed-Primitive ng-show = "question.Qtype === 'hintsQ'" question = "question"> </seed-Primitive>
-                                    <seed-Amount ng-show = "question.Qtype === 'amountQ'" question= "question" > </seed-Amount>
-                        
-
-                                        <!-- <md-button class="md-raised">answer.text</md-button> -->
-                                    <br>
-                                    <br>
-                                    <div layout-align="center" layout="row">
-                                        <div ng-hide="$first" layout="column">
-                                            <md-button class="md-raised" ng-click="previous()">
-                                                Previous
-                                            </md-button>
-                                        </div>
-                                        <div ng-hide="$last" layout="column">
-                                            <md-button class="md-raised" ng-click="next()">
-                                                Next
-                                            </md-button>
-                                        </div>
-                                        <div ng-show="$last" layout="column">
-                                            <md-button class="md-raised" ng-click="submitAnswers()">
-                                                Seed
-                                            </md-button>
-                                        </div>
+                                <br>
+                                <seed-Primitive ng-show="question.Qtype === 'hintsQ'" question="question"> </seed-Primitive>
+                                <seed-Amount ng-show="question.Qtype === 'amountQ'" question="question"> </seed-Amount>
+                                <!-- <md-button class="md-raised">answer.text</md-button> -->
+                                <br>
+                                <br>
+                                <div layout-align="center" layout="row">
+                                    <div ng-hide="$first" layout="column">
+                                        <md-button class="md-raised" ng-click="previous()">
+                                            Previous
+                                        </md-button>
                                     </div>
-                                    <div layout-align="center" layout="row">
-                                        <div ng-show="$last" layout="column">
-                                            <label>enter database name to seed</label>
-                                            <input ng-model="dbname" placeholder="dbname"></input>
-                                        </div>
+                                    <div ng-hide="$last" layout="column">
+                                        <md-button class="md-raised" ng-click="next()">
+                                            Next
+                                        </md-button>
                                     </div>
-                                </md-tab-body>
-                            </md-tab>
-                        </md-tabs>
+                                    <div ng-show="$last" layout="column">
+                                        <md-button class="md-raised" ng-click="submitAnswers()">
+                                            Seed
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout-align="center" layout="row">
+                                    <div ng-show="$last" layout="column">
+                                        <label>enter database name to seed</label>
+                                        <input ng-model="dbname" placeholder="dbname"></input>
+                                    </div>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
                     </md-content>
                 </div>
             </div>
