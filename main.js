@@ -9,6 +9,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 const notifier = require('node-notifier');
 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -18,6 +19,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     center: true
   });
+
+
 
   mainWindow.maximize();
 
