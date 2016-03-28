@@ -6,46 +6,71 @@ app.config(function($stateProvider) {
     })
 });
 
-app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal) {
+app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal, ModalSvc) {
 	if(!Storage.isProjLoaded()){
-	    var modalInstance = $uibModal.open({
-	      animation: true,
-	      templateUrl: 'custom/home/newprojmodal.html',
-	      controller: 'ModalInstanceCtrl',
-	      size: 'sm',
-	      backdrop: 'static',
-	      keyboard  : false,
-	      resolve: {
-	        items: function () {
-	          return [];
-	        }
-	      }
-	    });
-
-	    modalInstance.result.then(function (result) {
-	      if(result.action=="load"){
-	      	Storage.loadConfStore(result.dir);
-			SchemaFactory.initialize();
-			$rootScope.$broadcast('newSchema');
-			$state.go('visualizer');
-	      } 
-	      if(result.action=="new"){
-	      	Storage.newConfStore(result.projName, result.dirName);
-	      	SchemaFactory.initialize();
-	      	$rootScope.$broadcast('newSchema');
-	      	$state.go('visualizer');
-	      } 
-	    }, function (errMsg) {
-	      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
-	    });	
+		console.log("loading home state");
+		ModalSvc.open();
 	} else {
-		$state.go('visualizer')
+		console.log("loading vis from home");
+		$state.go('visualizer',{},{reload: true})
 	}
 });
 
-app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage, $state) {
+app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $uibModal) {
+
+		return {
+
+			load: function(dir){
+
+				Storage.loadConfStore(dir);
+				SchemaFactory.initialize();
+				console.log("going to vis (1)")
+				$state.go('visualizer',{},{reload: true});
+				$rootScope.$broadcast('newSchema');
+
+			},
+			new: function(projName, dirName){
+				Storage.newConfStore(projName, dirName);
+		      	SchemaFactory.initialize();
+		      	console.log("going to vis (2)")
+		      	$state.go('visualizer',{},{reload: true});
+		      	$rootScope.$broadcast('newSchema');
+			},
+			open: function(onlyNew){
+			    var modalInstance = $uibModal.open({
+			      animation: true,
+			      templateUrl: 'custom/home/newprojmodal.html',
+			      controller: 'ModalInstanceCtrl',
+			      size: 'lg',
+			      backdrop: 'static',
+			      keyboard  : false
+			      ,resolve: {
+			        onlyNew: function () {
+			          return onlyNew;
+			        }
+			      }
+			    });
+
+			    modalInstance.result.then((result) => {
+			      if(result.action=="load"){
+					this.load(result.dir);
+			      } 
+			      if(result.action=="new"){
+			      	this.new(result.projName, result.dirName);
+			      } 
+			    }, (errMsg) => {
+			      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
+			    });
+			}
+
+		}
+
+});
+
+app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage, $state, onlyNew) {
 	
 	$scope.makingNewProj = false;
+	$scope.onlyNew = onlyNew;
 
 	$scope.newProject = function (projName) {
 		var remote = require('remote');
@@ -68,13 +93,4 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
         });
 	};
 
-	// $uibModalInstance.dismiss(...);
-
 });
-
-// app.directive('newProjModal', function() {
-//     return {
-//         restrict: 'E',
-//         templateUrl: 'custom/home/newprojmodal.html'
-//     };
-// });

@@ -100,7 +100,7 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
     })
 
     var connectionString= '\nvar db = mongoose.connect("'+connectionString+'").connection; '
-    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'mchance\')(db);\n '
+    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'./mchance_mod.js\')(db);\n '
 
     var bodyStr = "";
     var footerStr = "db.seed({ ";
@@ -113,7 +113,6 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
     footerStr+= "}).then(function(dbCache){ mongoose.disconnect(); console.log(dbCache)})"
 
     return headerString +'\n\n'+ bodyStr +'\n \n'+ footerStr;
-
 
 }
 
@@ -144,9 +143,9 @@ function parse_name_type_with_seed(field) {
 
     if (field.type === "Array of...") {
         if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: 2}';
+            fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 10) }';
         } else {
-            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ', \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: 2} ';
+            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ', \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 10)} ';
         }
 
     } else if (field.type === "Embed...") {
