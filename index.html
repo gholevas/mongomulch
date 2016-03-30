@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="assets/images/favicon_1.ico">
     <title>mongoMulch</title>
     <!-- end plugin -->
+    <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- start theme stuff -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -27,7 +28,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
     <script src="node_modules/angular-load/angular-load.js"></script>
-
     <!-- End Angular Material -->
     <!-- Custom -->
     <!-- <link href="assets/css/mulch.css" rel="stylesheet" type="text/css" /> -->
@@ -37,7 +37,7 @@
     <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="fixed-left" style="background-color:#4A5563;background:linear-gradient(to left, #485563, #29323c);">
+<body class="fixed-left" style="background-color:#4A5563;/*background:linear-gradient(to left, #485563, #29323c);*/">
     <navbar></navbar>
     <sidebar></sidebar>
     <div class="content-page">
@@ -49,134 +49,110 @@
     <script>
     window.$ = window.jQuery = require('./assets/js/jquery.min.js');
     </script>
-<script>
-var remote = require('remote');
-var Menu = remote.require('menu');
-var template = [
-  {
-    label: 'Electron',
-    submenu: [
-      {
-        label: 'About Electron',
-        selector: 'orderFrontStandardAboutPanel:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Services',
-        submenu: []
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Hide Electron',
-        accelerator: 'Command+H',
-        selector: 'hide:'
-      },
-      {
-        label: 'Hide Others',
-        accelerator: 'Command+Shift+H',
-        selector: 'hideOtherApplications:'
-      },
-      {
-        label: 'Show All',
-        selector: 'unhideAllApplications:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        selector: 'terminate:'
-      },
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      {
-        label: 'Undo',
-        accelerator: 'Command+Z',
-        selector: 'undo:'
-      },
-      {
-        label: 'Redo',
-        accelerator: 'Shift+Command+Z',
-        selector: 'redo:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Cut',
-        accelerator: 'Command+X',
-        selector: 'cut:'
-      },
-      {
-        label: 'Copy',
-        accelerator: 'Command+C',
-        selector: 'copy:'
-      },
-      {
-        label: 'Paste',
-        accelerator: 'Command+V',
-        selector: 'paste:'
-      },
-      {
-        label: 'Select All',
-        accelerator: 'Command+A',
-        selector: 'selectAll:'
-      }
-    ]
-  },
-  //comment the following out to disable dev tools and reload
-  {
-    label: 'View',
-    submenu: [
-      {
-        label: 'Reload',
-        accelerator: 'Command+R',
-        click: function() { remote.getCurrentWindow().reload(); }
-      },
-      {
-        label: 'Toggle DevTools',
-        accelerator: 'Alt+Command+I',
-        click: function() { remote.getCurrentWindow().toggleDevTools(); }
-      },
-    ]
-  },
-  //comment the above out to disable dev tools and reload
-  {
-    label: 'Window',
-    submenu: [
-      {
-        label: 'Minimize',
-        accelerator: 'Command+M',
-        selector: 'performMiniaturize:'
-      },
-      {
-        label: 'Close',
-        accelerator: 'Command+W',
-        selector: 'performClose:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Bring All to Front',
-        selector: 'arrangeInFront:'
-      }
-    ]
-  }
-];
+    <script>
+    var remote = require('remote');
+    var Menu = remote.require('menu');
+    var template = [{
+            label: 'Electron',
+            submenu: [{
+                label: 'About Electron',
+                selector: 'orderFrontStandardAboutPanel:'
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Services',
+                submenu: []
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Hide Electron',
+                accelerator: 'Command+H',
+                selector: 'hide:'
+            }, {
+                label: 'Hide Others',
+                accelerator: 'Command+Shift+H',
+                selector: 'hideOtherApplications:'
+            }, {
+                label: 'Show All',
+                selector: 'unhideAllApplications:'
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Quit',
+                accelerator: 'Command+Q',
+                selector: 'terminate:'
+            }, ]
+        }, {
+            label: 'Edit',
+            submenu: [{
+                label: 'Undo',
+                accelerator: 'Command+Z',
+                selector: 'undo:'
+            }, {
+                label: 'Redo',
+                accelerator: 'Shift+Command+Z',
+                selector: 'redo:'
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Cut',
+                accelerator: 'Command+X',
+                selector: 'cut:'
+            }, {
+                label: 'Copy',
+                accelerator: 'Command+C',
+                selector: 'copy:'
+            }, {
+                label: 'Paste',
+                accelerator: 'Command+V',
+                selector: 'paste:'
+            }, {
+                label: 'Select All',
+                accelerator: 'Command+A',
+                selector: 'selectAll:'
+            }]
+        },
+        //comment the following out to disable dev tools and reload
+        {
+            label: 'View',
+            submenu: [{
+                label: 'Reload',
+                accelerator: 'Command+R',
+                click: function() {
+                    remote.getCurrentWindow().reload();
+                }
+            }, {
+                label: 'Toggle DevTools',
+                accelerator: 'Alt+Command+I',
+                click: function() {
+                    remote.getCurrentWindow().toggleDevTools();
+                }
+            }, ]
+        },
+        //comment the above out to disable dev tools and reload
+        {
+            label: 'Window',
+            submenu: [{
+                label: 'Minimize',
+                accelerator: 'Command+M',
+                selector: 'performMiniaturize:'
+            }, {
+                label: 'Close',
+                accelerator: 'Command+W',
+                selector: 'performClose:'
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Bring All to Front',
+                selector: 'arrangeInFront:'
+            }]
+        }
+    ];
 
-menu = Menu.buildFromTemplate(template);
+    menu = Menu.buildFromTemplate(template);
 
-Menu.setApplicationMenu(menu);
-</script>
+    Menu.setApplicationMenu(menu);
+    </script>
     <!-- jQuery  -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/detect.js"></script>
@@ -189,7 +165,9 @@ Menu.setApplicationMenu(menu);
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
-
+    <!-- Sweet-Alert  -->
+    <script src="assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 </footer>
 
 </html>
