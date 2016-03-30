@@ -39,15 +39,19 @@ md-tabs {
                                         </md-button>
                                     </div>
                                     <div ng-show="$last" layout="column">
-                                        <md-button class="md-raised" ng-click="submitAnswers()">
+                                        <md-button class="md-raised" ng-click="submitAnswers(dbname)">
                                             Seed
                                         </md-button>
                                     </div>
                                 </div>
-                                <div layout-align="center" layout="row">
+                                <div layout-align="center" layout="row" id="seedLabel">
                                     <div ng-show="$last" layout="column">
-                                        <label>enter database name to seed</label>
-                                        <input ng-model="dbname" placeholder="dbname"></input>
+                                        <div class="form-group">
+                                            <label >Enter database name to seed</label>
+                                            <div>
+                                                <input type="text" class="form-control" ng-model="dbname">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </md-tab-body>
@@ -55,6 +59,7 @@ md-tabs {
                     </md-tabs>
                     </md-content>
                 </div>
+            {{dbname}}
             </div>
         </div>
     </div>
@@ -65,4 +70,20 @@ md-tabs md-ink-bar {
     color: rgb(129, 200, 104);
     background: rgb(129, 200, 104);
 }
+
+#seedLabel{
+    color: #81C868;
+    font-family:  "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*color: white;*/
+    font-size: larger;
+    padding-top: 10px;
+
+
+}
+
+.form-control:focus{
+    border: 2px solid #81C868;
+}
+
+  
 </style>
