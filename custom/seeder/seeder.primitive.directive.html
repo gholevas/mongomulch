@@ -1,5 +1,5 @@
 <style>
-    #selector {
+#selector {
     position: relative;
     background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;
     border: 2px solid rgb(129, 200, 104);
@@ -22,12 +22,13 @@
     margin: -2px 0px 0px;
 }
 
-select.bs-select-hidden, select.selectpicker {
+select.bs-select-hidden,
+select.selectpicker {
     display: none!important;
 }
 </style>
 <div layout-align="center" layout="row">
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <div class="panel panel-border panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">{{question.name}}</h3>
@@ -43,10 +44,10 @@ select.bs-select-hidden, select.selectpicker {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="q in question.fields" ng-hide ="q.type === 'Reference to...'">
-                                <td>{{q.name}}</td>
-                                <td >{{q.type}}</td>
-                                <td>
+                            <tr ng-repeat="q in question.fields" ng-hide="q.type === 'Reference to...'">
+                                <td class = "col-md-2">{{q.name}}</td>
+                                <td class = "col-md-2">{{q.type}}</td>
+                                <td class = "col-md-2">
                                     <md-select ng-model="q.hint" aria-label="lol">
                                         <md-option layout="column" layout-align="start start" ng-value="option" ng-repeat="option in StrOpitons">
                                             {{option}}
@@ -58,6 +59,13 @@ select.bs-select-hidden, select.selectpicker {
                                     <button type="button" id="selector">
                                         <span id="dropdown">test</span><span id="carrot"></span>
                                     </button> -->
+                                <td ng-show="q.hint === 'integer' || q.hint === 'floating' " class = "col-md-2">
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Min" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input  class="form-control" placeholder="Max" />
+                                  </div>
                                 </td>
                             </tr>
                         </tbody>
