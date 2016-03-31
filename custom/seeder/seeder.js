@@ -20,15 +20,11 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
     //     answers: []
     // }];
 
-
-
-
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas();
 
     $scope.submitAnswers = function() {
         var obj = {};
-        console.log($scope.dbname);
         for (var i = 0; i < $scope.questions.length; i += 2) {
 
             obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
