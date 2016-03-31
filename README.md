@@ -1,7 +1,11 @@
 # MongoMulch
+##### Download the application at [MongoMulch.com] (http://mongomulch.com)
 
-**A Mongoose ODM schema designer and seed data generator, built with [Electron](http://electron.atom.io/docs/latest).**
 
-## How To Use
+####Build your schemas, generate your seed data, and explore your MongoDB instance, all with MongoMulch.
 
-keep calm and mulch on
+### build local copy
+```git clone```, ```npm install```, ```gulp```, ```npm start```.
+
+###### For use with [Mongoose](http://mongoosejs.com/) ODM.
+###### Built with [Electron](http://electron.atom.io/docs/latest).
