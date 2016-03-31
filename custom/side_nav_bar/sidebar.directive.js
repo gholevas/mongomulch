@@ -99,6 +99,10 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         reloadSchemas();
     }
 
+    $scope.goToSchema = function(id) {
+        $state.go("schemabuilder", {schemaId: id});
+    }
+
     //////////admin-ish////////////
     $scope.deleteAll = function() {
             SchemaFactory.deleteAll();
