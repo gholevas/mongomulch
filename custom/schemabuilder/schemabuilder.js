@@ -26,3 +26,16 @@ app.controller("SchemaBuilderCtrl", function($scope, $stateParams, $state, Schem
 	// };
 
 });
+
+
+app.filter('plural', function() {
+    return function(input) {
+        if(input){
+            if(input.substr(input.length-1).toLowerCase()=="s")
+                return input;
+            else 
+                return input+"s";
+        }
+        return input;
+    }
+});

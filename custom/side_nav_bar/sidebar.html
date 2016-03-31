@@ -9,7 +9,7 @@
             <ul>
                 <li class="text-muted menu-title">Schemas</li>
                 <li ng-repeat="schema in schemas" class="has_sub">
-                    <a ng-mouseenter="show = true" ng-mouseleave="show = false" ui-sref-active="active" ui-sref="schemabuilder({ schemaId: schema.id})" class="waves-effect waves-light">
+                    <a ng-mouseenter="show = true" ng-mouseleave="show = false" ui-sref-active="active" ng-click="goToSchema(schema.id)" class="waves-effect waves-light">
                         <i class="ti-layout-list-thumb"></i><span ng-show="show" class="label label-danger pull-right" ng-click="deleteSchema(schema)">X</span> <span> {{schema.name}} </span>
                     </a>
                 </li>
@@ -28,7 +28,7 @@
                 </li>
                 <li class="text-muted menu-title">Actions</li>
                 <li class="has_sub">
-                    <a id="sa-success" style="color:#81c868;" ng-click="exportSchemas()" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span></a>
+                    <a style="color:#81c868;" ng-click="exportSchemas()" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export Schemas </span></a>
                 </li>
                 <!--  <li class="has_sub">
                     <a ng-click="exportSchemas()" style="color:#81c868;" class="waves-effect waves-light"><i class="ti-export"></i> <span> Export </span> </a>

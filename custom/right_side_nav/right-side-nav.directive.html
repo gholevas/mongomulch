@@ -29,7 +29,7 @@
                     <label style="color:#98a6ad;">Data Type</label>
                     <md-select ng-model="field.selectedArrType">
                         <md-option layout="column" layout-align="start start" ng-repeat="type in arrOf" ng-value="type">
-                            {{ type }}s
+                            {{ type | plural}}
                         </md-option>
                     </md-select>
                 </md-input-container>
