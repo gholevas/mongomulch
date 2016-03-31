@@ -3,14 +3,13 @@ var beautify = require('js-beautify').js_beautify;
 var mkdirp = require('mkdirp');
 
 
+//generates index.js files 
 function index_file(schemas, path) {
 
     var schemaStr = '\n\n';
-
     schemas.forEach((schema) => {
         schemaStr += 'require("./' + schema.name + '");' + '\n\n';
     })
-
     mkdirp(path + '/models', function(err) {
         fs.writeFile(path + "/models/index.js", schemaStr, function(err) {
             if (err) {
@@ -19,11 +18,11 @@ function index_file(schemas, path) {
                 console.log("The file was saved!");
             }
         });
-
     });
 
 }
 
+//adds require line to index.js schema file 
 function require_schemas(schemas){
 
     var requireStr ='';
@@ -32,39 +31,7 @@ function require_schemas(schemas){
 
 }
 
-
-function save_schema(schemas, path) {
-
-    mkdirp(path + '/models', function(err) {
-
-        schemas.forEach((schema) => {
-
-            fs.writeFile(path + "/models/" + schema.name + ".js", generate_schema(schema), function(err) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("The file was saved!");
-                }
-            });
-        })
-    });
-
-}
-
-
-
-function embeded (schema){//ads require for embedded schema 
-    console.log('got in here');
-    var requireStr ='';
-    schema.fields.forEach((field) => {
-        if(field.type === "Embed...")
-            requireStr += 'var ' + field.selectedEmbed + ' = require("./' + field.selectedEmbed + '");' + '\n\n';
-
-    })
-    return requireStr;
-}
-
-
+//takes shcema and lays out scaffolding 
 function generate_schema(schema) {
 
     var embededStr = embeded(schema);
@@ -85,6 +52,107 @@ function generate_schema(schema) {
 
 }
 
+
+//saves schema to directory chosen
+function save_schema(schemas, path) {
+
+    mkdirp(path + '/models', function(err) {
+
+        schemas.forEach((schema) => {
+
+            fs.writeFile(path + "/models/" + schema.name + ".js", generate_schema(schema), function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("The file was saved!");
+                }
+            });
+        })
+    });
+
+}
+
+
+//adds require for embedded schema 
+function embeded (schema){
+    console.log('got in here');
+    var requireStr ='';
+    schema.fields.forEach((field) => {
+        if(field.type === "Embed...")
+            requireStr += 'var ' + field.selectedEmbed + ' = require("./' + field.selectedEmbed + '");' + '\n\n';
+
+    })
+    return requireStr;
+}
+
+//converts the name of the field and type into a string
+function parse_name_type(field) {
+    var fieldStr = '';
+
+    //do switch case
+
+    if (field.type === "Array of...") {
+        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
+            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
+        } else {
+
+            fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ' ' + parse_options(field.options) + '}';
+
+        }
+
+    } else if (field.type === "Embed...") {
+        fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ' ' + parse_options(field.options) + '}';
+
+    } else if (field.type === 'Reference to...') {
+
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
+
+    } else {
+
+        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + '}';
+    }
+
+    return fieldStr;
+
+}
+
+
+
+
+//pasrses the options into a string 
+function parse_options(schemaOptions) {
+
+    var optionStr = '';
+    var size = Object.keys(schemaOptions).length;
+    if(size>0) optionStr+=", "
+
+    for (var i = 0; i < size; i++) {
+
+        if (i === size - 1) {
+            if (Object.keys(schemaOptions)[i] === 'default') {
+                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '"';
+            } else {
+                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]];
+            }
+
+        } else {
+            if (Object.keys(schemaOptions)[i] === 'default') {
+                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '", ';
+            } else {
+                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]] + ', ';
+            }
+
+        }
+
+    }
+
+    return optionStr;
+}
+
+
+
+
+//creates seed file scafolding to be evaluated
 function generate_schemas_for_seeds(schemas,DB_NAME, questions){
 
     console.log(DB_NAME);
@@ -116,7 +184,7 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
 
 }
 
-
+//generates seed file for each schmea 
 function generate_schema_With_Seed(schema, DB_NAME) {
 
 
@@ -164,66 +232,3 @@ function parse_name_type_with_seed(field) {
 
 }
 
-function parse_name_type(field) {
-    var fieldStr = '';
-
-    //do switch case
-
-    if (field.type === "Array of...") {
-        if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
-        } else {
-
-            fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ' ' + parse_options(field.options) + '}';
-
-        }
-
-    } else if (field.type === "Embed...") {
-        fieldStr += field.name + ':{ type: ' + '[' + field.selectedEmbed + ']' + ' ' + parse_options(field.options) + '}';
-
-    } else if (field.type === 'Reference to...') {
-
-        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
-
-    } else {
-
-        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + '}';
-    }
-
-    return fieldStr;
-
-}
-
-//pasrses the options into a string 
-function parse_options(schemaOptions) {
-
-    var optionStr = '';
-    var size = Object.keys(schemaOptions).length;
-    if(size>0) optionStr+=", "
-
-    for (var i = 0; i < size; i++) {
-
-        if (i === size - 1) {
-            if (Object.keys(schemaOptions)[i] === 'default') {
-                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '"';
-            } else {
-                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]];
-            }
-
-        } else {
-            if (Object.keys(schemaOptions)[i] === 'default') {
-                optionStr += Object.keys(schemaOptions)[i] + ': "' + schemaOptions[Object.keys(schemaOptions)[i]] + '", ';
-            } else {
-                optionStr += Object.keys(schemaOptions)[i] + ': ' + schemaOptions[Object.keys(schemaOptions)[i]] + ', ';
-            }
-
-        }
-
-    }
-
-    return optionStr;
-}
-
-
-// var x = generate_schema ({name:'User', 
-// fields:[{name:'George', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Prakash', type:"String",options:{select:true, unique:true, default:"yay"}},{name:'Jai', type:"String",options:{select:true, unique:true, default:"yay"}
