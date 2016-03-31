@@ -42,12 +42,6 @@ app.factory('Storage', function($rootScope) {
             var fileName = this.getProjName()+".mulch.json";
             copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){console.log("err in storage ",err)});
         },
-        loadDefault_YO_DELETETHISMETHOD: function(){
-            conf = new Configstore("default.mulch");
-        },
-        unload_YO_DELETETHISMETHOD: function(){
-            conf = null;
-        },
         newConfStore: function(pKey, dirName){
             projKey = pKey;
             currentRepo = dirName;

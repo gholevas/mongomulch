@@ -8,10 +8,8 @@ app.config(function($stateProvider) {
 
 app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaFactory, $uibModal, ModalSvc) {
 	if(!Storage.isProjLoaded()){
-		console.log("loading home state");
 		ModalSvc.open();
 	} else {
-		console.log("loading vis from home");
 		$state.go('visualizer',{},{reload: true})
 	}
 });
@@ -24,7 +22,6 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 
 				Storage.loadConfStore(dir);
 				SchemaFactory.initialize();
-				console.log("going to vis (1)")
 				$state.go('visualizer',{},{reload: true});
 				$rootScope.$broadcast('newSchema');
 
@@ -32,7 +29,6 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 			new: function(projName, dirName){
 				Storage.newConfStore(projName, dirName);
 		      	SchemaFactory.initialize();
-		      	console.log("going to vis (2)")
 		      	$state.go('visualizer',{},{reload: true});
 		      	$rootScope.$broadcast('newSchema');
 			},
@@ -98,9 +94,6 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 	$scope.closeModal = () => {
 		$uibModalInstance.dismiss();
 	}
-
-	console.log('newproj',$scope.makingNewProj);
-
 
 });
 
