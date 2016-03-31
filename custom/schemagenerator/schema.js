@@ -93,7 +93,7 @@ function parse_name_type(field) {
 
     if (field.type === "Array of...") {
         if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}]';
+            fieldStr += field.name + ':[{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"' +  ' ' + parse_options(field.options) +  '}]';
         } else {
 
             fieldStr += field.name + ':{ type: ' + '[' + field.selectedArrType + ']' + ' ' + parse_options(field.options) + '}';
@@ -105,7 +105,7 @@ function parse_name_type(field) {
 
     } else if (field.type === 'Reference to...') {
 
-        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '"' + parse_options(field.options) + '}';
 
     } else {
 
