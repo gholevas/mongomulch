@@ -20,7 +20,6 @@ app.controller("MongoGuiCtrl", function($scope, $stateParams, $state) {
     MongoClient.connect(url, function(err, db) {
         var adminDb = db.admin();
         adminDb.listDatabases(function(err, dbs) {
-            console.log(dbs.databases)
             $scope.dbs = dbs.databases;
             $scope.$digest();
         });
@@ -29,7 +28,6 @@ app.controller("MongoGuiCtrl", function($scope, $stateParams, $state) {
     $scope.showCollections = function(db) {
         $scope.currentDB = db;
         $scope.currentCollection = null;
-        console.log($scope.currentDB)
         MongoClient.connect(url + db, function(err, db) {
             db.collections()
                 .then(function(collections) {
@@ -54,7 +52,6 @@ app.controller("MongoGuiCtrl", function($scope, $stateParams, $state) {
                 })
                 $scope.docs = docs;
                 $scope.$digest();
-                console.log(docs);
             })
         });
     }
