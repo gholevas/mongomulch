@@ -7,33 +7,62 @@
         </div>
     </div>
     <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="">
-                            <ul class="nav navbar-nav navbar-right pull-right">
-                                <!-- <li class="hidden-xs">
-                                    <a href="#" class="right-bar-toggle waves-effect"><i class="icon-settings"></i></a>
-                                </li> -->
-                                <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" >
-                                   <!--  <img src="assets/images/users/settings.png" alt="user-img" >  -->
-                                   <i class="fa fa-cog fa-fw"></i>
-                                </a>
-                                    <ul class="dropdown-menu">
-                                        <!-- <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li> -->
-                                        <!-- <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li> -->
-                                        <li><a ng-click="new()"><i class="ti-save m-r-5"></i> New</a></li>
-                                        <li><a ng-click="load()"><i class="ti-save m-r-5"></i> Load</a></li>
-                                        <li><a ng-click="save()"><i class="ti-save m-r-5"></i> Save</a></li>
-                                        <li><a ng-click="deleteAll()"><i class="ti-trash m-r-5"></i> Delete All </a></li>
-                                        <!-- <li><a ui-sref="visualizer"><i class="ti-lock m-r-5"></i> Visualizer</a></li> -->
-                                        <!-- <li><a href="javascript:void(0)"><i class="ti-power-off m-r-5"></i> Logout</a></li> -->
-                                    </ul> 
-                                </li>
-                            </ul>
-                        </div>
-                        <!--/.nav-collapse -->
-                    </div>
-                </div>
+        <div class="container">
+            <div class="">
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown">
+                            <i class="ti-settings m-r-5 m-t-5"></i> Settings
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="" ng-click="new()"><i class="ti-new-window m-r-5"></i>New</a></li>
+                            <li><a data-toggle="modal" data-target="#loadSchema" href=""><i class=" ti-download m-r-5"></i> Load</a></li>
+                            <li><a ng-click="save()"><i class="ti-save m-r-5"></i> Save</a></li>
+                            <li><a data-toggle="modal" data-target="#deleteSchemaModal" href=""><i class="ti-trash m-r-5"></i> Delete All </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Top Bar End -->
+<div id="deleteSchemaModal" class="modal fade bs-example-modal-sm" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <h4 style="background-color:#f05050;" class="custom-modal-title">Delete Schema</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div class="modal-content" style="background-color:#343D47;">
+            <div class="modal-body">
+                <div class="input-group m-t-10" style="font-size: 15px;font-weight: 600;">
+                    <!--     <input autofocus ng-model="newSchemaName" required id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Schema Name"> -->
+                    Are you sure you want to delete all schemas?
+                    <span class="input-group-btn"> 
+                        <button ng-click="deleteAll()"  type="submit" class="btn waves-effect waves-light btn-danger" data-toggle="modal" data-target="#deleteSchemaModal">Delete</button>
+                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Load Schema Modal -->
+<div id="loadSchema" class="modal fade bs-example-modal-sm" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <h4 style="background-color:#5bc0de;" class="custom-modal-title">Load Schema</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div class="modal-content" style="background-color:#343D47;">
+            <div class="modal-body">
+                <div class="input-group m-t-10" style="font-size: 15px;font-weight: 600;">
+                    Choose the directory (not file)
+                    <span class="input-group-btn"> 
+                        <button ng-click="load()"  type="submit" class="btn waves-effect waves-light btn-info" data-toggle="modal" data-target="#loadSchema">Load</button>
+                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
