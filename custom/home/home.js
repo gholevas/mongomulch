@@ -75,7 +75,8 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 	$scope.newProject = function (projName) {
 		var remote = require('remote');
         var dialog = remote.require('dialog');
-        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+        var thisWindow = require('electron').remote.getCurrentWindow();
+        dialog.showOpenDialog(thisWindow, { properties: ['openDirectory', 'createDirectory'] }, function(dirNamesArr) {
 			$scope.makingNewProj = false;
 	        if (dirNamesArr === undefined) return;
 	        var dirName = dirNamesArr[0];
@@ -86,7 +87,8 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 	$scope.loadProject = function () {
 		var remote = require('remote');
         var dialog = remote.require('dialog');
-        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+        var thisWindow = require('electron').remote.getCurrentWindow();
+        dialog.showOpenDialog(thisWindow, { properties: ['openDirectory'] }, function(dirNamesArr) {
 	        if (dirNamesArr === undefined) return;
 	        var dirName = dirNamesArr[0];
 	        $uibModalInstance.close({action:"load", dir: dirName});
