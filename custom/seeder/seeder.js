@@ -9,44 +9,24 @@ app.config(function($stateProvider) {
 
 app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, QuestionsFactory, SeedFactory) {
 
-    // $scope.questions = [{
-    //     text: 'How many Users would you like?',
-    //     answers: []
-    // }, {
-    //     text: 'Select data types for these Users.',
-    //     answers: []
-    // }, {
-    //     text: 'How many BlogPosts would you like each User to have?',
-    //     answers: []
-    // }];
 
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas();
 
-    $scope.submitAnswers = function() {
-        var obj = {};
-        for (var i = 0; i < $scope.questions.length; i += 2) {
 
-            obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
-            obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
-            obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
-
-        }
-
-        // var schemasWmchance = SchemaFactory.getSchemas().map(function(schema){
-        //     return generate_schema_With_Seed(schema);
-        // });
-        
-        var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),$scope.dbname, $scope.questions)
-        console.log(result);
+    $scope.submitAnswers = function(dbname) {
+        // var obj = {};
+        // console.log($scope.dbname);
+        // for (var i = 0; i < $scope.questions.length; i += 2) {
+        //     obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
+        //     obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
+        //     obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
+        // }
+        var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),dbname, $scope.questions)
+        // console.log(result);
         eval(result);
 
-        //' db.seed({'++'}).then(function(dbCache){console.log("seeded", dbCache)})'
-        
-        //seeder lib method
-        // var seedObj = buildSeedObj(obj);
-        // var seedJSON = JSON.stringify(seedObj);
-        // SeedFactory.seed("mongodb://localhost:27017/SeederTest", seedJSON);
+
 
     };
 

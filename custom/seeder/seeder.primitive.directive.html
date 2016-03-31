@@ -43,9 +43,9 @@ select.bs-select-hidden, select.selectpicker {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="q in question.fields">
+                            <tr ng-repeat="q in question.fields" ng-hide ="q.type === 'Reference to...'">
                                 <td>{{q.name}}</td>
-                                <td>{{q.type}}</td>
+                                <td >{{q.type}}</td>
                                 <td>
                                     <md-select ng-model="q.hint" aria-label="lol">
                                         <md-option layout="column" layout-align="start start" ng-value="option" ng-repeat="option in StrOpitons">
