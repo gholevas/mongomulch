@@ -46,8 +46,8 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
             if (dirNamesArr === undefined) return;
             var dirName = dirNamesArr[0];
-
             SchemaFactory.exportSchemas(dirName);
+            swal("Congrats!", "Your schemas were generated and you just saved a bunch of time.", "success")
         });
 
     }

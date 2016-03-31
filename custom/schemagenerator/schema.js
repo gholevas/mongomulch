@@ -110,7 +110,7 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
         footerStr+= schema.name +": " + amtObj[schema.name] + (index==schemas.length-1?"": ",\n");
     });
 
-    footerStr+= "}).then(function(dbCache){ mongoose.disconnect(); console.log(dbCache)})"
+    footerStr+= "}).then(function(dbCache){ mongoose.disconnect(); console.log(dbCache); swal(\"Congrats!\", \"Your database has been seeded.\", \"success\");})"
 
     return headerString +'\n\n'+ bodyStr +'\n \n'+ footerStr;
 

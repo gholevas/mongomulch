@@ -10,25 +10,18 @@ app.config(function($stateProvider) {
 app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, QuestionsFactory, SeedFactory) {
 
 
-
-
-
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas();
+
 
     $scope.submitAnswers = function(dbname) {
         // var obj = {};
         // console.log($scope.dbname);
         // for (var i = 0; i < $scope.questions.length; i += 2) {
-
         //     obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
         //     obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
         //     obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
-
         // }
-     console.log(dbname);
-
-        
         var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),dbname, $scope.questions)
         // console.log(result);
         eval(result);
