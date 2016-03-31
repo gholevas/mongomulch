@@ -42,8 +42,8 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     $scope.exportSchemas = () => {
         var remote = require('remote');
         var dialog = remote.require('dialog');
-
-        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+        var thisWindow = require('electron').remote.getCurrentWindow();
+        dialog.showOpenDialog(thisWindow, { properties: ['openDirectory'] }, function(dirNamesArr) {
             if (dirNamesArr === undefined) return;
             var dirName = dirNamesArr[0];
             SchemaFactory.exportSchemas(dirName);
@@ -71,7 +71,8 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     $scope.load = function() {
         var remote = require('remote');
         var dialog = remote.require('dialog');
-        dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
+        var thisWindow = require('electron').remote.getCurrentWindow();
+        dialog.showOpenDialog(thisWindow, { properties: ['openDirectory'] }, function(dirNamesArr) {
             if (dirNamesArr === undefined) return;
             var dirName = dirNamesArr[0];
             // $uibModalInstance.close({action:"load", dir: dirName});
@@ -81,15 +82,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     $scope.new = function() {
         console.log("makingnew")
         ModalSvc.open(true);
-        // var remote = require('remote');
-        // var dialog = remote.require('dialog');
-        // dialog.showOpenDialog({ properties: ['openDirectory'] }, function(dirNamesArr) {
-        //     $scope.makingNewProj = false;
-        //     if (dirNamesArr === undefined) return;
-        //     var dirName = dirNamesArr[0];
-        //     // $uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
-        //     ModalSvc.new(projName, dirName);
-        // });
     }
 
 
