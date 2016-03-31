@@ -93,4 +93,19 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
         });
 	};
 
+	$scope.closeModal = () => {
+		$uibModalInstance.dismiss();
+	}
+
+	console.log('newproj',$scope.makingNewProj);
+
+
 });
+
+
+
+
+
+
+
+
