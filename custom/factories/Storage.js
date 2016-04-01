@@ -38,6 +38,11 @@ app.factory('Storage', function($rootScope) {
         getProjName: function(){
             return projKey;
         },
+        openDir: function(){
+            var shell = require('electron').shell;
+            shell.showItemInFolder(currentRepo+"/");
+            shell = null;
+        },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
             copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ if(err) alert("error while saving: " +err); else swal("Saved", currentRepo+"/"+fileName, "success"); });
