@@ -52,7 +52,9 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     }
 
 
-
+    $scope.openDir = function() {
+        Storage.openDir();
+    }
 
     $scope.save = function() {
         Storage.saveFile();
