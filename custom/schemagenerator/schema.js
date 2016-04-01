@@ -168,7 +168,8 @@ function generate_schemas_for_seeds(schemas,DB_NAME, questions){
     })
 
     var connectionString= '\nvar db = mongoose.connect("'+connectionString+'").connection; '
-    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'./mchance_mod.js\')(db);\n '
+    var headerString = 'var mongoose = require("mongoose"); '+connectionString+ ' \nvar mchance = require(\'mchance\')(db);\n '   //require(\'./mchance_mod.js\')(db);\n '
+
 
     var bodyStr = "";
     var footerStr = "db.seed({ ";
@@ -211,9 +212,9 @@ function parse_name_type_with_seed(field) {
 
     if (field.type === "Array of...") {
         if (field.selectedArrType != 'String' && field.selectedArrType != 'Number' && field.selectedArrType != 'Boolean' && field.selectedArrType != 'Buffer' && field.selectedArrType != 'Date' ) {
-            fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 10) }';
+            fieldStr += field.name + ': { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.selectedArrType + '"}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 5) }';
         } else {
-            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + ', \nseed:mchance.'+field.hint+' ' + parse_options(field.options) + '}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 10)} ';
+            fieldStr += field.name + ': { type: [{ type: ' + field.selectedArrType + getSeedProp(field)+' ' + parse_options(field.options) + '}], \nseedn: Math.floor(Math.floor(Math.random() * 100) / 5)} ';
         }
 
     } else if (field.type === "Embed...") {
@@ -224,11 +225,41 @@ function parse_name_type_with_seed(field) {
         fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
 
     } else {
-
-        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + (field.hint?", seed: mchance."+field.hint:"") + '}';
+        fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + getSeedProp(field) + '}';
     }
 
     return fieldStr;
 
 }
 
+function getSeedProp(field){
+    var seedProp = "";
+    if(field.hint){
+        if(field.hint == 'enum'){
+            var enumArr = field.enums.split(" ");
+            var enumStr = arrToString.bind(enumArr).call();
+            var divBy = Math.floor(100/(enumArr.length+1));
+            var idxStr = "[Math.floor(Math.floor(Math.random() * 100) / "+divBy+")]";
+            seedProp="seed: function(){ return "+enumStr+idxStr+"}"
+        } else if(field.hint == "integer" || field.hint == "floating") {
+            
+        } else {
+            seedProp = "seed: mchance."+field.hint;
+        }
+    }
+    if(seedProp) seedProp= ", \n" + seedProp;
+    return seedProp;
+}
+
+//just for fun
+function arrToString(){
+    if(!Array.isArray(this))
+        return "";
+
+    var result = "[";
+    for(var i=0; i<this.length; i++){
+        result+="'"+this[i]+"'" + ((i<this.length-1)?",":"");
+    }
+    result+="]";
+    return result;
+}

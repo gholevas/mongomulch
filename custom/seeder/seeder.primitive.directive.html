@@ -52,6 +52,10 @@ select.bs-select-hidden, select.selectpicker {
                                             {{option}}
                                         </md-option>
                                     </md-select>
+                                    <md-input-container ng-show=" q.hint=='enum' " class="md-block" flex-gt-sm>
+                                        <label style="color:white;">Type your enums separated by spaces or something</label>
+                                        <input ng-model="q.enums"></input>
+                                    </md-input-container>
                                     <!-- <select class="selectpicker bs-select-hidden" data-style="btn-success btn-custom">
                                     <option>test</option>
                                     </select>

@@ -23,7 +23,7 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
         //     obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
         // }
         var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),dbname, $scope.questions)
-        // console.log(result);
+        console.log(result);
         eval(result);
 
 
