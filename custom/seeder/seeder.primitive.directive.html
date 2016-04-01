@@ -53,6 +53,10 @@ select.selectpicker {
                                             {{option}}
                                         </md-option>
                                     </md-select>
+                                    <md-input-container ng-show=" q.hint=='enum' " class="md-block" flex-gt-sm>
+                                        <label style="color:white;">Type your enums separated by spaces or something</label>
+                                        <input ng-model="q.enums"></input>
+                                    </md-input-container>
                                     <!-- <select class="selectpicker bs-select-hidden" data-style="btn-success btn-custom">
                                     <option>test</option>
                                     </select>
@@ -60,12 +64,17 @@ select.selectpicker {
                                         <span id="dropdown">test</span><span id="carrot"></span>
                                     </button> -->
                                 <td ng-show="q.hint === 'integer' || q.hint === 'floating' " class = "col-md-2">
-                                    <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Min" ng-model="q.min"/>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input  class="form-control" placeholder="Max" ng-model="q.max" />
-                                  </div>
+                                    <!-- <form name="rangeForm"> -->
+                                        <div class="col-sm-6">
+                                            <input name="min" type="number" class="form-control" placeholder="Min" ng-model="q.min"/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input name="max " type="number" class="form-control" placeholder="Max" ng-model="q.max" /> <!-- validate-greater <- directive updates only after leaving the element -->
+                                        </div>
+                                    <!-- <ul class="error-msgs" ng-messages="rangeForm.max.$error">
+                                        <li ng-message="greaterValidator"></li>
+                                    </ul> -->
+                                    <!-- </form> -->
                                 </td>
                             </tr>
                         </tbody>

@@ -10,12 +10,6 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             if(!Storage.get('schemas')) Storage.set('schemas',[]);
             schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
         }
-        // else{
-        //     //developers only
-        //     Storage.loadDefault_YO_DELETETHISMETHOD();
-        //     if(!Storage.get('schemas')) Storage.set('schemas',[]);
-        //     schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
-        // }
     }
 
     var Schema = function(name, id, fields){
@@ -25,8 +19,6 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     }
 
     Schema.prototype.addField = function(field){
-        // console.log('current fields',this.fields)
-        // console.log('new field',field)
         var edited = false;
         this.fields.forEach(function(onefield){
             if(onefield.name === field.name){
@@ -49,8 +41,8 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
     }    
 
     var Field = function(name, type, options, selectedArrType, selectedEmbed, reference){
-        this.name = name || "";
-        this.type = type || String; //should we use the actual type or a string e.g. Number vs "Number"
+        this.name = name || '';
+        this.type = type || 'String';
         this.selectedArrType = selectedArrType || null;
         this.selectedEmbed = selectedEmbed || null;
         this.reference = reference || null;
