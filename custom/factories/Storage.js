@@ -40,7 +40,7 @@ app.factory('Storage', function($rootScope) {
         },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
-            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ if(err) alert("error while saving: " +err); else swal("Saved", currentRepo+"/"+fileName, "success"); });
         },
         newConfStore: function(pKey, dirName){
             projKey = pKey;
@@ -49,7 +49,7 @@ app.factory('Storage', function($rootScope) {
 
             conf = new Configstore(projKey+".mulch");
 
-            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){console.log("err in storage ",err)});
+            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ if(err) alert("error creating mulch: "+err); });
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);
@@ -91,7 +91,7 @@ function copyFile(source, target, cb) {
   function done(err) {
     if (!cbCalled) {
       if(err) cb(err);
-      else cb("all good")
+      else cb();
       cbCalled = true;
     }
   }
