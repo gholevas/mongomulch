@@ -14,7 +14,10 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
     $scope.schemas = SchemaFactory.getSchemas();
 
 
+
+
     $scope.submitAnswers = function(dbname) {
+        console.log('this is questions obj',$scope.questions);
         // var obj = {};
         // console.log($scope.dbname);
         // for (var i = 0; i < $scope.questions.length; i += 2) {

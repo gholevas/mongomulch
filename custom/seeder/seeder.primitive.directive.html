@@ -61,10 +61,10 @@ select.selectpicker {
                                     </button> -->
                                 <td ng-show="q.hint === 'integer' || q.hint === 'floating' " class = "col-md-2">
                                     <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Min" />
+                                        <input class="form-control" placeholder="Min" ng-model="q.min"/>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input  class="form-control" placeholder="Max" />
+                                        <input  class="form-control" placeholder="Max" ng-model="q.max" />
                                   </div>
                                 </td>
                             </tr>
