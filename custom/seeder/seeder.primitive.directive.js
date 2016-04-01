@@ -9,7 +9,7 @@ app.directive('seedPrimitive', function() {
         link: function(scope) {
 
 
-            scope.StrOpitons = ['word', 'sentence', 'integer', 'floating', 'first', 'last', 'email', 'address', 'phone', 'url', 'bool', 'date', 'enum']
+            scope.StrOpitons = ['word', 'sentence', 'integer', 'floating', 'first', 'last', 'email', 'address', 'city', 'phone', 'url', 'bool', 'date', 'hour','minute', 'year',  'enum']
 
 
         }
