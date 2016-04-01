@@ -27,10 +27,26 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 
 			},
 			new: function(projName, dirName){
-				Storage.newConfStore(projName, dirName);
-		      	SchemaFactory.initialize();
-		      	$state.go('visualizer',{},{reload: true});
-		      	$rootScope.$broadcast('newSchema');
+				var modalSvc = this;
+				Storage.newConfStore(projName, dirName)
+				.then(function(result){
+					console.log(result);
+			      	SchemaFactory.initialize();
+			      	$state.go('visualizer',{},{reload: true});
+			      	$rootScope.$broadcast('newSchema');
+				}).catch(function(errObj){
+					console.log(errObj);
+					errObj.title, errObj.text, errObj.type
+					swal({
+						title: errObj.title,
+						text: errObj.text,
+						type: errObj.type,
+						confirmButtonText: "JAJAJAJA",
+						confirmButtonColor: "#f37146"
+					}, function(isConfirm){
+						modalSvc.open(false);
+					});
+				});
 			},
 			open: function(onlyNew){
 			    var modalInstance = $uibModal.open({

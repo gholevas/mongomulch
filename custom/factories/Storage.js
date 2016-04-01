@@ -45,24 +45,64 @@ app.factory('Storage', function($rootScope) {
         },
         saveFile: function(){
             var fileName = this.getProjName()+".mulch.json";
-            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ if(err) alert("error while saving: " +err); else swal("Saved", currentRepo+"/"+fileName, "success"); });
+
+            //TODO wrap this in a promise, return to whoever calls it
+            //then do the swal in the ui layer
+            //then make all swals time out
+            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ 
+                if(err) 
+                    alert("error while saving: " +err); 
+                else 
+                    swal("Saved", currentRepo+"/"+fileName, "success"); 
+            });
         },
         newConfStore: function(pKey, dirName){
+            var names = fs.readdirSync(dirName);
+            var mulchFiles = names.filter(function(name){
+                return name.indexOf('.mulch.json') > -1;
+            });
             projKey = pKey;
             currentRepo = dirName;
             var fileName = projKey+".mulch.json";
 
+            //TODO: delete existing file at configDir+fileName
+            //because below line makes new and also we dunno if success yet
             conf = new Configstore(projKey+".mulch");
 
-            copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ if(err) alert("error creating mulch: "+err); });
+            return new Promise(function(resolve, reject){
+                if(mulchFiles.length>0){
+                    reject({
+                        title: "Project already created",
+                        text: "Multiple .mulch.json files not allowed.\n " + dirName,
+                        type: "error"
+                    });
+                }
+                else copyFile(configDir+fileName, currentRepo+"/"+fileName, function(err){ 
+                    if(err) {
+                        reject({
+                            title: "Error creating Mulch",
+                            text: err.message,
+                            type: "error"
+                        });
+                    } else {
+                        resolve({
+                            type: "success"
+                        });
+                    }
+                });
+            });
         },
         loadConfStore: function(directory){
             var names = fs.readdirSync(directory);
             var mulchFiles = names.filter(function(name){
                 return name.indexOf('.mulch.json') > -1;
             });
+            if(mulchFiles.length==0){
+                swal("Project Not Found", "No .mulch.json file in " + directory, "error");
+                return;
+            }
             if(mulchFiles.length>1){
-                console.log("error, multiple mulch files found");
+                swal("Multiple Files", "Multiple .mulch.json files found in " + directory, "error");
                 return;
             }
             currentRepo = directory;
