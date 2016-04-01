@@ -222,7 +222,7 @@ function parse_name_type_with_seed(field) {
 
     } else if (field.type === 'Reference to...') {
 
-        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '",' + parse_options(field.options) + '}';
+        fieldStr += field.name + ':{ type: mongoose.Schema.Types.ObjectId, ref: "' + field.reference + '"' + parse_options(field.options) + '}';
 
     } else {
         fieldStr += field.name + ':{ type: ' + field.type + ' ' + parse_options(field.options) + getSeedProp(field) + '}';
@@ -238,12 +238,26 @@ function getSeedProp(field){
         if(field.hint == 'enum'){
             var enumArr = field.enums.split(" ");
             var enumStr = arrToString.bind(enumArr).call();
-            var divBy = Math.floor(100/(enumArr.length+1));
+            var divBy = Math.floor(100/(enumArr.length));
             var idxStr = "[Math.floor(Math.floor(Math.random() * 100) / "+divBy+")]";
             seedProp="seed: function(){ return "+enumStr+idxStr+"}"
-        } else if(field.hint == "integer" || field.hint == "floating") {
-            
-        } else {
+        }
+        if(field.hint == "integer" || field.hint == "floating") {
+            if(field.min && field.max) {
+                var min = Number(field.min);
+                var max = Number(field.max);
+                if(max<min) console.log("ERROR MAX IS LESS THAN MIN");
+                var range = [];
+                var absDist = max - min;
+                var idxStr = "[Math.floor(Math.floor(Math.random()*100) / (100/"+absDist+"))]"
+                for(var i=min; i<=max; i++){
+                    range.push(i);
+                }
+                var rangeStr = arrToString.bind(range).call();
+                seedProp="seed: function(){ return "+rangeStr+idxStr+" }"
+            }
+        }
+        if(!seedProp){
             seedProp = "seed: mchance."+field.hint;
         }
     }

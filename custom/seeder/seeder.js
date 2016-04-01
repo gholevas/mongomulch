@@ -25,9 +25,18 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
         //     obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
         //     obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
         // }
+        $scope.error = null;
         var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),dbname, $scope.questions)
         console.log(result);
-        eval(result);
+        try{
+            eval(result);
+        }
+        catch(e){
+            console.dir(e);
+            $scope.error = e.message;
+            var mongoose = require("mongoose");
+            mongoose.models={}; mongoose.modelSchemas={}; mongoose.disconnect(); 
+        }
 
 
 

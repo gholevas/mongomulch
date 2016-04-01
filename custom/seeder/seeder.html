@@ -52,6 +52,10 @@ md-tabs {
                                                 <input type="text" class="form-control" ng-model="dbname">
                                             </div>
                                         </div>
+                                        <div ng-show="error">
+                                            <label>There was an error: </label>
+                                            <label>{{error}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </md-tab-body>

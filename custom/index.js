@@ -1,4 +1,4 @@
-var app = angular.module("mongomulch", ['ui.router','ngMaterial', 'ui.bootstrap','angularLoad']);
+var app = angular.module("mongomulch", ['ui.router','ngMaterial', 'ui.bootstrap', 'angularLoad', 'ngMessages']);
 
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.definePalette('amazingPaletteName', {
