@@ -82,8 +82,11 @@ app.factory('SchemaFactory', function($http, $rootScope, Storage) {
             return schemas.filter(schema => schema.id === id )[0];
         },
         exportSchemas : function(path){
-            index_file(schemas,path);
-            save_schema(schemas,path);
+            return new Promise(function(resolve, reject){
+                index_file(schemas,path);
+                save_schema(schemas,path);
+                resolve({title: "Export Successful", text: "Schemas generated to "+ path, type: "success"});
+            })
         },
         getSchemaByName: function(name){
             return schemas.filter(schema => schema.name === name )[0];
