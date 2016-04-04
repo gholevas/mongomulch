@@ -19,18 +19,42 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 		return {
 
 			load: function(dir){
-
-				Storage.loadConfStore(dir);
-				SchemaFactory.initialize();
-				$state.go('visualizer',{},{reload: true});
-				$rootScope.$broadcast('newSchema');
+				var modalSvc = this;
+				Storage.loadConfStore(dir)
+				.then(function(result){
+					SchemaFactory.initialize();
+					$state.go('visualizer',{},{reload: true});
+					$rootScope.$broadcast('newSchema');
+				}).catch(function(errObj){
+					swal({
+						title: errObj.title,
+						text: errObj.text,
+						type: errObj.type,
+						confirmButtonColor: "#DD6B55"
+					}, function(isConfirm){
+						if(!Storage.isProjLoaded())
+							modalSvc.open(false);
+					});
+				});
 
 			},
 			new: function(projName, dirName){
-				Storage.newConfStore(projName, dirName);
-		      	SchemaFactory.initialize();
-		      	$state.go('visualizer',{},{reload: true});
-		      	$rootScope.$broadcast('newSchema');
+				var modalSvc = this;
+				Storage.newConfStore(projName, dirName)
+				.then(function(result){
+			      	SchemaFactory.initialize();
+			      	$state.go('visualizer',{},{reload: true});
+			      	$rootScope.$broadcast('newSchema');
+				}).catch(function(errObj){
+					swal({
+						title: errObj.title,
+						text: errObj.text,
+						type: errObj.type,
+						confirmButtonColor: "#DD6B55"
+					}, function(isConfirm){
+						modalSvc.open(false);
+					});
+				});
 			},
 			open: function(onlyNew){
 			    var modalInstance = $uibModal.open({

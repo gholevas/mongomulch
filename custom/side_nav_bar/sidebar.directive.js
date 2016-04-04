@@ -35,8 +35,23 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         dialog.showOpenDialog(thisWindow, { properties: ['openDirectory'] }, function(dirNamesArr) {
             if (dirNamesArr === undefined) return;
             var dirName = dirNamesArr[0];
-            SchemaFactory.exportSchemas(dirName);
-            swal("Congrats!", "Your schemas were generated and you just saved a bunch of time.", "success")
+            SchemaFactory.exportSchemas(dirName)
+            .then(function(result){
+                swal({
+                    title: result.title, 
+                    text: result.text, 
+                    type: result.type, 
+                    allowEscapeKey: true, 
+                    allowOutsideClick: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Open Directory?"
+                }, function(isConfirm){
+                    if(isConfirm)
+                        Storage.openDir(dirName);
+                });
+            }).catch(function(errObj){
+                swal({title: errObj.title, text: errObj.text, type: errObj.type});
+            })
         });
 
     }
@@ -57,7 +72,24 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
     }
 
     $scope.save = function() {
-        Storage.saveFile();
+        Storage.saveFile()
+        .then(function(result){
+            swal({   
+                title: result.title,
+                text: result.text,
+                type: result.type,
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }).catch(function(error){
+            swal({
+                title: error.title,
+                text: error.text,
+                type: error.type,
+                timer: 2000,
+                showConfirmButton: false
+            });
+        })
     }
     $scope.load = function() {
         var remote = require('remote');
@@ -66,7 +98,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         dialog.showOpenDialog(thisWindow, { properties: ['openDirectory'] }, function(dirNamesArr) {
             if (dirNamesArr === undefined) return;
             var dirName = dirNamesArr[0];
-            // $uibModalInstance.close({action:"load", dir: dirName});
             ModalSvc.load(dirName);
         });
     }
