@@ -1,4 +1,4 @@
-# [MongoMulch] (http://mongomulch.com)
+# MongoMulch
 ####Build your schemas, generate seed data, and explore your MongoDB instance, all with MongoMulch.
 
 ##### Download the application at [MongoMulch.com] (http://mongomulch.com)
