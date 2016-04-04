@@ -13,7 +13,21 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
     $scope.questions = QuestionsFactory.getQuestions();
     $scope.schemas = SchemaFactory.getSchemas();
 
+    $scope.validations = (field) => {
 
+        if(field.type === 'Reference to...' ){
+            return true;
+        }
+        else if(field.type === 'Array of...'){
+            if(field.selectedArrType != "Number" && field.selectedArrType != "Boolean" && field.selectedArrType != "Buffer" && field.selectedArrType != "String" && field.selectedArrType != "Date"){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
 
 
     $scope.submitAnswers = function(dbname) {
