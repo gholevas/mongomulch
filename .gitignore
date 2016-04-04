@@ -3,3 +3,4 @@ public
 npm-debug.log
 .DS_Store
 custom/.DS_Store
+coverage

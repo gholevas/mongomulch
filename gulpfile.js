@@ -13,7 +13,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var eslint = require('gulp-eslint');
 // var mocha = require('gulp-mocha');
-// var karma = require('karma').server;
+var karma = require('karma').server;
 // var istanbul = require('gulp-istanbul');
 var notify = require('gulp-notify');
 
@@ -75,12 +75,12 @@ gulp.task('buildJS', ['lintJS'], function () {
 //         });
 // });
 
-// gulp.task('testBrowserJS', function (done) {
-//     karma.start({
-//         configFile: __dirname + '/tests/browser/karma.conf.js',
-//         singleRun: true
-//     }, done);
-// });
+gulp.task('testAppJS', function (done) {
+    karma.start({
+        configFile: __dirname + '/tests/karma.conf.js',
+        singleRun: true
+    }, done);
+});
 
 // gulp.task('buildCSS', function () {
 
@@ -152,7 +152,7 @@ gulp.task('default', function () {
     // gulp.watch(['tests/server/**/*.js'], ['testServerJS']);
 
     // // Run browser testing when a browser test file changes.
-    // gulp.watch('tests/browser/**/*', ['testBrowserJS']);
+    gulp.watch('tests/**/*', ['testAppJS']);
 
     livereload.listen();
 

@@ -45,10 +45,10 @@ app.factory('Storage', function($rootScope) {
             shell = null;
         },
         saveFile: function() {
-            var fileName = this.getProjName() + ".mulch.json";
+            var fileName = this.getProjName() + ".mulch";
 
             return new Promise(function(resolve, reject){
-                copyFile(configDir + fileName, currentRepo + "/" + fileName, function(err) {
+                copyFile(configDir + fileName + ".json", currentRepo + "/" + fileName, function(err) {
                     if (err)
                         reject({title: "Error while Saving", text: err.message, type: "error"});
                     else
@@ -58,14 +58,14 @@ app.factory('Storage', function($rootScope) {
         },
         newConfStore: function(pKey, dirName) {
             var mulchFiles = fs.readdirSync(dirName).filter(function(fileName) {
-                return fileName.indexOf('.mulch.json') > -1;
+                return fileName.indexOf('.mulch') > -1;
             });
 
             return new Promise(function(resolve, reject) {
                 if (mulchFiles.length > 0) {
                     reject({
                         title: "Project already created",
-                        text: "Multiple .mulch.json files not allowed.\n " + dirName,
+                        text: "Multiple .mulch files not allowed.\n " + dirName,
                         type: "warning"
                     });
                     return;
@@ -73,13 +73,13 @@ app.factory('Storage', function($rootScope) {
 
                 projKey = pKey;
                 currentRepo = dirName;
-                var fileName = projKey + ".mulch.json";
+                var fileName = projKey + ".mulch";
 
                 //TODO: delete existing file at configDir+fileName
                 //because below line makes new and also we dunno if success yet
                 conf = new Configstore(projKey + ".mulch");
 
-                copyFile(configDir + fileName, currentRepo + "/" + fileName, function(err) {
+                copyFile(configDir + fileName + ".json", currentRepo + "/" + fileName, function(err) {
                     if (err) {
                         reject({
                             title: "Error creating Mulch",
@@ -95,7 +95,7 @@ app.factory('Storage', function($rootScope) {
         },
         loadConfStore: function(directory) {
             var mulchFiles = fs.readdirSync(directory).filter(function(fileName) {
-                return fileName.indexOf('.mulch.json') > -1;
+                return fileName.indexOf('.mulch') > -1;
             });
 
 
@@ -104,7 +104,7 @@ app.factory('Storage', function($rootScope) {
                 if (mulchFiles.length == 0) {
                     reject({
                         title: "Project Not Found",
-                        text: "No .mulch.json file in " + directory,
+                        text: "No .mulch file in " + directory,
                         type: "warning"
                     });
                     return;
@@ -112,7 +112,7 @@ app.factory('Storage', function($rootScope) {
                 if (mulchFiles.length > 1) {
                     reject({
                         title: "Multiple Files",
-                        text: "Multiple .mulch.json files found in " + directory,
+                        text: "Multiple .mulch files found in " + directory,
                         type: "warning"
                     });
                     return;

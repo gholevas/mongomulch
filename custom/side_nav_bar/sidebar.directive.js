@@ -102,7 +102,6 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
         });
     }
     $scope.new = function() {
-        console.log("makingnew")
         ModalSvc.open(true);
     }
 

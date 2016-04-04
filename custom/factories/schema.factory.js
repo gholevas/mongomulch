@@ -1,7 +1,7 @@
 //using mongoose to generate unique IDs for our schemas..
 var mongoose = require('mongoose');
 
-app.factory('SchemaFactory', function($http, $rootScope, Storage) {
+app.factory('SchemaFactory', function($rootScope, Storage) {
     
     var schemas;
 
