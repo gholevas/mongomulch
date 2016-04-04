@@ -38,7 +38,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 				});
 
 			},
-			new: function(projName, dirName){
+			new: function(projName, dirName, onlyNew){
 				var modalSvc = this;
 				Storage.newConfStore(projName, dirName)
 				.then(function(result){
@@ -52,7 +52,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 						type: errObj.type,
 						confirmButtonColor: "#DD6B55"
 					}, function(isConfirm){
-						modalSvc.open(false);
+						modalSvc.open(onlyNew);
 					});
 				});
 			},
@@ -76,7 +76,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 					this.load(result.dir);
 			      } 
 			      if(result.action=="new"){
-			      	this.new(result.projName, result.dirName);
+			      	this.new(result.projName, result.dirName, result.onlyNew);
 			      } 
 			    }, (errMsg) => {
 			      console.log('Modal dismissed at: ' + new Date(), " ", errMsg);
@@ -100,7 +100,7 @@ app.controller("ModalInstanceCtrl", function($scope, $uibModalInstance, Storage,
 			$scope.makingNewProj = false;
 	        if (dirNamesArr === undefined) return;
 	        var dirName = dirNamesArr[0];
-			$uibModalInstance.close({action:"new", projName: projName, dirName: dirName});
+			$uibModalInstance.close({action:"new", projName: projName, dirName: dirName, onlyNew: onlyNew});
         });
 	};
 
