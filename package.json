@@ -22,7 +22,8 @@
   },
   "homepage": "https://mongomulch.com",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.0"
+    "electron-prebuilt": "^0.36.0",
+    "karma-electron": "^3.0.3"
   },
   "dependencies": {
     "angular-load": "^0.4.1",

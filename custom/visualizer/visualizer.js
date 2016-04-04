@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller("VisualizerCtrl", function($scope, $rootScope, SchemaFactory,angularLoad) {
+app.controller("VisualizerCtrl", function($scope, $rootScope, SchemaFactory) {
 
     var reloadSchemas = function() {
         $scope.schemas = SchemaFactory.getSchemas();

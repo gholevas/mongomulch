@@ -7,7 +7,7 @@ app.directive('rightSideNav', function() {
 });
 
 
-app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, SchemaFactory,angularLoad) {
+app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, SchemaFactory) {
 
 
 
