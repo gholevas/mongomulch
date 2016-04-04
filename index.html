@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/favicon_1.ico">
-    <title>mongoMulch</title>
+    <title>MongoMulch</title>
     <!-- end plugin -->
     <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- start theme stuff -->
@@ -53,67 +53,71 @@
     var remote = require('remote');
     var Menu = remote.require('menu');
     var template = [{
-            label: 'Electron',
+            label: 'MongoMulch',
             submenu: [{
-                label: 'About Electron',
-                selector: 'orderFrontStandardAboutPanel:'
+                label: 'About',
+                // selector: 'orderFrontStandardAboutPanel:'
+                click: function(){
+                    alert("mongomulch.com");
+                }
             }, {
-                type: 'separator'
-            }, {
-                label: 'Services',
-                submenu: []
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Hide Electron',
+            //     type: 'separator'
+            // }, {
+            //     label: 'Services',
+            //     submenu: []
+            // }, {
+            //     type: 'separator'
+            // }, {
+                label: 'Hide',
                 accelerator: 'Command+H',
                 selector: 'hide:'
             }, {
-                label: 'Hide Others',
-                accelerator: 'Command+Shift+H',
-                selector: 'hideOtherApplications:'
-            }, {
-                label: 'Show All',
-                selector: 'unhideAllApplications:'
-            }, {
-                type: 'separator'
-            }, {
+            //     label: 'Hide Others',
+            //     accelerator: 'Command+Shift+H',
+            //     selector: 'hideOtherApplications:'
+            // }, {
+            //     label: 'Show All',
+            //     selector: 'unhideAllApplications:'
+            // }, {
+            //     type: 'separator'
+            // }, {
                 label: 'Quit',
                 accelerator: 'Command+Q',
                 selector: 'terminate:'
             }, ]
-        }, {
-            label: 'Edit',
-            submenu: [{
-                label: 'Undo',
-                accelerator: 'Command+Z',
-                selector: 'undo:'
-            }, {
-                label: 'Redo',
-                accelerator: 'Shift+Command+Z',
-                selector: 'redo:'
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Cut',
-                accelerator: 'Command+X',
-                selector: 'cut:'
-            }, {
-                label: 'Copy',
-                accelerator: 'Command+C',
-                selector: 'copy:'
-            }, {
-                label: 'Paste',
-                accelerator: 'Command+V',
-                selector: 'paste:'
-            }, {
-                label: 'Select All',
-                accelerator: 'Command+A',
-                selector: 'selectAll:'
-            }]
-        },
+        } 
+        //, {
+        //     label: 'Edit',
+        //     submenu: [{
+        //         label: 'Undo',
+        //         accelerator: 'Command+Z',
+        //         selector: 'undo:'
+        //     }, {
+        //         label: 'Redo',
+        //         accelerator: 'Shift+Command+Z',
+        //         selector: 'redo:'
+        //     }, {
+        //         type: 'separator'
+        //     }, {
+        //         label: 'Cut',
+        //         accelerator: 'Command+X',
+        //         selector: 'cut:'
+        //     }, {
+        //         label: 'Copy',
+        //         accelerator: 'Command+C',
+        //         selector: 'copy:'
+        //     }, {
+        //         label: 'Paste',
+        //         accelerator: 'Command+V',
+        //         selector: 'paste:'
+        //     }, {
+        //         label: 'Select All',
+        //         accelerator: 'Command+A',
+        //         selector: 'selectAll:'
+        //     }]
+        // }
         //comment the following out to disable dev tools and reload
-        {
+        ,{
             label: 'View',
             submenu: [{
                 label: 'Reload',
@@ -128,25 +132,25 @@
                     remote.getCurrentWindow().toggleDevTools();
                 }
             }, ]
-        },
-        //comment the above out to disable dev tools and reload
-        {
-            label: 'Window',
-            submenu: [{
-                label: 'Minimize',
-                accelerator: 'Command+M',
-                selector: 'performMiniaturize:'
-            }, {
-                label: 'Close',
-                accelerator: 'Command+W',
-                selector: 'performClose:'
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Bring All to Front',
-                selector: 'arrangeInFront:'
-            }]
         }
+        //comment the above out to disable dev tools and reload
+        // ,{
+        //     label: 'Window',
+        //     submenu: [{
+        //         label: 'Minimize',
+        //         accelerator: 'Command+M',
+        //         selector: 'performMiniaturize:'
+        //     }, {
+        //         label: 'Close',
+        //         accelerator: 'Command+W',
+        //         selector: 'performClose:'
+        //     }, {
+        //         type: 'separator'
+        //     }, {
+        //         label: 'Bring All to Front',
+        //         selector: 'arrangeInFront:'
+        //     }]
+        // }
     ];
 
     menu = Menu.buildFromTemplate(template);
