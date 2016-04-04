@@ -14,7 +14,7 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
     $scope.schemas = SchemaFactory.getSchemas();
 
     $scope.validations = (field) => {
-
+        
         if(field.type === 'Reference to...' ){
             return true;
         }
