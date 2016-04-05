@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('home', {
         url: '',
-        templateUrl: 'custom/home/home.html',
+        templateUrl: 'app/home/home.html',
         controller: 'HomeCtrl'
     })
 });
@@ -59,7 +59,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 			open: function(onlyNew){
 			    var modalInstance = $uibModal.open({
 			      animation: true,
-			      templateUrl: 'custom/home/newprojmodal.html',
+			      templateUrl: 'app/home/newprojmodal.html',
 			      controller: 'ModalInstanceCtrl',
 			      size: 'lg',
 			      backdrop: 'static',

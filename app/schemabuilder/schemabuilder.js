@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('schemabuilder', {
         url: '/schemabuilder/:schemaId',
-        templateUrl: 'custom/schemabuilder/schemabuilder.html',
+        templateUrl: 'app/schemabuilder/schemabuilder.html',
         controller: 'SchemaBuilderCtrl'
     });
 });

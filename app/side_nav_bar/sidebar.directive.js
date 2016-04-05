@@ -4,7 +4,7 @@ var dialog = remote.require('dialog');
 app.directive('sidebar', function() {
     return {
         restrict: 'E',
-        templateUrl: 'custom/side_nav_bar/sidebar.html',
+        templateUrl: 'app/side_nav_bar/sidebar.html',
         controller: 'SideBarCtrl'
     };
 });

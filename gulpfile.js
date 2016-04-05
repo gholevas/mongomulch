@@ -23,12 +23,12 @@ gulp.task('reload', function () {
 });
 
 gulp.task('reloadCSS', function () {
-    return gulp.src(['./custom/css/style.css','./assets/css/**/*.css']).pipe(livereload());
+    return gulp.src(['./app/css/style.css','./assets/css/**/*.css']).pipe(livereload());
 });
 
 gulp.task('lintJS', function () {
 
-    return gulp.src(['./custom/**/*.js'])
+    return gulp.src(['./app/**/*.js'])
         .pipe(plumber({
             errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
         }))
@@ -39,7 +39,7 @@ gulp.task('lintJS', function () {
 });
 
 gulp.task('buildJS', ['lintJS'], function () {
-    return gulp.src(['./custom/home/index.js', './custom/**/*.js'])
+    return gulp.src(['./app/home/index.js', './app/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
@@ -56,7 +56,7 @@ gulp.task('testAppJS', function (done) {
 });
 
 gulp.task('buildJSProduction', function () {
-    return gulp.src(['./custom/home/index.js', './custom/**/*.js'])
+    return gulp.src(['./app/home/index.js', './app/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(babel())
         .pipe(ngAnnotate())
@@ -82,19 +82,19 @@ gulp.task('default', function () {
     gulp.start('build');
 
     // Run when anything inside of browser/js changes.
-    gulp.watch('custom/**', function () {
+    gulp.watch('app/**', function () {
         runSeq('buildJS', 'reload');
     });
 
     // Run when anything inside of browser/scss changes.
-    gulp.watch('custom/css/**', function () {
+    gulp.watch('app/css/**', function () {
         runSeq('reloadCSS');
     });
 
-    gulp.watch('custom/**/*.js', ['lintJS']);
+    gulp.watch('app/**/*.js', ['lintJS']);
 
     // Reload when a template (.html) file changes.
-    gulp.watch(['custom/**/*.html'], ['reload']);
+    gulp.watch(['app/**/*.html'], ['reload']);
 
     // // Run browser testing when a browser test file changes.
     gulp.watch('tests/**/*', ['testAppJS']);

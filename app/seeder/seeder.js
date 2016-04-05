@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('seeder', {
         url: '/seeder',
-        templateUrl: 'custom/seeder/seeder.html',
+        templateUrl: 'app/seeder/seeder.html',
         controller: 'SeederCtrl'
     })
 });

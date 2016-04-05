@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('visualizer', {
         url: '/visualizer',
-        templateUrl: 'custom/visualizer/visualizer.html',
+        templateUrl: 'app/visualizer/visualizer.html',
         controller: 'VisualizerCtrl'
     })
 });
