@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, QuestionsFactory, SeedFactory) {
+app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, QuestionsFactory) {
 
 
     $scope.questions = QuestionsFactory.getQuestions();

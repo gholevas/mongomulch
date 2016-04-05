@@ -44,7 +44,7 @@ app.controller("SideBarCtrl", function($scope, $rootScope, SchemaFactory, Storag
                     allowEscapeKey: true, 
                     allowOutsideClick: true,
                     showCancelButton: true,
-                    confirmButtonText: "Open Directory?"
+                    confirmButtonText: "Open Directory"
                 }, function(isConfirm){
                     if(isConfirm)
                         Storage.openDir(dirName);
