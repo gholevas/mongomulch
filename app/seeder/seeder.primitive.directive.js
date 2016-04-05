@@ -1,7 +1,7 @@
 app.directive('seedPrimitive', function() {
     return {
         restrict: 'E',
-        templateUrl: 'custom/seeder/seeder.primitive.directive.html',
+        templateUrl: 'app/seeder/seeder.primitive.directive.html',
         scope: {
             question: "="
         },

@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('mongogui', {
         url: '/mongogui',
-        templateUrl: 'custom/mongogui/mongogui.html',
+        templateUrl: 'app/mongogui/mongogui.html',
         controller: 'MongoGuiCtrl'
     });
 });

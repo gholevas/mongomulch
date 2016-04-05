@@ -1,7 +1,7 @@
 app.directive('rightSideNav', function() {
     return {
         restrict: 'E',
-        templateUrl: 'custom/right_side_nav/right-side-nav.directive.html',
+        templateUrl: 'app/right_side_nav/right-side-nav.directive.html',
         controller: 'RightSideNavCtrl'
     };
 });
