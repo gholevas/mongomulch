@@ -94,10 +94,11 @@ app.factory('Storage', function($rootScope) {
             });
         },
         loadConfStore: function(directory) {
+        
             var mulchFiles = fs.readdirSync(directory).filter(function(fileName) {
+               
                 return fileName.indexOf('.mulch') > -1;
             });
-
 
             return new Promise(function(resolve, reject) {
 
