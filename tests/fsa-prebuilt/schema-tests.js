@@ -77,6 +77,29 @@ describe('SchemaFactory', function () {
 
         });
 
+       it('should delete an added schema', function (done) {
+            Storage.loadConfStore('/Users/JaiPrasad/Desktop/ecomm').then(function(res){
+            SchemaFactory.initialize();
+             SchemaFactory.addSchema("Test3");
+            SchemaFactory.addSchema("Test4");
+
+            var added = SchemaFactory.getSchemaByName("Test3");
+            SchemaFactory.deleteSchema(added);
+
+            var current = SchemaFactory.getSchemas();
+            expect(current).to.have.lengthOf(2);
+
+               done();
+            }).catch(function(err){
+                console.log(err);
+            })
+          
+
+        });
+
+
+
+
     });
 
 });
