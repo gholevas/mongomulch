@@ -75,9 +75,8 @@ app.factory('Storage', function($rootScope) {
                 currentRepo = dirName;
                 var fileName = projKey + ".mulch";
 
-                //TODO: delete existing file at configDir+fileName
-                //because below line makes new and also we dunno if success yet
                 conf = new Configstore(projKey + ".mulch");
+                conf.clear();
 
                 copyFile(configDir + fileName + ".json", currentRepo + "/" + fileName, function(err) {
                     if (err) {
