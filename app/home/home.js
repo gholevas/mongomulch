@@ -14,10 +14,11 @@ app.controller("HomeCtrl", function($scope, $rootScope, $state, Storage, SchemaF
 	}
 });
 
+//controller to deal with initial modal 
 app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $uibModal) {
 
 		return {
-
+			//loads existing schemas from .mulch file
 			load: function(dir){
 				var modalSvc = this;
 				Storage.loadConfStore(dir)
@@ -38,6 +39,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 				});
 
 			},
+			//creates new .mulch file for project 
 			new: function(projName, dirName, onlyNew){
 				var modalSvc = this;
 				Storage.newConfStore(projName, dirName)
@@ -56,6 +58,7 @@ app.service('ModalSvc', function($rootScope, $state, Storage, SchemaFactory, $ui
 					});
 				});
 			},
+			//opens the modal 
 			open: function(onlyNew){
 			    var modalInstance = $uibModal.open({
 			      animation: true,

@@ -5,6 +5,7 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
     
     var schemas;
 
+//loads schemas when app is refrshed 
     function initializeSchemas(){
         if(Storage.isProjLoaded()){
             if(!Storage.get('schemas')) Storage.set('schemas',[]);
@@ -12,12 +13,13 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
         }
     }
 
+//Schema constructor
     var Schema = function(name, id, fields){
         this.name = name || "";
         this.id = id ||  mongoose.Types.ObjectId().toString();
         this.fields = fields || [];
     }
-
+//Add field to a schema
     Schema.prototype.addField = function(field){
         var edited = false;
         this.fields.forEach(function(onefield){
@@ -33,13 +35,14 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
             Storage.set('schemas', schemas);
 
     }
-
+//Deletes field from a schema
     Schema.prototype.deleteField = function(field){
         this.fields.splice(this.fields.indexOf(field), 1);
         Storage.set('schemas', schemas);
         $rootScope.$broadcast('newField', this.schemaId);
     }    
 
+//Field constructor 
     var Field = function(name, type, options, selectedArrType, selectedEmbed, reference){
         this.name = name || '';
         this.type = type || 'String';
@@ -57,7 +60,7 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
     
         
 
-    return {
+    return { //factory methods to get, add, delte, and edit schemas 
         Schema: Schema,
         Field: Field,
         getSchemas: function() {

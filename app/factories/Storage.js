@@ -5,11 +5,11 @@ var expandTilde = require('expand-tilde');
 app.factory('Storage', function($rootScope) {
 
     var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~") + "/.config")) + "/configstore/";
-    // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
     var conf = null;
     var projKey = null;
     var currentRepo = null;
 
+//factory methords to get, set, edit, and delete information from local storage 
     return {
         set: function(key, value) {
             if (!conf) return;
@@ -75,8 +75,7 @@ app.factory('Storage', function($rootScope) {
                 currentRepo = dirName;
                 var fileName = projKey + ".mulch";
 
-                //TODO: delete existing file at configDir+fileName
-                //because below line makes new and also we dunno if success yet
+
                 conf = new Configstore(projKey + ".mulch");
 
                 copyFile(configDir + fileName + ".json", currentRepo + "/" + fileName, function(err) {

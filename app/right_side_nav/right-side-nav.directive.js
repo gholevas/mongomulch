@@ -18,7 +18,7 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
     }
 
     resetField();
-
+//saves field to schema 
     $scope.saveField = function() {
         console.log($scope.field, "field on controller");
         if ($scope.field.options.default === '') {
@@ -36,6 +36,7 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
     $scope.typeArr = ['String', 'Number', 'Boolean', 'Buffer', 'Date', 'Array of...', 'Reference to...', 'Embed...'];
     $scope.possibleOptions = ['unique', 'required', 'select', 'sparse', 'text'];
 
+//
     $scope.toggle = function(option) {
         if ($scope.field.options[option]) {
             console.log('exists')
@@ -47,16 +48,16 @@ app.controller('RightSideNavCtrl', function($scope, $timeout, $mdSidenav, Schema
         return $scope.field.options[option] != null;
     };
 
-
+//toggles open the right side nav
     $scope.toggleRight = function(schema, field) {
         if (field) $scope.field = field;
         else resetField();
-        //moved this down here in case of deleted schemas
+
         $scope.arrOf = ['String', 'Number', 'Boolean', 'Date', 'Buffer'];
         SchemaFactory.getSchemas().forEach(function(schema){
-            // if($scope.arrOf.indexOf(schema.name) === -1){
+
             $scope.arrOf.push(schema.name)
-                // }
+
         })
 
         $scope.schema = schema;
