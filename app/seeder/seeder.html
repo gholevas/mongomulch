@@ -18,13 +18,11 @@ md-tabs {
                         <md-tab ng-repeat="question in questions">
                             <md-tab-label>Question {{$index+1}}</md-tab-label>
                             <md-tab-body>
-                                <!--     <div layout-align="center" layout="row">
-                                        <h2>{{question}}</h2>
-                                    </div> -->
+                      
                                 <br>
                                 <seed-Primitive ng-show="question.Qtype === 'hintsQ'" question="question"> </seed-Primitive>
                                 <seed-Amount ng-show="question.Qtype === 'amountQ'" question="question"> </seed-Amount>
-                                <!-- <md-button class="md-raised">answer.text</md-button> -->
+                     
                                 <br>
                                 <br>
                                 <div layout-align="center" layout="row">

@@ -19,12 +19,7 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <!-- <div flex>
-                    <select ng-model="field.type" placeholder="select"class="selectpicker" data-style="btn-default btn-custom">
-                        <option value="" disabled selected>Data Type</option>
-                        <option ng-repeat="type in typeArr" value="{{type}}">{{type}}</option>
-                    </select>
-                </div> -->
+
                      <md-input-container flex ng-show="field.type==='Array of...'">
                     <label style="color:#98a6ad;">Data Type</label>
                     <md-select ng-model="field.selectedArrType">

@@ -4,8 +4,9 @@ var expandTilde = require('expand-tilde');
 
 app.factory('Storage', function($rootScope) {
 
+    //assigns config directory
     var configDir = (process.env.XDG_CONFIG_HOME || (expandTilde("~") + "/.config")) + "/configstore/";
-    // var configDir = (process.env.XDG_CONFIG_HOME || "/Users/"+(process.env.USER || process.env.LOGNAME)+"/.config")+"/configstore/";
+   
     var conf = null;
     var projKey = null;
     var currentRepo = null;

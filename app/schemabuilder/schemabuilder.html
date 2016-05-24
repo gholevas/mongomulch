@@ -1,4 +1,6 @@
-<br><br><br>
+<br>
+<br>
+<br>
 <div class="content ">
     <div class="container">
         <div class="row">
@@ -17,20 +19,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr  ng-repeat="field in schema.fields" ng-mouseenter="show = true" ng-mouseleave="show = false">
+                                        <tr ng-repeat="field in schema.fields" ng-mouseenter="show = true" ng-mouseleave="show = false">
                                             <td ng-click="toggleRight(schema,field)">{{field.name}}</td>
                                             <td ng-click="toggleRight(schema,field)" ng-hide="field.type==='Array of...' || field.type==='Reference to...' || field.type==='Embed...'">{{field.type}}</td>
                                             <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Array of...' && !field.selectedArrType) ">Array of...</td>
                                             <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Array of...' && field.selectedArrType)">Array of {{field.selectedArrType | plural}}</td>
-
                                             <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Reference to...' && !field.reference) ">Reference to...</td>
                                             <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Reference to...' && field.reference)">Reference to {{field.reference | plural}}</td>
-
                                             <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Embed...' && !field.selectedEmbed) ">Embed...</td>
-                                            <td ng-click="toggleRight(schema,field)"  ng-show="(field.type==='Embed...' && field.selectedEmbed)">Embed {{field.selectedEmbed | plural}}</td>
+                                            <td ng-click="toggleRight(schema,field)" ng-show="(field.type==='Embed...' && field.selectedEmbed)">Embed {{field.selectedEmbed | plural}}</td>
                                             <td ng-click="toggleRight(schema,field)">{{field.options}}</td>
-                                            <td ng-click ="deleteField(field)"> <i ng-show="show" class="ti-close"></i></td>
-                                        <!--     <i class="ti-close"></i> -->
+                                            <td ng-click="deleteField(field)"> <i ng-show="show" class="ti-close"></i></td>
+                                            <!--     <i class="ti-close"></i> -->
                                         </tr>
                                     </tbody>
                                 </table>

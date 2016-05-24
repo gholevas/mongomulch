@@ -31,14 +31,8 @@ app.controller("SeederCtrl", function($scope, $rootScope, SchemaFactory, Questio
 
 
     $scope.submitAnswers = function(dbname) {
-        console.log('this is questions obj',$scope.questions);
-        // var obj = {};
-        // console.log($scope.dbname);
-        // for (var i = 0; i < $scope.questions.length; i += 2) {
-        //     obj[$scope.questions[i].name] = obj[$scope.questions[i].name] || {};
-        //     obj[$scope.questions[i].name].amount = $scope.questions[i].amount;
-        //     obj[$scope.questions[i].name].fields = obj[$scope.questions[i].name].fields || fieldsObj($scope.questions[i].fields);
-        // }
+      
+
         $scope.error = null;
         var result = generate_schemas_for_seeds(SchemaFactory.getSchemas(),dbname, $scope.questions)
         console.log(result);

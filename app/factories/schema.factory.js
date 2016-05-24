@@ -4,20 +4,20 @@ var mongoose = require('mongoose');
 app.factory('SchemaFactory', function($rootScope, Storage) {
     
     var schemas;
-
+    //Load schema or create new one
     function initializeSchemas(){
         if(Storage.isProjLoaded()){
             if(!Storage.get('schemas')) Storage.set('schemas',[]);
             schemas = Storage.get('schemas').map(sObj => convertPojoToSchema(sObj) ) || []; //root data structure
         }
     }
-
+    //Schema constructor defintion 
     var Schema = function(name, id, fields){
         this.name = name || "";
         this.id = id ||  mongoose.Types.ObjectId().toString();
         this.fields = fields || [];
-    }
-
+      }
+       //Add field to a schema 
     Schema.prototype.addField = function(field){
         var edited = false;
         this.fields.forEach(function(onefield){
@@ -33,13 +33,13 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
             Storage.set('schemas', schemas);
 
     }
-
+    //Delete field from a schema 
     Schema.prototype.deleteField = function(field){
         this.fields.splice(this.fields.indexOf(field), 1);
         Storage.set('schemas', schemas);
         $rootScope.$broadcast('newField', this.schemaId);
     }    
-
+     //Schema field defintion 
     var Field = function(name, type, options, selectedArrType, selectedEmbed, reference){
         this.name = name || '';
         this.type = type || 'String';
@@ -49,6 +49,7 @@ app.factory('SchemaFactory', function($rootScope, Storage) {
         this.options = options || {select: true};
     }
 
+    
     var convertPojoToSchema = function(sObj){
         return new Schema(sObj.name, sObj.id, sObj.fields.map(f => new Field(f.name, f.type, f.options, f.selectedArrType, f.selectedEmbed, f.reference)))
     }
